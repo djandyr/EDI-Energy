@@ -1,4 +1,4 @@
-Edifact, PHP Edifact parser
+Edifact Messages for edi@energy,
 ===========================
 
-![Build Status](https://travis-ci.org/Apfelfrisch/Edifact.svg?branch=master)
+Needs Apfelfrisch/Edifact Package.
