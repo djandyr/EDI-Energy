@@ -1,4 +1,4 @@
 Edifact Messages for edi@energy,
 ===========================
 
-Needs Apfelfrisch/Edifact Package.
+Needs https://github.com/Apfelfrisch/Edifact Package.
