@@ -1,0 +1,25 @@
+{
+    "name": "proengeno/edimessages",
+    "require": { "php": ">=5.4.0" },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Apfelfrisch/Edifact.git"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "5.3",
+        "mockery/mockery": "^0.9.4",
+        "proengeno/edifact": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Proengeno\\EdiMessages\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]   
+    }
+}
