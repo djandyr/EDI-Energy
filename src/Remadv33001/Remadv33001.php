@@ -1,10 +1,10 @@
 <?php
 
-namespace Proengeno\EdiMessages\Remadv_33001;
+namespace Proengeno\EdiMessages\Remadv33001;
 
 use Proengeno\Edifact\Message\Message;
 
-class Remadv_33001 extends MessageCore
+class Remadv33001 extends Message
 {
     protected static $validationBlueprint = [
         ['name' => 'UNA'],
@@ -21,6 +21,6 @@ class Remadv_33001 extends MessageCore
     
     public static function build($from, $to)
     {
-        return new Builder(static::class, $from, $to);
+        return new Builder($from, $to);
     }
 }

@@ -1,15 +1,22 @@
 <?php
 
-namespace Proengeno\EdiMessages\Remadv_33001;
+namespace Proengeno\EdiMessages\Remadv33001;
 
-use Proengeno\Edifact\Message\Builder as BuilderCore;
+use DateTime;
+use Proengeno\Edifact\Message\Builder;
+use Proengeno\Edifact\Message\Segments\Unb;
 
-class Builder extends BuilderCore
+class Remadv33001Builder extends Builder
 {
     protected $messageType = 'REMADV';
     protected $messageSubType = '';
 
     private $energyType;
+
+    public function __construct($from, $to, $mode = 'w+')
+    {
+        parent::__construct(Remadv33001::class, $from, $to, $mode);
+    }
 
     protected function getMessage($array)
     {
