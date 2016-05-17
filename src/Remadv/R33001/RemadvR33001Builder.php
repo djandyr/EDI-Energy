@@ -58,22 +58,19 @@ class RemadvR33001Builder extends Builder
     
     private function writeUnhHead()
     {
-        $this->edifactFile->write(
-            Unh::fromAttributes(
+        $this->writeSegment(Unh::fromAttributes(
                 $this->unbReference(), 
                 $this->messageType, 
                 $this->versionNumber, 
                 $this->releaseNumber, 
                 $this->organisation, 
                 $this->organisationCode
-            )
-            . Bgm::fromAttributes($this->docCode, $this->unbReference())
-            . Dtm::fromAttributes(137, new DateTime, 102)
-            . Rff::fromAttributes('Z13', $this->checkId)
-            . Nad::fromMpCode('MS', $this->from, 293)
-            . Nad::fromMpCode('MR', $this->to, 293)
-            . Cux::fromAttributes(2, 'EUR', 4)
-        );
+        ));
+        $this->writeSegment(Bgm::fromAttributes($this->docCode, $this->unbReference()));
+        $this->writeSegment(Dtm::fromAttributes(137, new DateTime, 102));
+        $this->writeSegment(Rff::fromAttributes('Z13', $this->checkId));
+        $this->writeSegment(Nad::fromMpCode('MS', $this->from, 293));
+        $this->writeSegment(Nad::fromMpCode('MR', $this->to, 293));
+        $this->writeSegment(Cux::fromAttributes(2, 'EUR', 4));
     }
-    
 }
