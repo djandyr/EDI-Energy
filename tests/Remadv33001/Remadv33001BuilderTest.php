@@ -25,24 +25,30 @@ class Remadv33001BuilderTest extends TestCase
     }
 
     /** @test */
-    public function it()
+    public function it_()
     {
-        $accountNumber = 'RN12345';
         $invoiceCode = 380;
-        $invoiceDate = new DateTime('2015-01-01');
         $invoiceAmount = 10.00;
+        $accountNumber = 'RN12345';
+        $invoiceDate = new DateTime('2015-01-01');
+        
+        $this->remadvBuilder->setEnergieType('electric');
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock($invoiceAmount, $accountNumber, $invoiceDate, $invoiceCode)]);
 
-        $remadvModel = m::mock(RemadvInterface::class, function($remadvModel) use ($invoiceAmount, $accountNumber, $invoiceDate, $invoiceCode) {
+        $edifact = $this->remadvBuilder->get();
+        $this->assertEquals('502', $edifact->findNextSegment('UNB')->senderQualifier());
+
+        unlink($edifact->getFilepath());
+    }
+
+    private function makeRemadvMock($invoiceAmount, $accountNumber, $invoiceDate, $invoiceCode)
+    {
+        return m::mock(RemadvInterface::class, function($remadvModel) use ($invoiceAmount, $accountNumber, $invoiceDate, $invoiceCode) {
             $remadvModel->shouldReceive('getAmount')->andReturn($invoiceAmount);
             $remadvModel->shouldReceive('getAccountNumber')->andReturn($accountNumber);
             $remadvModel->shouldReceive('getInvoiceDate')->andReturn($invoiceDate);
             $remadvModel->shouldReceive('getInvoiceCode')->andReturn($invoiceCode);
         });
-        $this->remadvBuilder->addMessage([$remadvModel]);
-
-        $edifact = $this->remadvBuilder->get();
-        
-        echo "\n" . (string)$edifact . "\n";
-        unlink($edifact->getFilepath());
     }
+    
 }
