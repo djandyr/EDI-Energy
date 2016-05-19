@@ -18,7 +18,9 @@ abstract class Builder_D_05A_UN extends Builder
 
     public function setEnergieType($energyType)
     {
-        return $this->energyType = $energyType;
+        $this->energyType = $energyType;
+
+        return $this;
     }
     
     protected function getUnb() 

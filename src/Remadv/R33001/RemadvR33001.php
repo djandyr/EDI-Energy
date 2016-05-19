@@ -8,12 +8,21 @@ class RemadvR33001 extends Message
 {
     protected static $validationBlueprint = [
         ['name' => 'UNA'],
-        ['name' => 'UNH', 'maxLoops' => 10, 'necessity' => 'R', 'segments' => [
-            ['name' => 'BGM', 'templates' => ['docCode' => ['7', '380']] ],
-            ['name' => 'LIN', 'maxLoops' => 5, 'necessity' => 'R', 'segments' => [
-                ['name' => 'DTM'],
+        ['name' => 'UNB'],
+        ['name' => 'UNH', 'maxLoops' => 1000, 'necessity' => 'R', 'segments' => [
+            ['name' => 'BGM', 'templates' => ['docCode' => ['239', '481']] ],
+            ['name' => 'DTM', 'templates' => ['qualifier' => ['137'], 'code' => ['102']] ],
+            ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['33001', '33002']] ],
+            ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']] ],
+            ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']] ],
+            ['name' => 'CUX', 'templates' => ['currency' => ['EUR']] ],
+            ['name' => 'DOC', 'maxLoops' => 1000, 'templates' => ['code' => ['380', '389', '457', 'Z25']], 'segments' => [
+                ['name' => 'MOA', 'templates' => ['qualifier' => ['9']] ],
+                ['name' => 'MOA', 'templates' => ['qualifier' => ['12']] ],
+                ['name' => 'DTM', 'templates' => ['qualifier' => ['137'], 'code' => ['102']] ],
             ]],
-            ['name' => 'UNS'],
+            ['name' => 'UNS', 'templates' => ['code' => ['S']] ],
+            ['name' => 'MOA', 'templates' => ['qualifier' => ['12']] ],
             ['name' => 'UNT'],
         ]],
         ['name' => 'UNZ']

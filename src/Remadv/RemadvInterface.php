@@ -2,7 +2,7 @@
 
 namespace Proengeno\EdiMessages\Remadv;
 
-interface Remadv
+interface RemadvInterface
 {
     public function getAmount();
     public function getInvoiceDate();
