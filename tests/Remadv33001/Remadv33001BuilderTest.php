@@ -55,7 +55,6 @@ class Remadv33001BuilderTest extends TestCase
             $this->makeRemadvMock(),
             $this->makeRemadvMock(15.5),
         ])->get();
-        echo (string) $this->edifactFile;
         $this->assertEquals('502', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
         $this->assertEquals('332', $this->edifactFile->findNextSegment('NAD')->idCode());
         $this->edifactFile->validate();

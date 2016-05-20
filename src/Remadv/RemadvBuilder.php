@@ -5,6 +5,8 @@ namespace Proengeno\EdiMessages\Remadv;
 use DateTime;
 use Proengeno\Edifact\Message\Segments\Unh;
 use Proengeno\Edifact\Message\Segments\Bgm;
+use Proengeno\Edifact\Message\Segments\Cta;
+use Proengeno\Edifact\Message\Segments\Com;
 use Proengeno\Edifact\Message\Segments\Dtm;
 use Proengeno\Edifact\Message\Segments\Nad;
 use Proengeno\Edifact\Message\Segments\Cux;
@@ -41,6 +43,9 @@ abstract class RemadvBuilder extends Builder
         $this->writeSegment(Dtm::fromAttributes(137, new DateTime, 102));
         $this->writeSegment(Rff::fromAttributes('Z13', static::CHECK_DIGIT));
         $this->writeSegment(Nad::fromMpCode('MS', $this->from, $this->getMpCodeQualifier('nad', $this->from)));
+        $this->writeSegment(Cta::fromAttributes('IC', 'Frau Jacobs'));
+        $this->writeSegment(Com::fromAttributes('04958 91570-08', 'TE'));
+        $this->writeSegment(Com::fromAttributes('a.jacobs@proengeno.de', 'EM'));
         $this->writeSegment(Nad::fromMpCode('MR', $this->to, $this->getMpCodeQualifier('nad', $this->to)));
         $this->writeSegment(Cux::fromAttributes(2, 'EUR', 11));
     }
