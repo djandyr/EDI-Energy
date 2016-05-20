@@ -42,6 +42,6 @@ abstract class RemadvBuilder extends Builder
         $this->writeSegment(Rff::fromAttributes('Z13', static::CHECK_DIGIT));
         $this->writeSegment(Nad::fromMpCode('MS', $this->from, $this->getMpCodeQualifier('nad', $this->from)));
         $this->writeSegment(Nad::fromMpCode('MR', $this->to, $this->getMpCodeQualifier('nad', $this->to)));
-        $this->writeSegment(Cux::fromAttributes(2, 'EUR', 4));
+        $this->writeSegment(Cux::fromAttributes(2, 'EUR', 11));
     }
 }
