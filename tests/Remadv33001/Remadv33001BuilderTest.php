@@ -28,19 +28,19 @@ class Remadv33001BuilderTest extends TestCase
     }
 
     /** @test */
-    public function it_is_the_Remadv33001Builder_instance()
+    public function it_instanciate_the_korrekt_class()
     {
         $this->assertInstanceOf(RemadvR33001Builder::class, $this->remadvBuilder);
     }
 
     /** @test */
-    public function it_provides_the_RemadvR33001_instance()
+    public function it_build_up_the_RemadvR33001_instance()
     {
         $this->assertInstanceOf(RemadvR33001::class, $this->edifactFile = $this->remadvBuilder->get());
     }
 
     /** @test */
-    public function it_creates_a_valid_electric_remadv()
+    public function it_creates_a_valid_electric_message()
     {
         $this->edifactFile = $this->remadvBuilder->setEnergieType('electric')->addMessage([$this->makeRemadvMock()])->get();
         $this->assertEquals('500', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
@@ -49,7 +49,7 @@ class Remadv33001BuilderTest extends TestCase
     }
 
     /** @test */
-    public function it_creates_a_valid_gas_remadv()
+    public function it_creates_a_valid_gas_message()
     {
         $this->edifactFile = $this->remadvBuilder->setEnergieType('gas')->addMessage([$this->makeRemadvMock()])->get();
 

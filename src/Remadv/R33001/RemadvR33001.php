@@ -30,6 +30,6 @@ class RemadvR33001 extends Message
     
     public static function build($from, $to)
     {
-        return new Builder($from, $to);
+        return new RemadvR33001Builder($from, $to);
     }
 }
