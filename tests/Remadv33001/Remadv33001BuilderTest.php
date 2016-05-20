@@ -51,18 +51,21 @@ class Remadv33001BuilderTest extends TestCase
     /** @test */
     public function it_creates_a_valid_gas_message()
     {
-        $this->edifactFile = $this->remadvBuilder->setEnergieType('gas')->addMessage([$this->makeRemadvMock()])->get();
-
+        $this->edifactFile = $this->remadvBuilder->setEnergieType('gas')->addMessage([
+            $this->makeRemadvMock(),
+            $this->makeRemadvMock(15.5),
+        ])->get();
+        echo (string) $this->edifactFile;
         $this->assertEquals('502', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
         $this->assertEquals('332', $this->edifactFile->findNextSegment('NAD')->idCode());
         $this->edifactFile->validate();
     }
 
-    private function makeRemadvMock($invoiceAmount = 10, $payedAmount = 10, $accountNumber = 1, $invoiceDate = '2015-01-01', $invoiceCode = 380)
+    private function makeRemadvMock($payedAmount = 10, $invoiceAmount = 10, $accountNumber = 1, $invoiceDate = '2015-01-01', $invoiceCode = 380)
     {
         return m::mock(RemadvInterface::class)
+            ->shouldReceive('getPayedAmount')->andReturn($payedAmount)
             ->shouldReceive('getInvoiceAmount')->andReturn($invoiceAmount)
-            ->shouldReceive('getPayedAmount')->andReturn($invoiceAmount)
             ->shouldReceive('getAccountNumber')->andReturn($accountNumber)
             ->shouldReceive('getInvoiceDate')->andReturn(new DateTime($invoiceDate))
             ->shouldReceive('getInvoiceCode')->andReturn($invoiceCode)

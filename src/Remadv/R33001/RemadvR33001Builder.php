@@ -30,7 +30,7 @@ class RemadvR33001Builder extends RemadvBuilder
         $this->writeSegment(Moa::fromAttributes(12, $item->getPayedAmount()));
         $this->writeSegment(Dtm::fromAttributes(137, $item->getInvoiceDate(), 102));
 
-        $this->sumPayedAmount = bcadd($this->sumPayedAmount, $item->getPayedAmount());
+        $this->sumPayedAmount = bcadd($this->sumPayedAmount, $item->getPayedAmount(), 2);
     }
     
     protected function writeUnhFoot()
