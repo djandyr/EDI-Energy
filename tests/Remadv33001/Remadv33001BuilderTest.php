@@ -58,14 +58,16 @@ class Remadv33001BuilderTest extends TestCase
         $this->edifactFile->validate();
     }
 
-    private function makeRemadvMock($invoiceAmount = 10, $accountNumber = 1, $invoiceDate = '2015-01-01', $invoiceCode = 380)
+    private function makeRemadvMock($invoiceAmount = 10, $payedAmount = 10, $accountNumber = 1, $invoiceDate = '2015-01-01', $invoiceCode = 380)
     {
-        return m::mock(RemadvInterface::class, function($remadvModel) use ($invoiceAmount, $accountNumber, $invoiceDate, $invoiceCode) {
-            $remadvModel->shouldReceive('getAmount')->andReturn($invoiceAmount);
-            $remadvModel->shouldReceive('getAccountNumber')->andReturn($accountNumber);
-            $remadvModel->shouldReceive('getInvoiceDate')->andReturn(new DateTime($invoiceDate));
-            $remadvModel->shouldReceive('getInvoiceCode')->andReturn($invoiceCode);
-        });
+        return m::mock(RemadvInterface::class)
+            ->shouldReceive('getInvoiceAmount')->andReturn($invoiceAmount)
+            ->shouldReceive('getPayedAmount')->andReturn($invoiceAmount)
+            ->shouldReceive('getAccountNumber')->andReturn($accountNumber)
+            ->shouldReceive('getInvoiceDate')->andReturn(new DateTime($invoiceDate))
+            ->shouldReceive('getInvoiceCode')->andReturn($invoiceCode)
+            ->getMock();
+
     }
     
 }

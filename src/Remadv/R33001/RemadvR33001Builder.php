@@ -16,7 +16,7 @@ class RemadvR33001Builder extends RemadvBuilder
     const DOC_CODE = 481;
     const CHECK_DIGIT = 33001;
 
-    private $sumAmount;
+    private $sumPayedAmount;
 
     public function __construct($from, $to, $mode = 'w+')
     {
@@ -26,17 +26,17 @@ class RemadvR33001Builder extends RemadvBuilder
     protected function writeUnhBody(RemadvInterface $item)
     {
         $this->writeSegment(Doc::fromAttributes($item->getInvoiceCode(), $item->getAccountNumber()));
-        $this->writeSegment(Moa::fromAttributes(9, $item->getAmount()));
-        $this->writeSegment(Moa::fromAttributes(12, $item->getAmount()));
+        $this->writeSegment(Moa::fromAttributes(9, $item->getInvoiceAmount()));
+        $this->writeSegment(Moa::fromAttributes(12, $item->getPayedAmount()));
         $this->writeSegment(Dtm::fromAttributes(137, $item->getInvoiceDate(), 102));
 
-        $this->sumAmount += $item->getAmount();
+        $this->sumPayedAmount = bcadd($this->sumPayedAmount, $item->getPayedAmount());
     }
     
     protected function writeUnhFoot()
     {
         $this->writeSegment(Uns::fromAttributes());
-        $this->writeSegment(Moa::fromAttributes(12, $this->sumAmount));
+        $this->writeSegment(Moa::fromAttributes(12, $this->sumPayedAmount));
         $this->writeSegment(Unt::fromAttributes($this->unhCounter, $this->unbReference()));
     }
 }
