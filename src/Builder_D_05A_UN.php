@@ -4,7 +4,7 @@ namespace Proengeno\EdiMessages;
 
 use DateTime;
 use Proengeno\Edifact\Message\Builder;
-use Proengeno\Edifact\Message\Segments\Unb;
+use Proengeno\EdiMessages\Segments\Unb;
 
 abstract class Builder_D_05A_UN extends Builder
 {
@@ -23,9 +23,9 @@ abstract class Builder_D_05A_UN extends Builder
         return $this;
     }
     
-    protected function getUnb() 
+    protected function writeUnb() 
     {
-        return Unb::fromAttributes(
+        return $this->writeSeg('unb', [
             self::SYNTAX_ID , 
             self::SYNTAX_VERSION, 
             $this->from, 
@@ -35,7 +35,7 @@ abstract class Builder_D_05A_UN extends Builder
             new DateTime(), 
             $this->unbReference(),
             static::MESSAGE_SUBTYPE
-        );
+        ]);
     }
 
     protected function getMpCodeQualifier($type, $mpCode) 

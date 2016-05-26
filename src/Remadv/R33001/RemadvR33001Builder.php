@@ -3,11 +3,6 @@
 namespace Proengeno\EdiMessages\Remadv\R33001;
 
 use DateTime;
-use Proengeno\Edifact\Message\Segments\Dtm;
-use Proengeno\Edifact\Message\Segments\Doc;
-use Proengeno\Edifact\Message\Segments\Moa;
-use Proengeno\Edifact\Message\Segments\Uns;
-use Proengeno\Edifact\Message\Segments\Unt;
 use Proengeno\EdiMessages\Remadv\RemadvBuilder;
 use Proengeno\EdiMessages\Remadv\RemadvInterface;
 
@@ -25,18 +20,18 @@ class RemadvR33001Builder extends RemadvBuilder
 
     protected function writeUnhBody(RemadvInterface $item)
     {
-        $this->writeSegment(Doc::fromAttributes($item->getInvoiceCode(), $item->getAccountNumber()));
-        $this->writeSegment(Moa::fromAttributes(9, $item->getInvoiceAmount()));
-        $this->writeSegment(Moa::fromAttributes(12, $item->getPayedAmount()));
-        $this->writeSegment(Dtm::fromAttributes(137, $item->getInvoiceDate(), 102));
+        $this->writeSeg('Doc', [$item->getInvoiceCode(), $item->getAccountNumber()]);
+        $this->writeSeg('Moa', [9, $item->getInvoiceAmount()]);
+        $this->writeSeg('Moa', [12, $item->getPayedAmount()]);
+        $this->writeSeg('Dtm', [137, $item->getInvoiceDate(), 102]);
 
         $this->sumPayedAmount = bcadd($this->sumPayedAmount, $item->getPayedAmount(), 2);
     }
     
     protected function writeUnhFoot()
     {
-        $this->writeSegment(Uns::fromAttributes());
-        $this->writeSegment(Moa::fromAttributes(12, $this->sumPayedAmount));
-        $this->writeSegment(Unt::fromAttributes($this->unhCounter, $this->unbReference()));
+        $this->writeSeg('Uns');
+        $this->writeSeg('Moa', [12, $this->sumPayedAmount]);
+        $this->writeSeg('Unt', [$this->unhCounter, $this->unbReference()]);
     }
 }
