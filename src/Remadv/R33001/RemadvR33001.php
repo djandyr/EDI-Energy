@@ -6,6 +6,24 @@ use Proengeno\Edifact\Message\Message;
 
 class RemadvR33001 extends Message
 {
+    protected static $builderClass = RemadvR33001Builder::class;
+    protected static $segments = [
+        'UNA' => \Proengeno\EdiMessages\Segments\Una::class,
+        'UNB' => \Proengeno\EdiMessages\Segments\Unb::class,
+        'UNH' => \Proengeno\EdiMessages\Segments\Unh::class,
+        'BGM' => \Proengeno\EdiMessages\Segments\Bgm::class,
+        'DTM' => \Proengeno\EdiMessages\Segments\Dtm::class,
+        'RFF' => \Proengeno\EdiMessages\Segments\Rff::class,
+        'NAD' => \Proengeno\EdiMessages\Segments\Nad::class,
+        'CTA' => \Proengeno\EdiMessages\Segments\Cta::class,
+        'COM' => \Proengeno\EdiMessages\Segments\Com::class,
+        'CUX' => \Proengeno\EdiMessages\Segments\Cux::class,
+        'DOC' => \Proengeno\EdiMessages\Segments\Doc::class,
+        'MOA' => \Proengeno\EdiMessages\Segments\Moa::class,
+        'UNS' => \Proengeno\EdiMessages\Segments\Uns::class,
+        'UNT' => \Proengeno\EdiMessages\Segments\Unt::class,
+        'UNZ' => \Proengeno\EdiMessages\Segments\Unz::class,
+    ];
     protected static $validationBlueprint = [
         ['name' => 'UNA'],
         ['name' => 'UNB'],
@@ -30,9 +48,4 @@ class RemadvR33001 extends Message
         ]],
         ['name' => 'UNZ']
     ];
-    
-    public static function build($from, $to)
-    {
-        return new RemadvR33001Builder($from, $to);
-    }
 }
