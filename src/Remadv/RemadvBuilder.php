@@ -11,12 +11,10 @@ abstract class RemadvBuilder extends Builder
     const MESSAGE_TYPE = 'REMADV';
     const ORGANISATION_CODE = '2.7b';
 
-    protected function writeMessage($items)
+    protected function writeMessage($item)
     {
         $this->writeUnhHead();
-        foreach ($items as $item) {
-            $this->writeUnhBody($item);
-        }
+        $this->writeUnhBody($item);
         $this->writeUnhFoot();
     }
 
