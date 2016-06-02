@@ -22,6 +22,17 @@ abstract class Builder_D_05A_UN extends Builder
 
         return $this;
     }
+
+    protected function getFullpath($filepath)
+    {
+        return $filepath . '/'
+            . static::MESSAGE_TYPE . '_'
+            . static::MESSAGE_SUBTYPE . '_'
+            . $this->from . '_'
+            . $this->to . '_'
+            . date('Ymd') . '_'
+            . $this->unbReference() . '.txt';
+    }
     
     protected function writeUnb() 
     {

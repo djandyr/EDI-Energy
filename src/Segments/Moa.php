@@ -15,7 +15,7 @@ class Moa extends Segment
     {
         return new static([
             'MOA' => ['MOA' => 'MOA'],
-            'C516' => ['5025' => $qualifier, '5004' => $amount]
+            'C516' => ['5025' => $qualifier, '5004' => number_format($amount, 2, static::getDelimiter()->getDecimal(), '')]
         ]);
     }
 

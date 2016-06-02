@@ -13,9 +13,11 @@ class RemadvR33001Builder extends RemadvBuilder
 
     private $sumPayedAmount;
 
-    public function __construct($from, $to, $mode = 'w+')
+    public function __construct($from, $to, $filepath)
     {
-        parent::__construct(RemadvR33001::class, $from, $to, $mode);
+        $this->from = $from;
+        $this->to = $to;
+        parent::__construct(RemadvR33001::class, $this->getFullpath($filepath));
     }
 
     protected function writeUnhBody(RemadvInterface $item)

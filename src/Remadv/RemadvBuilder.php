@@ -10,6 +10,14 @@ abstract class RemadvBuilder extends Builder
     const MESSAGE_SUBTYPE = '';
     const MESSAGE_TYPE = 'REMADV';
     const ORGANISATION_CODE = '2.7b';
+    
+    /*
+     * Überladung der Elternklasse
+     */
+    public function unbReference()
+    {
+        return 'R' . parent::unbReference();
+    }
 
     protected function writeMessage($item)
     {
