@@ -23,7 +23,7 @@ abstract class Builder_D_05A_UN extends Builder
         return $this;
     }
 
-    protected function getFullpath($filepath)
+    public function generateFilename()
     {
         return $filepath . '/'
             . static::MESSAGE_TYPE . '_'

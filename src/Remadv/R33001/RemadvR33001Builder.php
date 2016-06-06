@@ -17,7 +17,7 @@ class RemadvR33001Builder extends RemadvBuilder
     {
         $this->from = $from;
         $this->to = $to;
-        parent::__construct(RemadvR33001::class, $this->getFullpath($filepath));
+        parent::__construct(RemadvR33001::class, $filepath);
     }
 
     protected function writeUnhBody(RemadvInterface $item)

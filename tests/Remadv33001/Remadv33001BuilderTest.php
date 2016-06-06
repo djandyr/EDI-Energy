@@ -17,7 +17,7 @@ class Remadv33001BuilderTest extends TestCase
 
     public function setUp()
     {
-        $this->remadvBuilder = new RemadvR33001Builder('from', 'to', '/tmp');
+        $this->remadvBuilder = new RemadvR33001Builder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     public function tearDown()
