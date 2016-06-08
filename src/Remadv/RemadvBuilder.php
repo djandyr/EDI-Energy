@@ -3,7 +3,7 @@
 namespace Proengeno\EdiMessages\Remadv;
 
 use DateTime;
-use Proengeno\EdiMessages\Builder_D_05A_UN as Builder;
+use Proengeno\EdiMessages\D_05A_UN_Builder as Builder;
 
 abstract class RemadvBuilder extends Builder
 {

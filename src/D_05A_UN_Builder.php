@@ -6,7 +6,7 @@ use DateTime;
 use Proengeno\Edifact\Message\Builder;
 use Proengeno\EdiMessages\Segments\Unb;
 
-abstract class Builder_D_05A_UN extends Builder
+abstract class D_05A_UN_Builder extends Builder
 {
     const SYNTAX_ID = 'UNOC';
     const SYNTAX_VERSION = 3;

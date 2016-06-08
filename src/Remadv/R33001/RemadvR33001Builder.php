@@ -13,11 +13,9 @@ class RemadvR33001Builder extends RemadvBuilder
 
     private $sumPayedAmount;
 
-    public function __construct($from, $to, $filepath)
+    protected function getMessageClass()
     {
-        $this->from = $from;
-        $this->to = $to;
-        parent::__construct(RemadvR33001::class, $filepath);
+        return RemadvR33001::class;
     }
 
     protected function writeUnhBody(RemadvInterface $item)
@@ -34,6 +32,6 @@ class RemadvR33001Builder extends RemadvBuilder
     {
         $this->writeSeg('Uns');
         $this->writeSeg('Moa', [12, $this->sumPayedAmount]);
-        $this->writeSeg('Unt', [$this->unhCounter, $this->unbReference()]);
+        $this->writeSeg('Unt', [$this->unhCount(), $this->unbReference()]);
     }
 }
