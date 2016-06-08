@@ -33,11 +33,23 @@ abstract class D_05A_UN_Builder extends Builder
             . date('Ymd') . '_'
             . $this->unbReference() . '.txt';
     }
+
+    protected function writeSeg($segment, $attributes = [], $method = 'fromAttributes')
+    {
+        if (isset($this->configuration['convertCharset'])) {
+            array_walk($attributes, function(&$attribute, $key) {
+                if (is_string($attribute)) {
+                    $attribute = $this->configuration['convertCharset']($attribute);
+                }
+            });
+        }
+        parent::writeSeg($segment, $attributes, $method);
+    }
     
     protected function writeUnb() 
     {
         return $this->writeSeg('unb', [
-            self::SYNTAX_ID , 
+            self::SYNTAX_ID, 
             self::SYNTAX_VERSION, 
             $this->from, 
             $this->getMpCodeQualifier('unb', $this->from), 

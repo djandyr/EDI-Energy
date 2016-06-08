@@ -40,6 +40,23 @@ class Remadv33001BuilderTest extends TestCase
     }
 
     /** @test */
+    public function it_excepts_charset_conversion_configuration()
+    {
+        $utf8String = 'ß';
+        $isoString = iconv('UTF-8', 'CP1252', $utf8String);
+
+        $this->remadvBuilder->addConfiguration('convertCharset', function($string) {
+            if ($connvertedString = iconv('UTF-8', 'CP1252', $string)) {
+                return $connvertedString;
+            }
+            return $string;
+        });
+        $this->edifactFile = $this->remadvBuilder->setEnergieType('electric')->addMessage($this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $utf8String))->get();
+        
+        $this->assertEquals($isoString, $this->edifactFile->findNextSegment('DOC')->code());
+    }
+
+    /** @test */
     public function it_creates_a_valid_electric_message()
     {
         $this->edifactFile = $this->remadvBuilder->setEnergieType('electric')->addMessage($this->makeRemadvMock())->get();
