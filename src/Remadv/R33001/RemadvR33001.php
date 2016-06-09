@@ -48,4 +48,12 @@ class RemadvR33001 extends Message
         ]],
         ['name' => 'UNZ']
     ];
+
+    protected function getSegmentObject($segLine)
+    {
+        if (isset($this->configuration['convertCharset'])) {
+            $segLine = $this->configuration['convertCharset']($segLine);
+        }
+        return parent::getSegmentObject($segLine);
+    }
 }

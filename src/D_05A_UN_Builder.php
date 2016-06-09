@@ -36,10 +36,10 @@ abstract class D_05A_UN_Builder extends Builder
 
     protected function writeSeg($segment, $attributes = [], $method = 'fromAttributes')
     {
-        if (isset($this->configuration['convertCharset'])) {
+        if (isset($this->prebuildConfig['convertCharset'])) {
             array_walk($attributes, function(&$attribute, $key) {
                 if (is_string($attribute)) {
-                    $attribute = $this->configuration['convertCharset']($attribute);
+                    $attribute = $this->prebuildConfig['convertCharset']($attribute);
                 }
             });
         }

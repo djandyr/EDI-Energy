@@ -28,7 +28,7 @@ class Remadv33001BuilderTest extends TestCase
     }
 
     /** @test */
-    public function it_instanciate_the_korrekt_class()
+    public function it_instanciate_the_correct_class()
     {
         $this->assertInstanceOf(RemadvR33001Builder::class, $this->remadvBuilder);
     }
@@ -40,12 +40,12 @@ class Remadv33001BuilderTest extends TestCase
     }
 
     /** @test */
-    public function it_excepts_charset_conversion_configuration()
+    public function it_add_pre_build_charset_conversion_configuration()
     {
         $utf8String = 'ß';
         $isoString = iconv('UTF-8', 'CP1252', $utf8String);
 
-        $this->remadvBuilder->addConfiguration('convertCharset', function($string) {
+        $this->remadvBuilder->addPrebuildConfig('convertCharset', function($string) {
             if ($connvertedString = iconv('UTF-8', 'CP1252', $string)) {
                 return $connvertedString;
             }
@@ -54,6 +54,23 @@ class Remadv33001BuilderTest extends TestCase
         $this->edifactFile = $this->remadvBuilder->setEnergieType('electric')->addMessage($this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $utf8String))->get();
         
         $this->assertEquals($isoString, $this->edifactFile->findNextSegment('DOC')->code());
+    }
+
+    /** @test */
+    public function it_add_post_build_charset_conversion_configuration()
+    {
+        $utf8String = 'ß';
+        $isoString = iconv('UTF-8', 'CP1252', $utf8String);
+
+        $this->remadvBuilder->addPostbuildConfig('convertCharset', function($string) {
+            $encoding = mb_detect_encoding($string, 'UTF-8, CP1252, ISO-8859-1');
+            if ($encoding && $connvertedString = iconv($encoding, 'UTF-8', $string)) {
+                return $connvertedString;
+            }
+            return $string;
+        });
+        $this->edifactFile = $this->remadvBuilder->setEnergieType('electric')->addMessage($this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $isoString))->get();
+        $this->assertEquals($utf8String, $this->edifactFile->findNextSegment('DOC')->code());
     }
 
     /** @test */
