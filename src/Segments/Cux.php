@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Cux extends Segment 
+class Cux extends AbstractSegment 
 {
     protected static $validationBlueprint = [
         'CUX' => ['CUX' => 'M|a|3'],

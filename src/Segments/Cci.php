@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Cci extends Segment 
+class Cci extends AbstractSegment 
 {
     protected static $validationBlueprint = [
         'CCI' => ['CCI' => 'M|a|3'],

@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Loc extends Segment 
+class Loc extends AbstractSegment 
 {
     protected static $validationBlueprint = [
         'LOC' => ['LOC' => 'M|a|3'],

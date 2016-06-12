@@ -36,7 +36,7 @@ class UnaTest extends TestCase
      */
     public function it_the_delimiter_to_the_given_values($seg)
     {
-        $delimiter = $seg::getDelimiter();
+        $delimiter = $seg::getBuildDelimiter();
 
         $this->assertEquals('a', $delimiter->getData());
         $this->assertEquals('b', $delimiter->getDataGroup());

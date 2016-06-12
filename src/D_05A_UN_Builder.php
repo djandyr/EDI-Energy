@@ -3,10 +3,10 @@
 namespace Proengeno\EdiMessages;
 
 use DateTime;
-use Proengeno\Edifact\Message\Builder;
 use Proengeno\EdiMessages\Segments\Unb;
+use Proengeno\Edifact\Templates\AbstractBuilder;
 
-abstract class D_05A_UN_Builder extends Builder
+abstract class D_05A_UN_Builder extends AbstractBuilder
 {
     const SYNTAX_ID = 'UNOC';
     const SYNTAX_VERSION = 3;

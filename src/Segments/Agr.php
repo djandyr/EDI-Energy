@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Agr extends Segment 
+class Agr extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'AGR' => ['AGR' => 'M|a|3'],

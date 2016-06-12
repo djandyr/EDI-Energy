@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Unh extends Segment 
+class Unh extends AbstractSegment 
 {
     protected static $validationBlueprint = [
         'UNH' => ['UNH' => 'M|an|3'],

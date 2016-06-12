@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Cav extends Segment 
+class Cav extends AbstractSegment 
 {
     protected static $validationBlueprint = [
         'CAV' => ['CAV' => 'M|a|3'],

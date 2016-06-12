@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Moa extends Segment 
+class Moa extends AbstractSegment 
 {
     protected static $validationBlueprint = [
         'MOA' => ['MOA' => 'M|a|3'],
@@ -15,7 +15,7 @@ class Moa extends Segment
     {
         return new static([
             'MOA' => ['MOA' => 'MOA'],
-            'C516' => ['5025' => $qualifier, '5004' => number_format($amount, 2, static::getDelimiter()->getDecimal(), '')]
+            'C516' => ['5025' => $qualifier, '5004' => number_format($amount, 2, static::getBuildDelimiter()->getDecimal(), '')]
         ]);
     }
 

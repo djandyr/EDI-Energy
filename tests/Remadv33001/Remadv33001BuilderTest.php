@@ -5,6 +5,7 @@ namespace Proengeno\EdiMessages\Test\Remadv33001;
 use DateTime;
 use SplFileInfo;
 use Mockery as m;
+use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiMessages\Test\TestCase;
 use Proengeno\EdiMessages\Remadv\RemadvInterface;
 use Proengeno\EdiMessages\Remadv\R33001\RemadvR33001;
@@ -34,9 +35,9 @@ class Remadv33001BuilderTest extends TestCase
     }
 
     /** @test */
-    public function it_build_up_the_RemadvR33001_instance()
+    public function it_build_up_the_Message_instance()
     {
-        $this->assertInstanceOf(RemadvR33001::class, $this->edifactFile = $this->remadvBuilder->get());
+        $this->assertInstanceOf(Message::class, $this->edifactFile = $this->remadvBuilder->get());
     }
 
     /** @test */

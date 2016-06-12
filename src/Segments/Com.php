@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Com extends Segment 
+class Com extends AbstractSegment 
 {
     protected static $validationBlueprint = [
         'COM' => ['COM' => 'M|a|3'],

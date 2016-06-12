@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Cta extends Segment 
+class Cta extends AbstractSegment 
 {
     protected static $validationBlueprint = [
         'CTA' => ['CTA' => 'M|a|3'],

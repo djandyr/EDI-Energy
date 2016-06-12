@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Ide extends Segment 
+class Ide extends AbstractSegment 
 {
     protected static $validationBlueprint = [
         'IDE' => ['IDE' => 'M|a|3'],

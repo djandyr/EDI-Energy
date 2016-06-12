@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Nad extends Segment 
+class Nad extends AbstractSegment 
 {
     protected static $validationBlueprint = [
         'NAD' => ['NAD' => 'M|an|3'],

@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiMessages\Segments;
 
-use Proengeno\Edifact\Message\Segment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Doc extends Segment 
+class Doc extends AbstractSegment 
 {
     protected static $validationBlueprint = [
         'DOC' => ['DOC' => 'M|a|3'],
