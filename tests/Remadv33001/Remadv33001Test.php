@@ -1,9 +1,9 @@
 <?php
 
-namespace Proengeno\EdiMessages\Test\Remadv33001;
+namespace Proengeno\EdiEnergy\Test\Remadv33001;
 
-use Proengeno\EdiMessages\Test\TestCase;
-use Proengeno\EdiMessages\Remadv\R33001\RemadvR33001;
+use Proengeno\EdiEnergy\Test\TestCase;
+use Proengeno\EdiEnergy\Remadv\R33001\RemadvR33001;
 
 class Remadv33001Test extends TestCase 
 {

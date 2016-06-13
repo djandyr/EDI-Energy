@@ -2,8 +2,8 @@
 
 namespace Proengeno\Edifact\Test\Message\Segments;
 
-use Proengeno\EdiMessages\Segments\Bgm;
-use Proengeno\EdiMessages\Test\TestCase;
+use Proengeno\EdiEnergy\Segments\Bgm;
+use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Delimiter;
 
 class BgmTest extends TestCase 

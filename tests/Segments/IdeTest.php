@@ -2,8 +2,8 @@
 
 namespace Proengeno\Edifact\Test\Message\Segments;
 
-use Proengeno\EdiMessages\Segments\Ide;
-use Proengeno\EdiMessages\Test\TestCase;
+use Proengeno\EdiEnergy\Segments\Ide;
+use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Delimiter;
 
 class IdeTest extends TestCase 

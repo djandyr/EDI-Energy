@@ -1,6 +1,6 @@
 <?php
 
-namespace Proengeno\EdiMessages;
+namespace Proengeno\EdiEnergy;
 
 use Proengeno\Edifact\Message\EdifactFile;
 use Proengeno\Edifact\Templates\AbstractMessage;

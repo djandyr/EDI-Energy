@@ -1,6 +1,6 @@
 <?php
 
-namespace Proengeno\EdiMessages;
+namespace Proengeno\EdiEnergy;
 
 use DateTime;
 use Proengeno\Edifact\Templates\AbstractBuilder;

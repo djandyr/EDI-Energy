@@ -2,8 +2,8 @@
 
 namespace Proengeno\Edifact\Test\Message\Segments;
 
-use Proengeno\EdiMessages\Segments\Cux;
-use Proengeno\EdiMessages\Test\TestCase;
+use Proengeno\EdiEnergy\Segments\Cux;
+use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Delimiter;
 
 class CuxTest extends TestCase 

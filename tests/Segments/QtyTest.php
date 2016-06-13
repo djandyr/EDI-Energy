@@ -2,8 +2,8 @@
 
 namespace Proengeno\Edifact\Test\Message\Segments;
 
-use Proengeno\EdiMessages\Segments\Qty;
-use Proengeno\EdiMessages\Test\TestCase;
+use Proengeno\EdiEnergy\Segments\Qty;
+use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Delimiter;
 
 class QtyTest extends TestCase 

@@ -2,8 +2,8 @@
 
 namespace Proengeno\Edifact\Test\Message\Segments;
 
-use Proengeno\EdiMessages\Segments\Rff;
-use Proengeno\EdiMessages\Test\TestCase;
+use Proengeno\EdiEnergy\Segments\Rff;
+use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Delimiter;
 
 class RffTest extends TestCase 

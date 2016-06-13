@@ -1,9 +1,9 @@
 <?php
 
-namespace Proengeno\EdiMessages\Orders\O17102;
+namespace Proengeno\EdiEnergy\Orders\O17102;
 
 use DateTime;
-use Proengeno\EdiMessages\Orders\OrdersBuilder;
+use Proengeno\EdiEnergy\Orders\OrdersBuilder;
 
 class OrdersO17102Builder extends OrdersBuilder
 {

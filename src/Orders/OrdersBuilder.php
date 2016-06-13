@@ -1,8 +1,8 @@
 <?php
 
-namespace Proengeno\EdiMessages\Orders;
+namespace Proengeno\EdiEnergy\Orders;
 
-use Proengeno\EdiMessages\D_05A_UN_Builder as Builder;
+use Proengeno\EdiEnergy\D_05A_UN_Builder as Builder;
 
 abstract class OrdersBuilder extends Builder
 {

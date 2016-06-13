@@ -1,6 +1,6 @@
 <?php
 
-namespace Proengeno\EdiMessages\Test;
+namespace Proengeno\EdiEnergy\Test;
 
 use Mockery as m;
 use Proengeno\Edifact\EdifactRegistrar;

@@ -1,13 +1,13 @@
 <?php
 
-namespace Proengeno\EdiMessages\Test\Orders\O17102;
+namespace Proengeno\EdiEnergy\Test\Orders\O17102;
 
 use DateTime;
 use Mockery as m;
 use Proengeno\Edifact\Message\Message;
-use Proengeno\EdiMessages\Test\TestCase;
-use Proengeno\EdiMessages\Orders\OrdersInterface;
-use Proengeno\EdiMessages\Orders\O17102\OrdersO17102Builder;
+use Proengeno\EdiEnergy\Test\TestCase;
+use Proengeno\EdiEnergy\Orders\OrdersInterface;
+use Proengeno\EdiEnergy\Orders\O17102\OrdersO17102Builder;
 
 class OrdersBuilderTest extends TestCase 
 {

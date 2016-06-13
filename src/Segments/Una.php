@@ -1,6 +1,6 @@
 <?php 
 
-namespace Proengeno\EdiMessages\Segments;
+namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Message\Delimiter;
 use Proengeno\Edifact\Templates\AbstractSegment;

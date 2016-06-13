@@ -1,28 +1,28 @@
 <?php
 
-namespace Proengeno\EdiMessages\Orders\O17102;
+namespace Proengeno\EdiEnergy\Orders\O17102;
 
-use Proengeno\EdiMessages\D_05A_UN;
+use Proengeno\EdiEnergy\D_05A_UN;
 
 class OrdersO17102 extends D_05A_UN
 {
     protected static $builderClass = OrdersO17103Builder::class;
     protected static $segments = [
-        'UNA' => \Proengeno\EdiMessages\Segments\Una::class,
-        'UNB' => \Proengeno\EdiMessages\Segments\Unb::class,
-        'UNH' => \Proengeno\EdiMessages\Segments\Unh::class,
-        'BGM' => \Proengeno\EdiMessages\Segments\Bgm::class,
-        'DTM' => \Proengeno\EdiMessages\Segments\Dtm::class,
-        'RFF' => \Proengeno\EdiMessages\Segments\Rff::class,
-        'NAD' => \Proengeno\EdiMessages\Segments\Nad::class,
-        'CTA' => \Proengeno\EdiMessages\Segments\Cta::class,
-        'COM' => \Proengeno\EdiMessages\Segments\Com::class,
-        'IMD' => \Proengeno\EdiMessages\Segments\Imd::class,
-        'LOC' => \Proengeno\EdiMessages\Segments\Loc::class,
-        'LIN' => \Proengeno\EdiMessages\Segments\Lin::class,
-        'UNS' => \Proengeno\EdiMessages\Segments\Uns::class,
-        'UNT' => \Proengeno\EdiMessages\Segments\Unt::class,
-        'UNZ' => \Proengeno\EdiMessages\Segments\Unz::class,
+        'UNA' => \Proengeno\EdiEnergy\Segments\Una::class,
+        'UNB' => \Proengeno\EdiEnergy\Segments\Unb::class,
+        'UNH' => \Proengeno\EdiEnergy\Segments\Unh::class,
+        'BGM' => \Proengeno\EdiEnergy\Segments\Bgm::class,
+        'DTM' => \Proengeno\EdiEnergy\Segments\Dtm::class,
+        'RFF' => \Proengeno\EdiEnergy\Segments\Rff::class,
+        'NAD' => \Proengeno\EdiEnergy\Segments\Nad::class,
+        'CTA' => \Proengeno\EdiEnergy\Segments\Cta::class,
+        'COM' => \Proengeno\EdiEnergy\Segments\Com::class,
+        'IMD' => \Proengeno\EdiEnergy\Segments\Imd::class,
+        'LOC' => \Proengeno\EdiEnergy\Segments\Loc::class,
+        'LIN' => \Proengeno\EdiEnergy\Segments\Lin::class,
+        'UNS' => \Proengeno\EdiEnergy\Segments\Uns::class,
+        'UNT' => \Proengeno\EdiEnergy\Segments\Unt::class,
+        'UNZ' => \Proengeno\EdiEnergy\Segments\Unz::class,
     ];
     
     public function getValidationBlueprint()

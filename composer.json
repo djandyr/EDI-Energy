@@ -1,5 +1,5 @@
 {
-    "name": "proengeno/edimessages",
+    "name": "proengeno/edienergy",
     "repositories": [
         {
             "type": "vcs",
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Proengeno\\EdiMessages\\": "src/"
+            "Proengeno\\EdiEnergy\\": "src/"
         }
     },
     "autoload-dev": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Proengeno\EdiMessages\Orders;
+namespace Proengeno\EdiEnergy\Orders;
 
 interface OrdersInterface
 {

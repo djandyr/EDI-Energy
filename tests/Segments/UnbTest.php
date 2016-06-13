@@ -3,8 +3,8 @@
 namespace Proengeno\Edifact\Test\Message\Segments;
 
 use DateTime;
-use Proengeno\EdiMessages\Segments\Unb;
-use Proengeno\EdiMessages\Test\TestCase;
+use Proengeno\EdiEnergy\Segments\Unb;
+use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Delimiter;
 
 class UnbTest extends TestCase 

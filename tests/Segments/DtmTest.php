@@ -3,8 +3,8 @@
 namespace Proengeno\Edifact\Test\Message\Segments;
 
 use DateTime;
-use Proengeno\EdiMessages\Segments\Dtm;
-use Proengeno\EdiMessages\Test\TestCase;
+use Proengeno\EdiEnergy\Segments\Dtm;
+use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Delimiter;
 use Proengeno\Edifact\Exceptions\SegValidationException;
 

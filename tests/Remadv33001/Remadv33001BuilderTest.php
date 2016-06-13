@@ -1,15 +1,15 @@
 <?php
 
-namespace Proengeno\EdiMessages\Test\Remadv33001;
+namespace Proengeno\EdiEnergy\Test\Remadv33001;
 
 use DateTime;
 use SplFileInfo;
 use Mockery as m;
 use Proengeno\Edifact\Message\Message;
-use Proengeno\EdiMessages\Test\TestCase;
-use Proengeno\EdiMessages\Remadv\RemadvInterface;
-use Proengeno\EdiMessages\Remadv\R33001\RemadvR33001;
-use Proengeno\EdiMessages\Remadv\R33001\RemadvR33001Builder;
+use Proengeno\EdiEnergy\Test\TestCase;
+use Proengeno\EdiEnergy\Remadv\RemadvInterface;
+use Proengeno\EdiEnergy\Remadv\R33001\RemadvR33001;
+use Proengeno\EdiEnergy\Remadv\R33001\RemadvR33001Builder;
 
 class Remadv33001BuilderTest extends TestCase 
 {

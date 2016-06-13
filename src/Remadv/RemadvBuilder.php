@@ -1,9 +1,9 @@
 <?php
 
-namespace Proengeno\EdiMessages\Remadv;
+namespace Proengeno\EdiEnergy\Remadv;
 
 use DateTime;
-use Proengeno\EdiMessages\D_05A_UN_Builder as Builder;
+use Proengeno\EdiEnergy\D_05A_UN_Builder as Builder;
 
 abstract class RemadvBuilder extends Builder
 {

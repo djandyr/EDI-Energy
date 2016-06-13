@@ -1,10 +1,10 @@
 <?php
 
-namespace Proengeno\EdiMessages\Remadv\R33001;
+namespace Proengeno\EdiEnergy\Remadv\R33001;
 
 use DateTime;
-use Proengeno\EdiMessages\Remadv\RemadvBuilder;
-use Proengeno\EdiMessages\Remadv\RemadvInterface;
+use Proengeno\EdiEnergy\Remadv\RemadvBuilder;
+use Proengeno\EdiEnergy\Remadv\RemadvInterface;
 
 class RemadvR33001Builder extends RemadvBuilder
 {

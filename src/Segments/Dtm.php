@@ -1,6 +1,6 @@
 <?php 
 
-namespace Proengeno\EdiMessages\Segments;
+namespace Proengeno\EdiEnergy\Segments;
 
 use DateTime;
 use Proengeno\Edifact\Templates\AbstractSegment;
