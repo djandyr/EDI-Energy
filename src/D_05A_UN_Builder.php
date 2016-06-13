@@ -15,7 +15,7 @@ abstract class D_05A_UN_Builder extends AbstractBuilder
 
     private $energyType;
 
-    public function setEnergieType($energyType)
+    public function setEnergyType($energyType)
     {
         $this->energyType = $energyType;
     }
