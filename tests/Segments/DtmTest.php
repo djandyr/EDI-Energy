@@ -25,6 +25,20 @@ class DtmTest extends TestCase
     }
 
     /** @test */
+    public function it_can_parse_date_format_that_not_supported_by_php()
+    {
+        $segName = 'DTM';
+        $qualifier = '137';
+        $date = new DateTime;
+        $code = 303;
+
+        $seg = Dtm::fromAttributes($qualifier, $date, $code);
+        $this->assertEquals($qualifier, $seg->qualifier());
+        $this->assertEquals( $date->format('Y-m-d'), $seg->date()->format('Y-m-d'));
+        $this->assertEquals($code, $seg->code());
+    }
+
+    /** @test */
     public function it_throw_an_exception_if_the_date_code_is_unknown()
     {
         $segName = 'DTM';

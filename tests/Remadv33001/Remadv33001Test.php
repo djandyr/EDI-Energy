@@ -12,7 +12,6 @@ class Remadv33001Test extends TestCase
     {
         $utf8String = 'ß';
         $isoString = iconv('UTF-8', 'CP1252', $utf8String);
-        var_dump($isoString);
         $remadv = RemadvR33001::fromString("UNH+O160482A7C2+$isoString:D:09B:UN:1.1e'RFF+Z13:17103'");
         $remadv->addConfiguration('convertCharset', function($string) {
             $encoding = mb_detect_encoding($string, 'UTF-8, CP1252, ISO-8859-1');

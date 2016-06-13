@@ -13,7 +13,7 @@ class Lin extends AbstractSegment
         'C212' => ['7140' => 'D|an|35', '7143' => 'D|an|3'],
     ];
 
-    public static function fromAttributes($number, $articleNumber, $articleCode)
+    public static function fromAttributes($number, $articleNumber = null, $articleCode = null)
     {
         return new static([
             'LIN' => ['LIN' => 'LIN'],

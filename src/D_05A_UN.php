@@ -13,4 +13,12 @@ abstract class D_05A_UN extends AbstractMessage
         $file->writeAndRewind($string);
         return new static($file);
     }
+
+    protected function getSegmentObject($segLine)
+    {
+        if (isset($this->configuration['convertCharset'])) {
+            $segLine = $this->configuration['convertCharset']($segLine);
+        }
+        return parent::getSegmentObject($segLine);
+    }
 }

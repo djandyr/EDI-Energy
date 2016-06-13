@@ -1,13 +1,12 @@
 <?php
 
-namespace Proengeno\EdiMessages\Remadv\R33001;
+namespace Proengeno\EdiMessages\Orders\O17102;
 
 use Proengeno\EdiMessages\D_05A_UN;
 
-
-class RemadvR33001 extends D_05A_UN
+class OrdersO17102 extends D_05A_UN
 {
-    protected static $builderClass = RemadvR33001Builder::class;
+    protected static $builderClass = OrdersO17103Builder::class;
     protected static $segments = [
         'UNA' => \Proengeno\EdiMessages\Segments\Una::class,
         'UNB' => \Proengeno\EdiMessages\Segments\Unb::class,
@@ -18,9 +17,9 @@ class RemadvR33001 extends D_05A_UN
         'NAD' => \Proengeno\EdiMessages\Segments\Nad::class,
         'CTA' => \Proengeno\EdiMessages\Segments\Cta::class,
         'COM' => \Proengeno\EdiMessages\Segments\Com::class,
-        'CUX' => \Proengeno\EdiMessages\Segments\Cux::class,
-        'DOC' => \Proengeno\EdiMessages\Segments\Doc::class,
-        'MOA' => \Proengeno\EdiMessages\Segments\Moa::class,
+        'IMD' => \Proengeno\EdiMessages\Segments\Imd::class,
+        'LOC' => \Proengeno\EdiMessages\Segments\Loc::class,
+        'LIN' => \Proengeno\EdiMessages\Segments\Lin::class,
         'UNS' => \Proengeno\EdiMessages\Segments\Uns::class,
         'UNT' => \Proengeno\EdiMessages\Segments\Unt::class,
         'UNZ' => \Proengeno\EdiMessages\Segments\Unz::class,
@@ -32,22 +31,22 @@ class RemadvR33001 extends D_05A_UN
             ['name' => 'UNA'],
             ['name' => 'UNB'],
             ['name' => 'UNH', 'maxLoops' => 999999, 'necessity' => 'R', 'segments' => [
-                ['name' => 'BGM', 'templates' => ['docCode' => ['239', '481']] ],
-                ['name' => 'DTM', 'templates' => ['qualifier' => ['137'], 'code' => ['102']] ],
-                ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['33001', '33002']] ],
+                ['name' => 'BGM', 'templates' => ['docCode' => [7, 'Z14']] ],
+                ['name' => 'DTM', 'templates' => ['qualifier' => [137], 'code' => [102]] ],
+                ['name' => 'IMD', 'templates' => ['code' => ['Z11', 'Z12', 'Z14']] ],
+                ['name' => 'IMD', 'templates' => ['code' => ['Z11', 'Z12', 'Z14']] ],
+                ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['17102', '17103']] ],
                 ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']] ],
                 ['name' => 'CTA', 'necessity' => 'O', 'segments' => [
                     ['name' => 'COM', 'maxLoops' => 5, 'necessity' => 'R']
                 ]],
                 ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']] ],
-                ['name' => 'CUX', 'templates' => ['currency' => ['EUR']] ],
-                ['name' => 'DOC', 'maxLoops' => 999999, 'templates' => ['code' => ['380', '389', '457', 'Z25']], 'segments' => [
-                    ['name' => 'MOA', 'templates' => ['qualifier' => ['9']] ],
-                    ['name' => 'MOA', 'templates' => ['qualifier' => ['12']] ],
-                    ['name' => 'DTM', 'templates' => ['qualifier' => ['137'], 'code' => ['102']] ],
-                ]],
+                ['name' => 'NAD', 'templates' => ['qualifier' => ['DP']] ],
+                ['name' => 'LOC', 'templates' => ['qualifier' => [172]] ],
+                ['name' => 'LIN'],
+                ['name' => 'DTM', 'templates' => ['qualifier' => [163], 'code' => [303]] ],
+                ['name' => 'DTM', 'templates' => ['qualifier' => [164], 'code' => [303]] ],
                 ['name' => 'UNS', 'templates' => ['code' => ['S']] ],
-                ['name' => 'MOA', 'templates' => ['qualifier' => ['12']] ],
                 ['name' => 'UNT'],
             ]],
             ['name' => 'UNZ']
