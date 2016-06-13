@@ -115,7 +115,7 @@ class Nad extends AbstractSegment
 
     public function street()
     {
-        return $this->elements['C059']['3042:1'].$this->elements['C059']['3042:2'];
+        return $this->elements['C059']['3042:1'] . $this->elements['C059']['3042:2'];
     }
 
     public function number()
@@ -130,7 +130,7 @@ class Nad extends AbstractSegment
 
     public function company()
     {
-        return $this->lastName().$this->firstName();
+        return $this->lastName() . $this->firstName();
     }
 
     public function firstName()

@@ -3,7 +3,6 @@
 namespace Proengeno\EdiMessages;
 
 use DateTime;
-use Proengeno\EdiMessages\Segments\Unb;
 use Proengeno\Edifact\Templates\AbstractBuilder;
 
 abstract class D_05A_UN_Builder extends AbstractBuilder

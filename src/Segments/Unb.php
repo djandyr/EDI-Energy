@@ -65,7 +65,7 @@ class Unb extends AbstractSegment
 
     public function creationDateTime()
     {
-        return DateTime::createFromFormat('ymdhi', $this->elements['S004']['0017'].$this->elements['S004']['0019']);
+        return DateTime::createFromFormat('ymdhi', $this->elements['S004']['0017'] . $this->elements['S004']['0019']);
     }
 
     public function referenzNumber()
