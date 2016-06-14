@@ -52,7 +52,7 @@ class Remadv33001BuilderTest extends TestCase
             }
             return $string;
         });
-        $this->remadvBuilder->setEnergyType('electric');
+        $this->remadvBuilder->addPrebuildConfig('energyType', function() { return 'electric'; });
         $this->remadvBuilder->addMessage($this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $utf8String));
         $this->edifactFile = $this->remadvBuilder->get();
         
@@ -72,7 +72,7 @@ class Remadv33001BuilderTest extends TestCase
             }
             return $string;
         });
-        $this->remadvBuilder->setEnergyType('electric');
+        $this->remadvBuilder->addPrebuildConfig('energyType', function() { return 'electric'; });
         $this->remadvBuilder->addMessage($this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $isoString));
         $this->edifactFile = $this->remadvBuilder->get();
 
@@ -82,7 +82,7 @@ class Remadv33001BuilderTest extends TestCase
     /** @test */
     public function it_creates_a_valid_electric_message()
     {
-        $this->remadvBuilder->setEnergyType('electric');
+        $this->remadvBuilder->addPrebuildConfig('energyType', function() { return 'electric'; });
         $this->remadvBuilder->addMessage($this->makeRemadvMock());
         $this->edifactFile = $this->remadvBuilder->get();
 
@@ -94,7 +94,7 @@ class Remadv33001BuilderTest extends TestCase
     /** @test */
     public function it_creates_a_valid_gas_message()
     {
-        $this->remadvBuilder->setEnergyType('gas');
+        $this->remadvBuilder->addPrebuildConfig('energyType', function() { return 'gas'; });
         $this->remadvBuilder->addMessage($this->makeRemadvMock());
         $this->remadvBuilder->addMessage($this->makeRemadvMock(15.5));
         $this->edifactFile = $this->remadvBuilder->get();

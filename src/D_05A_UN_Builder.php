@@ -13,11 +13,15 @@ abstract class D_05A_UN_Builder extends AbstractBuilder
     const RELEASE_NUMBER = '05A';
     const ORGANISATION = 'UN';
 
-    private $energyType;
-
-    public function setEnergyType($energyType)
+    public function getEnergyType()
     {
-        $this->energyType = $energyType;
+        if (!isset($this->buildCache['energyType'])) {
+            if (isset($this->prebuildConfig['energyType'])) {
+                return $this->buildCache['energyType'] = $this->prebuildConfig['energyType']();
+            }
+        }
+
+        return $this->buildCache['energyType'];
     }
 
     public function generateFilename()
@@ -60,7 +64,7 @@ abstract class D_05A_UN_Builder extends AbstractBuilder
 
     protected function getMpCodeQualifier($type, $mpCode) 
     {
-        if ($this->energyType == 'gas') {
+        if ($this->getEnergyType() == 'gas') {
             switch ($type) {
                 case 'unb':
                     return $mpCode[0] == '4' ? 14 : 502;
