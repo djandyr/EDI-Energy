@@ -40,6 +40,6 @@ class OrdersO17102Builder extends OrdersBuilder
         $this->writeSeg('DTM', [163, $item->getFrom(), 303]);
         $this->writeSeg('DTM', [164, $item->getUntil(), 303]);
         $this->writeSeg('UNS', ['S']);
-        $this->writeSeg('Unt', [$this->unhCount(), $this->unbReference()]);
+        $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
     }
 }

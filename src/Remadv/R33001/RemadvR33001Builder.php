@@ -32,6 +32,6 @@ class RemadvR33001Builder extends RemadvBuilder
     {
         $this->writeSeg('Uns');
         $this->writeSeg('Moa', [12, $this->sumPayedAmount]);
-        $this->writeSeg('Unt', [$this->unhCount(), $this->unbReference()]);
+        $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
     }
 }

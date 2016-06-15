@@ -8,10 +8,10 @@ class Qty extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'QTY' => ['QTY' => 'M|a|3'],
-        'C186' => ['6063' => 'M|an|3', '6060' => 'M|an|35', '6411' => 'M|an|8'],
+        'C186' => ['6063' => 'M|an|3', '6060' => 'M|an|35', '6411' => 'D|an|8'],
     ];
 
-    public static function fromAttributes($qualifier, $amount, $unitCode)
+    public static function fromAttributes($qualifier, $amount, $unitCode = null)
     {
         return new static([
             'QTY' => ['QTY' => 'QTY'],
