@@ -31,11 +31,11 @@ abstract class RemadvBuilder extends Builder
         $this->writeSeg('Bgm', [static::DOC_CODE, $this->unbReference()]);
         $this->writeSeg('Dtm', [137, new DateTime, 102]);
         $this->writeSeg('Rff', ['Z13', static::CHECK_DIGIT]);
-        $this->writeSeg('Nad', ['MS', $this->from, $this->getMpCodeQualifier('nad', $this->from)], 'fromMpCode');
+        $this->writeSeg('Nad', ['MS', $this->from, $this->getNadQualifier($this->from)], 'fromMpCode');
         $this->writeSeg('Cta', ['IC', 'Frau Jacobs']);
         $this->writeSeg('Com', ['04958 91570-08', 'TE']);
         $this->writeSeg('Com', ['a.jacobs@proengeno.de', 'EM']);
-        $this->writeSeg('Nad', ['MR', $this->to, $this->getMpCodeQualifier('nad', $this->to)], 'fromMpCode');
+        $this->writeSeg('Nad', ['MR', $this->to, $this->getNadQualifier($this->to)], 'fromMpCode');
         $this->writeSeg('Cux', [2, 'EUR', 11]);
     }
 }

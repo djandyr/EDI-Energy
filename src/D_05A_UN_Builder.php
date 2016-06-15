@@ -55,30 +55,34 @@ abstract class D_05A_UN_Builder extends AbstractBuilder
             self::SYNTAX_ID, 
             self::SYNTAX_VERSION, 
             $this->from, 
-            $this->getMpCodeQualifier('unb', $this->from), 
+            $this->getUnbQualifier($this->from), 
             $this->to, 
-            $this->getMpCodeQualifier('unb', $this->to), 
+            $this->getUnbQualifier($this->to), 
             new DateTime(), 
             $this->unbReference(),
             static::MESSAGE_SUBTYPE
         ]);
     }
 
-    protected function getMpCodeQualifier($type, $mpCode) 
+    protected function getUnbQualifier($mpCode) 
     {
+        if ($mpCode[0] == '4') {
+            return 4;
+        }
         if ($this->getEnergyType() == 'gas') {
-            switch ($type) {
-                case 'unb':
-                    return $mpCode[0] == '4' ? 14 : 502;
-                case 'nad':
-                    return $mpCode[0] == '4' ? 9 : 332;
-            }
+            return 502;
         }
-        switch ($type) {
-            case 'unb':
-                return $mpCode[0] == '4' ? 14 : 500;
-            case 'nad':
-                return $mpCode[0] == '4' ? 9 : 293;
+        return 500;
+    }
+
+    protected function getNadQualifier($mpCode) 
+    {
+        if ($mpCode[0] == '4') {
+            return 9;
         }
+        if ($this->getEnergyType() == 'gas') {
+            return 332;
+        }
+        return 293;
     }
 }
