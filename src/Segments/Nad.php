@@ -73,7 +73,7 @@ class Nad extends AbstractSegment
     public static function fromCompanyAdress($qualifier, $company, $street, $number, $city, $zip, $title = null, $district = null)
     {
         return static::fromAttributes(
-            $qualifier, null, null, substr($company, 0, 70), substr($company, 70), null, null, null, 'Z02', $street, $number, $district, $city, $zip
+            $qualifier, null, null, substr($company, 0, 70), substr($company, 70), null, null, $title, 'Z02', $street, $number, $district, $city, $zip
         );
     }
 

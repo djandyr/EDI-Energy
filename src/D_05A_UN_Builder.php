@@ -28,8 +28,7 @@ abstract class D_05A_UN_Builder extends AbstractBuilder
 
     public function generateFilename()
     {
-        return $filepath . '/'
-            . static::MESSAGE_TYPE . '_'
+        return static::MESSAGE_TYPE . '_'
             . static::MESSAGE_SUBTYPE . '_'
             . $this->from . '_'
             . $this->to . '_'
@@ -40,7 +39,7 @@ abstract class D_05A_UN_Builder extends AbstractBuilder
     protected function writeSeg($segment, $attributes = [], $method = 'fromAttributes')
     {
         if (isset($this->prebuildConfig['convertCharset'])) {
-            array_walk($attributes, function(&$attribute, $key) {
+            array_walk($attributes, function(&$attribute) {
                 if (is_string($attribute)) {
                     $attribute = $this->prebuildConfig['convertCharset']($attribute);
                 }
