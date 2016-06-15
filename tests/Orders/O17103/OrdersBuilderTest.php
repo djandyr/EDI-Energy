@@ -41,7 +41,7 @@ class OrdersBuilderTest extends TestCase
     /** @test */
     public function it_creates_a_valid_electric_message()
     {
-        $this->ordersBuilder->addPrebuildConfig('energyType', function() { return 'electric'; });
+        $this->ordersBuilder->addPrebuildConfig('energyType', 'electric');
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
         $this->edifactFile = $this->ordersBuilder->get();
 
@@ -53,7 +53,7 @@ class OrdersBuilderTest extends TestCase
     /** @test */
     public function it_creates_a_valid_gas_message()
     {
-        $this->ordersBuilder->addPrebuildConfig('energyType', function() { return 'gas'; });
+        $this->ordersBuilder->addPrebuildConfig('energyType', 'gas');
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
         $this->edifactFile = $this->ordersBuilder->get();
 

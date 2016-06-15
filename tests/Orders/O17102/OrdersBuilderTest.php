@@ -8,6 +8,7 @@ use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Orders\OrdersInterface;
 use Proengeno\EdiEnergy\Orders\O17102\OrdersO17102Builder;
+use Proengeno\Edifact\Exceptions\EdifactException;
 
 class OrdersBuilderTest extends TestCase 
 {
@@ -41,7 +42,7 @@ class OrdersBuilderTest extends TestCase
     /** @test */
     public function it_creates_a_valid_electric_message()
     {
-        $this->ordersBuilder->addPrebuildConfig('energyType', function() { return 'electric'; });
+        $this->ordersBuilder->addPrebuildConfig('energyType', 'electric');
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
         $this->edifactFile = $this->ordersBuilder->get();
 
@@ -53,13 +54,20 @@ class OrdersBuilderTest extends TestCase
     /** @test */
     public function it_creates_a_valid_gas_message()
     {
-        $this->ordersBuilder->addPrebuildConfig('energyType', function() { return 'gas'; });
+        $this->ordersBuilder->addPrebuildConfig('energyType', 'gas');
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
         $this->edifactFile = $this->ordersBuilder->get();
 
         $this->assertEquals('502', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
         $this->assertEquals('332', $this->edifactFile->findNextSegment('NAD')->idCode());
         $this->edifactFile->validate();
+    }
+
+    /** @test */
+    public function it_throws_an_exepection_if_no_energy_type_was_set()
+    {
+        $this->expectException(EdifactException::class);
+        $this->ordersBuilder->addMessage($this->makeOrdersMock());
     }
 
     private function makeOrdersMock(

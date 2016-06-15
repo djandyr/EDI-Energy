@@ -13,12 +13,14 @@ abstract class D_05A_UN_Builder extends AbstractBuilder
     const RELEASE_NUMBER = '05A';
     const ORGANISATION = 'UN';
 
+    protected $prebuildConfig = [
+        'unbReference' => null, 'delimiter' => null, 'energyType' => null, 'convertCharset' => null
+    ];
+
     public function getEnergyType()
     {
         if (!isset($this->buildCache['energyType'])) {
-            if (isset($this->prebuildConfig['energyType'])) {
-                return $this->buildCache['energyType'] = $this->prebuildConfig['energyType']();
-            }
+            return $this->buildCache['energyType'] = $this->getPrebuildConfig('energyType');
         }
 
         return $this->buildCache['energyType'];
