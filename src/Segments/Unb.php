@@ -14,7 +14,11 @@ class Unb extends AbstractSegment
         'S003' => ['0010' => 'M|an|35', '0007' => 'M|an|4'],
         'S004' => ['0017' => 'M|n|6', '0019' => 'M|n|4'],
         '0020' => ['0020' => 'M|an|14'],
+        'S005' => ['0022' => null],
         '0026' => ['0026' => 'O|an|14'],
+        '0029' => ['0026' => null],
+        '0031' => ['0026' => null],
+        '0032' => ['0026' => null],
         '0035' => ['0035' => 'O|n|1'],
     ];
 
@@ -28,7 +32,11 @@ class Unb extends AbstractSegment
             'S003' => ['0010' => $receiver, '0007' => $receiverQualifier],
             'S004' => ['0017' => $creationDatetime->format('ymd'), '0019' => $creationDatetime->format('hi')],
             '0020' => ['0020' => $referenzNumber],
+            '0005' => [null],
             '0026' => ['0026' => $usageType],
+            '0029' => [null],
+            '0031' => [null],
+            '0032' => [null],
             '0035' => ['0035' => $testMarker],
         ]);
     }
