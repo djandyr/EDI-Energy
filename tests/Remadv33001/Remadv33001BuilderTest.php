@@ -53,7 +53,7 @@ class Remadv33001BuilderTest extends TestCase
             return $string;
         });
         $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
-        $this->remadvBuilder->addMessage($this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $utf8String));
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $utf8String)]);
         $this->edifactFile = $this->remadvBuilder->get();
         
         $this->assertEquals($isoString, $this->edifactFile->findNextSegment('DOC')->code());
@@ -73,7 +73,7 @@ class Remadv33001BuilderTest extends TestCase
             return $string;
         });
         $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
-        $this->remadvBuilder->addMessage($this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $isoString));
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $isoString)]);
         $this->edifactFile = $this->remadvBuilder->get();
 
         $this->assertEquals($utf8String, $this->edifactFile->findNextSegment('DOC')->code());
@@ -83,7 +83,7 @@ class Remadv33001BuilderTest extends TestCase
     public function it_generates_a_costum_unb_ref()
     {
         $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
-        $this->remadvBuilder->addMessage($this->makeRemadvMock());
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock()]);
         $this->assertStringStartsWith('R', $this->remadvBuilder->unbReference());
     }
 
@@ -91,7 +91,7 @@ class Remadv33001BuilderTest extends TestCase
     public function it_creates_a_valid_electric_message()
     {
         $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
-        $this->remadvBuilder->addMessage($this->makeRemadvMock());
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock()]);
         $this->edifactFile = $this->remadvBuilder->get();
 
         $this->assertEquals('500', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
@@ -103,8 +103,8 @@ class Remadv33001BuilderTest extends TestCase
     public function it_creates_a_valid_gas_message()
     {
         $this->remadvBuilder->addPrebuildConfig('energyType', 'gas');
-        $this->remadvBuilder->addMessage($this->makeRemadvMock());
-        $this->remadvBuilder->addMessage($this->makeRemadvMock(15.5));
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock()]);
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock(15.5)]);
         $this->edifactFile = $this->remadvBuilder->get();
 
         $this->assertEquals('502', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
