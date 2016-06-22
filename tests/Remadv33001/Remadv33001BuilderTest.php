@@ -78,6 +78,14 @@ class Remadv33001BuilderTest extends TestCase
 
         $this->assertEquals($utf8String, $this->edifactFile->findNextSegment('DOC')->code());
     }
+    
+    /** @test */
+    public function it_generates_a_costum_unb_ref()
+    {
+        $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
+        $this->remadvBuilder->addMessage($this->makeRemadvMock());
+        $this->assertStringStartsWith('R', $this->remadvBuilder->unbReference());
+    }
 
     /** @test */
     public function it_creates_a_valid_electric_message()

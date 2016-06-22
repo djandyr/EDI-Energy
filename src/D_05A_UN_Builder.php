@@ -35,6 +35,11 @@ abstract class D_05A_UN_Builder extends AbstractBuilder
             . date('Ymd') . '_'
             . $this->unbReference() . '.txt';
     }
+    
+    public function unbReference()
+    {
+        return substr(static::MESSAGE_TYPE, 0, 1) . strtoupper(parent::unbReference());
+    }
 
     protected function writeSeg($segment, $attributes = [], $method = 'fromAttributes')
     {
