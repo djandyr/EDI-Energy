@@ -4,7 +4,7 @@ namespace Proengeno\EdiEnergy\Remadv\R33001;
 
 use DateTime;
 use Proengeno\EdiEnergy\Remadv\RemadvBuilder;
-use Proengeno\EdiEnergy\Remadv\RemadvInterface;
+use Proengeno\EdiEnergy\Interfaces\RemadvInterface;
 
 class RemadvR33001Builder extends RemadvBuilder
 {
