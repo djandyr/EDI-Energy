@@ -1,6 +1,6 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Remadv;
+namespace Proengeno\EdiEnergy\Interfaces;
 
 interface RemadvInterface
 {
