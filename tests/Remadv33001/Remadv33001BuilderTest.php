@@ -55,7 +55,7 @@ class Remadv33001BuilderTest extends TestCase
         $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
         $this->remadvBuilder->addMessage([$this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $utf8String)]);
         $this->edifactFile = $this->remadvBuilder->get();
-        
+
         $this->assertEquals($isoString, $this->edifactFile->findNextSegment('DOC')->code());
     }
 
@@ -84,6 +84,7 @@ class Remadv33001BuilderTest extends TestCase
     {
         $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
         $this->remadvBuilder->addMessage([$this->makeRemadvMock()]);
+
         //$this->assertStringStartsWith('R', $this->remadvBuilder->unbReference());
     }
 
@@ -112,6 +113,30 @@ class Remadv33001BuilderTest extends TestCase
         $this->edifactFile->validate();
     }
 
+    /** @test */
+    public function compare_with_template_gas_invoice()
+    {
+        $this->remadvBuilder->addPrebuildConfig('unbReference', 'UNB-REF');
+        $this->remadvBuilder->addPrebuildConfig('energyType', 'gas');
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock(), $this->makeRemadvMock(15.5)]);
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock(15.5), $this->makeRemadvMock(15.5)]);
+        $this->edifactFile = $this->remadvBuilder->get();
+        
+        $this->assertEquals($this->getGasInvoiceTemplate(), (string)$this->edifactFile);
+    }
+
+    /** @test */
+    public function compare_with_template_electric_invoice()
+    {
+        $this->remadvBuilder->addPrebuildConfig('unbReference', 'UNB-REF');
+        $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock(), $this->makeRemadvMock(15.5)]);
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock(15.5), $this->makeRemadvMock(15.5)]);
+        $this->edifactFile = $this->remadvBuilder->get();
+
+        $this->assertEquals($this->getElectricInvoiceTemplate(), (string)$this->edifactFile);
+    }
+
     private function makeRemadvMock($payedAmount = 10, $invoiceAmount = 10, $accountNumber = 1, $invoiceDate = '2015-01-01', $invoiceCode = 380)
     {
         return m::mock(RemadvInterface::class)
@@ -123,5 +148,14 @@ class Remadv33001BuilderTest extends TestCase
             ->getMock();
 
     }
-    
+
+    private function getGasInvoiceTemplate()
+    {
+        return "UNA:+.? 'UNB+UNOC:3+from:502+to:502+" . date('ymd:hi') . "+UNB-REF'UNH+UNB-REF0+REMADV:D:05A:UN:2.7b'BGM+481+UNB-REF0'DTM+137:" . date('Ymd') . ":102'RFF+Z13:33001'NAD+MS+from::332'CTA+IC+:Frau Jacobs'COM+04958 91570-08:TE'COM+a.jacobs@proengeno.de:EM'NAD+MR+to::332'CUX+2:EUR:11'DOC+380+1'MOA+9:10.00'MOA+12:10.00'DTM+137:20150101:102'DOC+380+1'MOA+9:10.00'MOA+12:15.50'DTM+137:20150101:102'UNS+S'MOA+12:25.50'UNT+21+UNB-REF0'UNH+UNB-REF1+REMADV:D:05A:UN:2.7b'BGM+481+UNB-REF1'DTM+137:" . date('Ymd') . ":102'RFF+Z13:33001'NAD+MS+from::332'CTA+IC+:Frau Jacobs'COM+04958 91570-08:TE'COM+a.jacobs@proengeno.de:EM'NAD+MR+to::332'CUX+2:EUR:11'DOC+380+1'MOA+9:10.00'MOA+12:15.50'DTM+137:20150101:102'DOC+380+1'MOA+9:10.00'MOA+12:15.50'DTM+137:20150101:102'UNS+S'MOA+12:56.50'UNT+21+UNB-REF1'UNZ+2+UNB-REF'";
+    }
+
+    private function getElectricInvoiceTemplate()
+    {
+        return "UNA:+.? 'UNB+UNOC:3+from:500+to:500+" . date('ymd:hi') . "+UNB-REF'UNH+UNB-REF0+REMADV:D:05A:UN:2.7b'BGM+481+UNB-REF0'DTM+137:" . date('Ymd') . ":102'RFF+Z13:33001'NAD+MS+from::293'CTA+IC+:Frau Jacobs'COM+04958 91570-08:TE'COM+a.jacobs@proengeno.de:EM'NAD+MR+to::293'CUX+2:EUR:11'DOC+380+1'MOA+9:10.00'MOA+12:10.00'DTM+137:20150101:102'DOC+380+1'MOA+9:10.00'MOA+12:15.50'DTM+137:20150101:102'UNS+S'MOA+12:25.50'UNT+21+UNB-REF0'UNH+UNB-REF1+REMADV:D:05A:UN:2.7b'BGM+481+UNB-REF1'DTM+137:" . date('Ymd') . ":102'RFF+Z13:33001'NAD+MS+from::293'CTA+IC+:Frau Jacobs'COM+04958 91570-08:TE'COM+a.jacobs@proengeno.de:EM'NAD+MR+to::293'CUX+2:EUR:11'DOC+380+1'MOA+9:10.00'MOA+12:15.50'DTM+137:20150101:102'DOC+380+1'MOA+9:10.00'MOA+12:15.50'DTM+137:20150101:102'UNS+S'MOA+12:56.50'UNT+21+UNB-REF1'UNZ+2+UNB-REF'";
+    }
 }

@@ -23,14 +23,14 @@ abstract class RemadvBuilder extends Builder
     private function writeUnhHead()
     {
         $this->writeSeg('Unh', [
-            $this->unbReference(), 
+            $this->unbReference().$this->messageCount(), 
             self::MESSAGE_TYPE,
             self::VERSION_NUMBER,
             self::RELEASE_NUMBER, 
             self::ORGANISATION,
             self::ORGANISATION_CODE
         ]);
-        $this->writeSeg('Bgm', [static::DOC_CODE, $this->unbReference().$this->unhCount()]);
+        $this->writeSeg('Bgm', [static::DOC_CODE, $this->unbReference().$this->messageCount()]);
         $this->writeSeg('Dtm', [137, new DateTime, 102]);
         $this->writeSeg('Rff', ['Z13', static::CHECK_DIGIT]);
         $this->writeSeg('Nad', ['MS', $this->from, $this->getNadQualifier($this->from)], 'fromMpCode');
@@ -39,5 +39,12 @@ abstract class RemadvBuilder extends Builder
         $this->writeSeg('Com', ['a.jacobs@proengeno.de', 'EM']);
         $this->writeSeg('Nad', ['MR', $this->to, $this->getNadQualifier($this->to)], 'fromMpCode');
         $this->writeSeg('Cux', [2, 'EUR', 11]);
+    }
+
+    protected function writeUnhFoot()
+    {
+        $this->writeSeg('Uns');
+        $this->writeSeg('Moa', [12, $this->getTotalPayedAmount()]);
+        $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference().$this->messageCount()]);
     }
 }

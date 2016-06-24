@@ -13,6 +13,11 @@ class RemadvR33001Builder extends RemadvBuilder
 
     private $sumPayedAmount;
 
+    public function getTotalPayedAmount()
+    {
+        return $this->sumPayedAmount;
+    }
+
     protected function getMessageClass()
     {
         return RemadvR33001::class;
@@ -26,12 +31,5 @@ class RemadvR33001Builder extends RemadvBuilder
         $this->writeSeg('Dtm', [137, $item->getInvoiceDate(), 102]);
 
         $this->sumPayedAmount = bcadd($this->sumPayedAmount, $item->getPayedAmount(), 2);
-    }
-    
-    protected function writeUnhFoot()
-    {
-        $this->writeSeg('Uns');
-        $this->writeSeg('Moa', [12, $this->sumPayedAmount]);
-        $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
     }
 }
