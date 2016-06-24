@@ -30,15 +30,19 @@ class OrdersO17102 extends D_05A_UN
         return [
             ['name' => 'UNA'],
             ['name' => 'UNB'],
-            ['name' => 'UNH', 'maxLoops' => 999999, 'necessity' => 'R', 'segments' => [
+            ['name' => 'LOOP', 'maxLoops' => 999999, 'necessity' => 'R', 'segments' => [
+                ['name' => 'UNH'],
                 ['name' => 'BGM', 'templates' => ['docCode' => [7, 'Z14']]],
                 ['name' => 'DTM', 'templates' => ['qualifier' => [137], 'code' => [102]]],
                 ['name' => 'IMD', 'templates' => ['code' => ['Z11', 'Z12', 'Z14']]],
                 ['name' => 'IMD', 'templates' => ['code' => ['Z11', 'Z12', 'Z14']]],
                 ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['17102', '17103']]],
                 ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']]],
-                ['name' => 'CTA', 'necessity' => 'O', 'segments' => [
-                    ['name' => 'COM', 'maxLoops' => 5, 'necessity' => 'R']
+                ['name' => 'LOOP', 'maxLoops' => 999999, 'necessity' => 'O', 'segments' => [
+                    ['name' => 'CTA', 'necessity' => 'O'],
+                    ['name' => 'LOOP', 'maxLoops' => 5, 'necessity' => 'O', 'segments' => [
+                        ['name' => 'COM', 'necessity' => 'R']
+                    ]]
                 ]],
                 ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']]],
                 ['name' => 'NAD', 'templates' => ['qualifier' => ['DP']]],

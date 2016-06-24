@@ -101,7 +101,7 @@ class Remadv33001BuilderTest extends TestCase
     }
 
     /** @test */
-    public function it_creates_a_valid_gas_message()
+    public function it_creates_a_valid_gas_remadv_33001_message()
     {
         $this->remadvBuilder->addPrebuildConfig('energyType', 'gas');
         $this->remadvBuilder->addMessage([$this->makeRemadvMock()]);

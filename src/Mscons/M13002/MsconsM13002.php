@@ -34,14 +34,18 @@ class MsconsM13002 extends D_05A_UN
         return [
             ['name' => 'UNA'],
             ['name' => 'UNB'],
-            ['name' => 'UNH', 'maxLoops' => 999999, 'necessity' => 'R', 'segments' => [
+            ['name' => 'LOOP', 'maxLoops' => 999999, 'necessity' => 'R', 'segments' => [
+                ['name' => 'UNH'],
                 ['name' => 'BGM', 'templates' => ['docCode' => [7, 9]]],
                 ['name' => 'DTM', 'templates' => ['qualifier' => [137], 'code' => [203]]],
                 ['name' => 'RFF', 'templates' => ['code' => ['AGI']]],
                 ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['13002']]],
                 ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']]],
-                ['name' => 'CTA', 'necessity' => 'O', 'segments' => [
-                    ['name' => 'COM', 'maxLoops' => 5, 'necessity' => 'R']
+                ['name' => 'LOOP', 'maxLoops' => 999999, 'necessity' => 'O', 'segments' => [
+                    ['name' => 'CTA', 'necessity' => 'O'],
+                    ['name' => 'LOOP', 'maxLoops' => 5, 'necessity' => 'O', 'segments' => [
+                        ['name' => 'COM'],
+                    ]],
                 ]],
                 ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']]],
                 ['name' => 'UNS', 'templates' => ['code' => ['D']]],
