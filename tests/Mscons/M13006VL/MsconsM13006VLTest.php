@@ -1,41 +1,48 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Test\Remadv33001;
+namespace Proengeno\EdiEnergy\Test\Mscons\M13006;
 
 use DateTime;
 use Mockery as m;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Interfaces\MsconsVlInterface;
-use Proengeno\EdiEnergy\Mscons\M13002\MsconsM13002Builder;
+use Proengeno\EdiEnergy\Mscons\M13006VL\MsconsM13006VLBuilder;
 
-class MsconsM13002BuilderTest extends TestCase 
+class MsconsM13006VLTest extends TestCase 
 {
     private $msconsBuilder;
-    private $edifactFile;
+    private $edifactObject;
 
     public function setUp()
     {
-        $this->msconsBuilder = new MsconsM13002Builder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+        $this->msconsBuilder = new MsconsM13006VLBuilder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     public function tearDown()
     {
-        if ($this->edifactFile) {
-            @unlink($this->edifactFile->getFilepath());
+        if ($this->edifactObject) {
+            @unlink($this->edifactObject->getFilepath());
         }
     }
 
     /** @test */
     public function it_instanciate_the_correct_class()
     {
-        $this->assertInstanceOf(MsconsM13002Builder::class, $this->msconsBuilder);
+        $this->assertInstanceOf(MsconsM13006VLBuilder::class, $this->msconsBuilder);
     }
 
     /** @test */
     public function it_build_up_the_Message_instance()
     {
-        $this->assertInstanceOf(Message::class, $this->edifactFile = $this->msconsBuilder->get());
+        $this->assertInstanceOf(Message::class, $this->edifactObject = $this->msconsBuilder->get());
+    }
+
+    /** @test */
+    public function it_build_up_the_Message_instance_with_mscons_13006_VL_mapping()
+    {
+        $this->assertInstanceOf(Message::class, $this->edifactObject = $this->msconsBuilder->get());
+        $this->assertEquals('MsconsM13006VL', $this->edifactObject->getAdapterName());
     }
 
     /** @test */
@@ -43,11 +50,11 @@ class MsconsM13002BuilderTest extends TestCase
     {
         $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
-        $this->edifactFile = $this->msconsBuilder->get();
+        $this->edifactObject = $this->msconsBuilder->get();
 
-        $this->assertEquals('500', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('293', $this->edifactFile->findNextSegment('NAD')->idCode());
-        $this->edifactFile->validate();
+        $this->assertEquals('500', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
+        $this->assertEquals('293', $this->edifactObject->findNextSegment('NAD')->idCode());
+        $this->edifactObject->validate();
     }
 
     /** @test */
@@ -55,18 +62,18 @@ class MsconsM13002BuilderTest extends TestCase
     {
         $this->msconsBuilder->addPrebuildConfig('energyType', 'gas');
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
-        $this->edifactFile = $this->msconsBuilder->get();
+        $this->edifactObject = $this->msconsBuilder->get();
 
-        $this->assertEquals('502', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('332', $this->edifactFile->findNextSegment('NAD')->idCode());
-        $this->edifactFile->validate();
+        $this->assertEquals('502', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
+        $this->assertEquals('332', $this->edifactObject->findNextSegment('NAD')->idCode());
+        $this->edifactObject->validate();
     }
 
     private function makeMsconsMock(
         $obis = '7-20:3.0.0', 
         $from = '2015-01-01', 
         $until = '2016-01-01', 
-        $ordesCode = 'OrdersCode',
+        $originalMessageCode = 'OriginalMessageCode',
         $meterpoint = 'DE123456',
         $meterNumber = '1234567',
         $readinReason = 'PMR',
@@ -79,11 +86,11 @@ class MsconsM13002BuilderTest extends TestCase
         $zip = 26789
     )
     {
-        return m::mock(MsconsVlInterface::class)
+        return m::mock(MsconsStornoInterface::class)
             ->shouldReceive('getObis')->andReturn($obis)
             ->shouldReceive('getFrom')->andReturn(new DateTime($from))
             ->shouldReceive('getUntil')->andReturn(new DateTime($until))
-            ->shouldReceive('getOrdersCode')->andReturn($ordesCode)
+            ->shouldReceive('getOriginalMessageCode')->andReturn($originalMessageCode)
             ->shouldReceive('getMeterpoint')->andReturn($meterpoint)
             ->shouldReceive('getMeterNumber')->andReturn($meterNumber)
             ->shouldReceive('getReadinReason')->andReturn($readinReason)

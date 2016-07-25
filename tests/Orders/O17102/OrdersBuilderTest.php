@@ -13,7 +13,7 @@ use Proengeno\Edifact\Exceptions\EdifactException;
 class OrdersBuilderTest extends TestCase 
 {
     private $ordersBuilder;
-    private $edifactFile;
+    private $edifactObject;
 
     public function setUp()
     {
@@ -22,8 +22,8 @@ class OrdersBuilderTest extends TestCase
 
     public function tearDown()
     {
-        if ($this->edifactFile) {
-            @unlink($this->edifactFile->getFilepath());
+        if ($this->edifactObject) {
+            @unlink($this->edifactObject->getFilepath());
         }
     }
 
@@ -34,21 +34,15 @@ class OrdersBuilderTest extends TestCase
     }
 
     /** @test */
-    public function it_build_up_the_Message_instance()
-    {
-        $this->assertInstanceOf(Message::class, $this->edifactFile = $this->ordersBuilder->get());
-    }
-
-    /** @test */
     public function it_creates_a_valid_electric_message()
     {
         $this->ordersBuilder->addPrebuildConfig('energyType', 'electric');
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
-        $this->edifactFile = $this->ordersBuilder->get();
+        $this->edifactObject = $this->ordersBuilder->get();
 
-        $this->assertEquals('500', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('293', $this->edifactFile->findNextSegment('NAD')->idCode());
-        $this->edifactFile->validate();
+        $this->assertEquals('500', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
+        $this->assertEquals('293', $this->edifactObject->findNextSegment('NAD')->idCode());
+        $this->edifactObject->validate();
     }
 
     /** @test */
@@ -56,11 +50,24 @@ class OrdersBuilderTest extends TestCase
     {
         $this->ordersBuilder->addPrebuildConfig('energyType', 'gas');
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
-        $this->edifactFile = $this->ordersBuilder->get();
+        $this->edifactObject = $this->ordersBuilder->get();
 
-        $this->assertEquals('502', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('332', $this->edifactFile->findNextSegment('NAD')->idCode());
-        $this->edifactFile->validate();
+        $this->assertEquals('502', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
+        $this->assertEquals('332', $this->edifactObject->findNextSegment('NAD')->idCode());
+        $this->edifactObject->validate();
+    }
+
+    /** @test */
+    public function it_build_up_the_Message_instance()
+    {
+        $this->assertInstanceOf(Message::class, $this->edifactObject = $this->ordersBuilder->get());
+    }
+
+    /** @test */
+    public function it_build_up_the_Message_instance_with_orders_17102_mapping()
+    {
+        $this->assertInstanceOf(Message::class, $this->edifactObject = $this->ordersBuilder->get());
+        $this->assertEquals('OrdersO17102', $this->edifactObject->getAdapterName());
     }
 
     /** @test */

@@ -1,17 +1,18 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Orders\O17102;
+namespace Proengeno\EdiEnergy\Mscons\M13002VL;
 
 use DateTime;
-use Proengeno\EdiEnergy\Orders\OrdersBuilder;
+use Proengeno\EdiEnergy\Mscons\MsconsBuilder;
 
-class MsconsM13009Builder extends MsconsBuilder
+class MsconsM13002VLBuilder extends MsconsBuilder
 {
-    const CHECK_DIGIT = 13009;
+    const CHECK_DIGIT = 13002;
+    const MESSAGE_SUBTYPE = 'VL';
 
     protected function getMessageClass()
     {
-        return MsconsM13009::class;
+        return MsconsM13002VL::class;
     }
 
     protected function writeMessage($item)
@@ -24,24 +25,28 @@ class MsconsM13009Builder extends MsconsBuilder
             self::ORGANISATION,
             self::ORGANISATION_CODE
         ]);
-        $this->writeSeg('Bgm', [$item->getType(), $this->unbReference()]);
-        $this->writeSeg('Dtm', [137, new DateTime, 102]);
-        $this->writeSeg('Rff', [$item->getOrdersCode()]);
+        $this->writeSeg('Bgm', [9, $this->unbReference(), 7]);
+        $this->writeSeg('Dtm', [137, new DateTime, 203]);
+        $this->writeSeg('Rff', ['AGI', $item->getOrdersCode()]);
         $this->writeSeg('Rff', ['Z13', static::CHECK_DIGIT]);
-        $this->writeSeg('Nad', ['MS', $this->from, $this->getMpCodeQualifier('nad', $this->from)], 'fromMpCode');
+        $this->writeSeg('Nad', ['MS', $this->from, $this->getNadQualifier($this->from)], 'fromMpCode');
         $this->writeSeg('Cta', ['IC', 'Frau Refle']);
         $this->writeSeg('Com', ['04958 91570-08', 'TE']);
         $this->writeSeg('Com', ['i.refle@proengeno.de', 'EM']);
-        $this->writeSeg('Nad', ['MR', $this->to, $this->getMpCodeQualifier('nad', $this->to)], 'fromMpCode');
+        $this->writeSeg('Nad', ['MR', $this->to, $this->getNadQualifier($this->to)], 'fromMpCode');
         $this->writeSeg('Uns', ['D']);
         $this->writeSeg('Nad', ['DP', $item->getStreet(), $item->getStreetNumber(), $item->getCity(), $item->getZip()], 'fromAdress');
         $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
-        $this->writeSeg('Dtm', [9, $item->getFrom(), 102]);
+        $this->writeSeg('Dtm', [9, new DateTime, 102]);
+        $this->writeSeg('Rff', ['MG', $item->getMeterNumber()]);
+        $this->writeSeg('Cci', ['ACH', $item->getReadinReason()]);
+        $this->writeSeg('Cci', [16, $item->getReadinType()]);
         $this->writeSeg('Lin', [1]);
         $this->writeSeg('Pia', [5, $item->getObis(), 'SRW']);
-        $this->writeSeg('Qty', [$item->getReadingKind(), $item->getAmount()]);
+        $this->writeSeg('Qty', [$item->getReadingKind(), $item->getReadingAmount()]);
         $this->writeSeg('Dtm', [163, $item->getFrom(), 102]);
-        $this->writeSeg('Dtm', [164, $item->getFrom(), 102]);
+        $this->writeSeg('Dtm', [164, $item->getUntil(), 102]);
+        $this->writeSeg('Dtm', [9, new DateTime, 102]);
         $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
     }
 }
