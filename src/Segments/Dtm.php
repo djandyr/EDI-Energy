@@ -25,7 +25,7 @@ class Dtm extends AbstractSegment
     {
         switch ($code) {
             case 102:
-                return $date->format('Ymd');
+               return $date->format('Ymd');
             case 203:
                return $date->format('YmdHi');
             case 303: 
@@ -41,7 +41,9 @@ class Dtm extends AbstractSegment
     {
         switch ($code) {
             case 102:
-                return DateTime::createFromFormat('Ymd', $string);
+                // If no time is set, it takes the creation time. We dont want that
+                $hour = 0;
+                return DateTime::createFromFormat('YmdH', $string.$hour);
             case 203:
                 return DateTime::createFromFormat('YmdHi', $string);
             case 303: 
