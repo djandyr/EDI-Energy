@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiEnergy\Orders\O17103;
 
-use Proengeno\EdiEnergy\D_05A_UN;
+use Proengeno\EdiEnergy\Edifact;
 
-class OrdersO17103 extends D_05A_UN
+class OrdersO17103 extends Edifact
 {
     protected static $builderClass = OrdersO17103Builder::class;
     protected static $segments = [

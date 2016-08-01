@@ -5,7 +5,7 @@ namespace Proengeno\EdiEnergy;
 use Proengeno\Edifact\Message\EdifactFile;
 use Proengeno\Edifact\Templates\AbstractMessage;
 
-abstract class D_05A_UN extends AbstractMessage
+abstract class Edifact extends AbstractMessage
 {
     public static function fromString($string)
     {

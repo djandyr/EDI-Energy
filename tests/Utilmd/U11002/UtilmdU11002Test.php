@@ -1,22 +1,21 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Test\Mscons\M13002VL;
+namespace Proengeno\EdiEnergy\Test\Utilmd\U11002;
 
 use DateTime;
 use Mockery as m;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
-use Proengeno\EdiEnergy\Interfaces\MsconsVlInterface;
-use Proengeno\EdiEnergy\Mscons\M13002VL\MsconsM13002VLBuilder;
+use Proengeno\EdiEnergy\Utilmd\U11002\UtilmdU11002Builder;
 
-class MsconsM13002VLTest extends TestCase 
+class UtilmdU11002Test extends TestCase 
 {
-    private $msconsBuilder;
+    private $utilmdBuilder;
     private $edifactObject;
 
     public function setUp()
     {
-        $this->msconsBuilder = new MsconsM13002VLBuilder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+        $this->utilmdBuilder = new UtilmdU11002Builder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     public function tearDown()
@@ -29,41 +28,39 @@ class MsconsM13002VLTest extends TestCase
     /** @test */
     public function it_instanciate_the_correct_class()
     {
-        $this->assertInstanceOf(MsconsM13002VLBuilder::class, $this->msconsBuilder);
+        $this->assertInstanceOf(UtilmdU11002Builder::class, $this->utilmdBuilder);
     }
 
     /** @test */
     public function it_build_up_the_Message_instance_with_mscons_13002_mapping()
     {
-        $this->assertInstanceOf(Message::class, $this->edifactObject = $this->msconsBuilder->get());
-        $this->assertEquals('MsconsM13002VL', $this->edifactObject->getAdapterName());
+        $this->assertInstanceOf(Message::class, $this->edifactObject = $this->utilmdBuilder->get());
+        $this->assertEquals('UtilmdU11002', $this->edifactObject->getAdapterName());
     }
 
     /** @test */
     public function it_creates_a_valid_electric_message()
     {
-        $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
-        $this->msconsBuilder->addMessage($this->makeMsconsMock());
-        $this->edifactObject = $this->msconsBuilder->get();
+        $this->utilmdBuilder->addPrebuildConfig('energyType', 'electric');
+        $this->utilmdBuilder->addMessage($this->makeUtilmdMock());
+        $this->edifactObject = $this->utilmdBuilder->get();
 
-        $this->assertEquals('500', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('293', $this->edifactObject->findNextSegment('NAD')->idCode());
         $this->edifactObject->validate();
     }
 
-    /** @test */
-    public function it_creates_a_valid_gas_message()
-    {
-        $this->msconsBuilder->addPrebuildConfig('energyType', 'gas');
-        $this->msconsBuilder->addMessage($this->makeMsconsMock());
-        $this->edifactObject = $this->msconsBuilder->get();
-
-        $this->assertEquals('502', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('332', $this->edifactObject->findNextSegment('NAD')->idCode());
-        $this->edifactObject->validate();
-    }
-
-    private function makeMsconsMock(
+//    /** @test */
+//    public function it_creates_a_valid_gas_message()
+//    {
+//        $this->utilmdBuilder->addPrebuildConfig('energyType', 'gas');
+//        $this->utilmdBuilder->addMessage($this->makeUtilmdMock());
+//        $this->edifactObject = $this->utilmdBuilder->get();
+//
+//        $this->assertEquals('502', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
+//        $this->assertEquals('332', $this->edifactObject->findNextSegment('NAD')->idCode());
+//        $this->edifactObject->validate();
+//    }
+//
+    private function makeUtilmdMock(
         $obis = '7-20:3.0.0', 
         $from = '2015-01-01', 
         $until = '2016-01-01', 

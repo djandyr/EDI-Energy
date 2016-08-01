@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiEnergy\Mscons\M13006VL;
 
-use Proengeno\EdiEnergy\D_05A_UN;
+use Proengeno\EdiEnergy\Edifact;
 
-class MsconsM13006VL extends D_05A_UN
+class MsconsM13006VL extends Edifact
 {
     protected static $segments = [
         'UNA' => \Proengeno\EdiEnergy\Segments\Una::class,

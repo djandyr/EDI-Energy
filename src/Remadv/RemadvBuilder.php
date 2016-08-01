@@ -3,9 +3,9 @@
 namespace Proengeno\EdiEnergy\Remadv;
 
 use DateTime;
-use Proengeno\EdiEnergy\D_05A_UN_Builder as Builder;
+use Proengeno\EdiEnergy\EdifactBuilder;
 
-abstract class RemadvBuilder extends Builder
+abstract class RemadvBuilder extends EdifactBuilder
 {
     const MESSAGE_SUBTYPE = '';
     const MESSAGE_TYPE = 'REMADV';

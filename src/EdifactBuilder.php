@@ -5,7 +5,7 @@ namespace Proengeno\EdiEnergy;
 use DateTime;
 use Proengeno\Edifact\Templates\AbstractBuilder;
 
-abstract class D_05A_UN_Builder extends AbstractBuilder
+abstract class EdifactBuilder extends AbstractBuilder
 {
     const SYNTAX_ID = 'UNOC';
     const SYNTAX_VERSION = 3;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Test\Mscons\M13006;
+namespace Proengeno\EdiEnergy\Test\Mscons\M13006VL;
 
 use DateTime;
 use Mockery as m;

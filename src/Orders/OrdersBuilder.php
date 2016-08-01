@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiEnergy\Orders;
 
-use Proengeno\EdiEnergy\D_05A_UN_Builder as Builder;
+use Proengeno\EdiEnergy\EdifactBuilder;
 
-abstract class OrdersBuilder extends Builder
+abstract class OrdersBuilder extends EdifactBuilder
 {
     const MESSAGE_SUBTYPE = '';
     const MESSAGE_TYPE = 'ORDERS';
