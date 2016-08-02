@@ -26,12 +26,18 @@ class Dtm extends AbstractSegment
         switch ($code) {
             case 102:
                return $date->format('Ymd');
+            case 106:
+               return $date->format('md');
             case 203:
                return $date->format('YmdHi');
             case 303: 
                 return $date->format('YmdHi') . substr($date->format('O'), 0, 3);
+            case 602: 
+                return $date->format('Y');
             case 610: 
                 return $date->format('YmdH');
+            case 802: 
+                return $date->format('m');
         }
 
         throw SegValidationException::forKeyValue('DTM', $code, "Timecode unknown.");
@@ -44,12 +50,25 @@ class Dtm extends AbstractSegment
                 // If no time is set, it takes the creation time. We dont want that
                 $hour = 0;
                 return DateTime::createFromFormat('YmdH', $string.$hour);
+            case 106:
+                // If no time is set, it takes the creation time. We dont want that
+                $hour = 0;
+                return DateTime::createFromFormat('mdH', $string.$hour);
             case 203:
                 return DateTime::createFromFormat('YmdHi', $string);
             case 303: 
                 return DateTime::createFromFormat('YmdHi', substr($string, 0, -3));
+            case 602: 
+                $month = '01';
+                $day = '01';
+                $hour = 0;
+                return DateTime::createFromFormat('YmdH', $string.$month.$day.$hour);
             case 610: 
                 return DateTime::createFromFormat('YmdH', $string);
+            case 802: 
+                $day = '01';
+                $hour = 0;
+                return DateTime::createFromFormat('mdH', $string);
         }
 
         throw SegValidationException::forKeyValue('DTM', $code, "Timecode unknown.");

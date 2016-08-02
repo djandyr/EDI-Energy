@@ -8,7 +8,7 @@ class Cci extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'CCI' => ['CCI' => 'M|a|3'],
-        '7059' => ['7059' => 'M|an|3'],
+        '7059' => ['7059' => 'O|an|3'],
         'C502' => ['6313' => null],
         'C240' => ['7037' => 'M|an|17'],
     ];

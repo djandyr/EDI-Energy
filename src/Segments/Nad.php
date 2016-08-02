@@ -14,6 +14,7 @@ class Nad extends AbstractSegment
         'C080' => ['3036:1' => 'D|an|70', '3036:2' => 'D|an|70', '3036:3' => 'D|an|70', '3036:4' => 'D|an|70', '3036:5' => 'D|an|70', '3045' => 'D|an|3'],
         'C059' => ['3042:1' => 'D|an|35', '3042:2' => 'D|an|35', '3042:3' => 'D|an|35', '3042:4' => 'D|an|35'],
         '3164' => ['3164' => 'D|an|35'],
+        'C819' => ['3229' => null],
         '3251' => ['3251' => 'D|an|17'],
         '3207' => ['3251' => 'D|an|3'],
     ];
@@ -51,6 +52,7 @@ class Nad extends AbstractSegment
             ],
             'C059' => ['3042:1' => substr($street, 0, 35), '3042:2' => substr($street, 35), '3042:3' => $number, '3042:4' => $district],
             '3164' => ['3164' => $city],
+            'C819' => ['3229' => null],
             '3251' => ['3251' => $zip],
             '3207' => ['3251' => $country]
         ]);
@@ -80,14 +82,14 @@ class Nad extends AbstractSegment
     public static function fromPerson($qualifier, $lastName, $firstName, $title = null, $additionalName1 = null, $additionalName2 = null)
     {
         return static::fromAttributes(
-            $qualifier, null, null, $lastName, $firstName, $additionalName1, $additionalName2, $title, 'Z01', null, null, null, null, null
+            $qualifier, null, null, $lastName, $firstName, $additionalName1, $additionalName2, $title, 'Z01', null, null, null, null, null, null
         );
     }
 
     public static function fromCompany($qualifier, $company, $additionalName1 = null, $additionalName2 = null)
     {
         return static::fromAttributes(
-            $qualifier, null, null, substr($company, 0, 70), substr($company, 70), $additionalName1, $additionalName2, null, 'Z02', null, null, null, null, null
+            $qualifier, null, null, substr($company, 0, 70), substr($company, 70), $additionalName1, $additionalName2, null, 'Z02', null, null, null, null, null, null
         );
     }
 

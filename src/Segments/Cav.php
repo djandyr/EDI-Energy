@@ -8,14 +8,14 @@ class Cav extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'CAV' => ['CAV' => 'M|a|3'],
-        'C889' => ['7111' => 'M|an|3', '1131' => null, '3055' => 'M|an|3', '7110' => 'M|an|35'],
+        'C889' => ['7111' => 'O|an|3', '1131' => null, '3055' => 'O|an|3', '7110:1' => 'O|an|35', '7110:2' => 'O|an|35'],
     ];
 
-    public static function fromAttributes($code, $responsCode, $value)
+    public static function fromAttributes($code, $responsCode = null, $valueOne = null, $valueTwo = null)
     {
         return new static([
             'CAV' => ['CAV' => 'CAV'],
-            'C889' => ['7111' => $code, '1131' => null, '3055' => $responsCode, '7110' => $value],
+            'C889' => ['7111' => $code, '1131' => null, '3055' => $responsCode, '7110:1' => $valueOne, '7110:2' => $valueTwo],
         ]);
     }
 
@@ -31,6 +31,16 @@ class Cav extends AbstractSegment
 
     public function value()
     {
-        return @$this->elements['C889']['7110'] ?: null;
+        return $this->valueOne();
+    }
+
+    public function valueOne()
+    {
+        return @$this->elements['C889']['7110:1'] ?: null;
+    }
+
+    public function valueTwo()
+    {
+        return @$this->elements['C889']['7110:2'] ?: null;
     }
 }
