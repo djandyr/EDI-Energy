@@ -59,7 +59,7 @@ class UtilmdU11002Test extends TestCase
         $this->edifactObject = $this->utilmdBuilder->get();
 
         $this->edifactObject->validateSegments();
-        echo (string)$this->edifactObject;
+        //echo (string)$this->edifactObject;
     }
 
     private function makeUtilmdMock(

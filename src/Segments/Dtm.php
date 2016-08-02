@@ -81,7 +81,12 @@ class Dtm extends AbstractSegment
 
     public function date()
     {
-        return static::dateFromString($this->elements['C507']['2380'], $this->code());
+        return static::dateFromString($this->rawDate(), $this->code());
+    }
+
+    public function rawDate()
+    {
+        return $this->elements['C507']['2380'];
     }
 
     public function code()

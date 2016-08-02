@@ -27,6 +27,17 @@ class DtmTest extends TestCase
     }
 
     /** @test */
+    public function it_can_set_and_fetch_the_raw_date()
+    {
+        $code = 102;
+        $date = new DateTime;
+
+        $seg = $this->getDtm($date, $code);
+        $this->assertEquals('20160802', $seg->rawDate());
+    }
+
+
+    /** @test */
     public function it_can_set_and_fetch_date_with_code_102()
     {
         $code = 102;
