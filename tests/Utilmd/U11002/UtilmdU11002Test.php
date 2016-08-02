@@ -39,6 +39,19 @@ class UtilmdU11002Test extends TestCase
     }
 
     /** @test */
+    public function it_sets_the_correct_GS1_qualifier()
+    {
+        $this->utilmdBuilder = new UtilmdU11002Builder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+
+        $this->utilmdBuilder->addPrebuildConfig('energyType', 'electric');
+        $this->utilmdBuilder->addMessage($this->makeUtilmdMock());
+        $this->edifactObject = $this->utilmdBuilder->get();
+
+        $this->assertEquals('14', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
+        $this->assertEquals('9', $this->edifactObject->findNextSegment('NAD')->idCode());
+    }
+
+    /** @test */
     public function it_creates_a_valid_electric_message()
     {
         $this->utilmdBuilder->addPrebuildConfig('energyType', 'electric');

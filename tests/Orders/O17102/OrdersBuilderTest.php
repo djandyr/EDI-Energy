@@ -34,6 +34,19 @@ class OrdersBuilderTest extends TestCase
     }
 
     /** @test */
+    public function it_sets_the_correct_GS1_qualifier()
+    {
+        $this->ordersBuilder = new OrdersO17102Builder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+
+        $this->ordersBuilder->addPrebuildConfig('energyType', 'electric');
+        $this->ordersBuilder->addMessage($this->makeOrdersMock());
+        $this->edifactObject = $this->ordersBuilder->get();
+
+        $this->assertEquals('14', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
+        $this->assertEquals('9', $this->edifactObject->findNextSegment('NAD')->idCode());
+    }
+
+    /** @test */
     public function it_creates_a_valid_electric_message()
     {
         $this->ordersBuilder->addPrebuildConfig('energyType', 'electric');

@@ -14,7 +14,7 @@ use Proengeno\EdiEnergy\Remadv\R33001\RemadvR33001Builder;
 class Remadv33001BuilderTest extends TestCase 
 {
     private $remadvBuilder;
-    private $edifactFile;
+    private $edifactObject;
 
     public function setUp()
     {
@@ -23,8 +23,8 @@ class Remadv33001BuilderTest extends TestCase
 
     public function tearDown()
     {
-        if ($this->edifactFile) {
-            @unlink($this->edifactFile->getFilepath());
+        if ($this->edifactObject) {
+            @unlink($this->edifactObject->getFilepath());
         }
     }
 
@@ -37,7 +37,7 @@ class Remadv33001BuilderTest extends TestCase
     /** @test */
     public function it_build_up_the_Message_instance()
     {
-        $this->assertInstanceOf(Message::class, $this->edifactFile = $this->remadvBuilder->get());
+        $this->assertInstanceOf(Message::class, $this->edifactObject = $this->remadvBuilder->get());
     }
 
     /** @test */
@@ -54,9 +54,9 @@ class Remadv33001BuilderTest extends TestCase
         });
         $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
         $this->remadvBuilder->addMessage([$this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $utf8String)]);
-        $this->edifactFile = $this->remadvBuilder->get();
+        $this->edifactObject = $this->remadvBuilder->get();
 
-        $this->assertEquals($isoString, $this->edifactFile->findNextSegment('DOC')->code());
+        $this->assertEquals($isoString, $this->edifactObject->findNextSegment('DOC')->code());
     }
 
     /** @test */
@@ -74,9 +74,9 @@ class Remadv33001BuilderTest extends TestCase
         });
         $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
         $this->remadvBuilder->addMessage([$this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $isoString)]);
-        $this->edifactFile = $this->remadvBuilder->get();
+        $this->edifactObject = $this->remadvBuilder->get();
 
-        $this->assertEquals($utf8String, $this->edifactFile->findNextSegment('DOC')->code());
+        $this->assertEquals($utf8String, $this->edifactObject->findNextSegment('DOC')->code());
     }
     
     /** @test */
@@ -89,15 +89,28 @@ class Remadv33001BuilderTest extends TestCase
     }
 
     /** @test */
+    public function it_sets_the_correct_GS1_qualifier()
+    {
+        $this->remadvBuilder = new RemadvR33001Builder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+
+        $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
+        $this->remadvBuilder->addMessage([$this->makeRemadvMock()]);
+        $this->edifactObject = $this->remadvBuilder->get();
+
+        $this->assertEquals('14', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
+        $this->assertEquals('9', $this->edifactObject->findNextSegment('NAD')->idCode());
+    }
+
+    /** @test */
     public function it_creates_a_valid_electric_message()
     {
         $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
         $this->remadvBuilder->addMessage([$this->makeRemadvMock()]);
-        $this->edifactFile = $this->remadvBuilder->get();
+        $this->edifactObject = $this->remadvBuilder->get();
 
-        $this->assertEquals('500', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('293', $this->edifactFile->findNextSegment('NAD')->idCode());
-        $this->edifactFile->validate();
+        $this->assertEquals('500', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
+        $this->assertEquals('293', $this->edifactObject->findNextSegment('NAD')->idCode());
+        $this->edifactObject->validate();
     }
 
     /** @test */
@@ -106,11 +119,11 @@ class Remadv33001BuilderTest extends TestCase
         $this->remadvBuilder->addPrebuildConfig('energyType', 'gas');
         $this->remadvBuilder->addMessage([$this->makeRemadvMock()]);
         $this->remadvBuilder->addMessage([$this->makeRemadvMock(15.5)]);
-        $this->edifactFile = $this->remadvBuilder->get();
+        $this->edifactObject = $this->remadvBuilder->get();
 
-        $this->assertEquals('502', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('332', $this->edifactFile->findNextSegment('NAD')->idCode());
-        $this->edifactFile->validate();
+        $this->assertEquals('502', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
+        $this->assertEquals('332', $this->edifactObject->findNextSegment('NAD')->idCode());
+        $this->edifactObject->validate();
     }
 
     /** @test */
@@ -120,9 +133,9 @@ class Remadv33001BuilderTest extends TestCase
         $this->remadvBuilder->addPrebuildConfig('energyType', 'gas');
         $this->remadvBuilder->addMessage([$this->makeRemadvMock(), $this->makeRemadvMock(15.5)]);
         $this->remadvBuilder->addMessage([$this->makeRemadvMock(15.5), $this->makeRemadvMock(15.5)]);
-        $this->edifactFile = $this->remadvBuilder->get();
+        $this->edifactObject = $this->remadvBuilder->get();
         
-        $this->assertEquals($this->getGasInvoiceTemplate(), (string)$this->edifactFile);
+        $this->assertEquals($this->getGasInvoiceTemplate(), (string)$this->edifactObject);
     }
 
     /** @test */
@@ -132,9 +145,9 @@ class Remadv33001BuilderTest extends TestCase
         $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
         $this->remadvBuilder->addMessage([$this->makeRemadvMock(), $this->makeRemadvMock(15.5)]);
         $this->remadvBuilder->addMessage([$this->makeRemadvMock(15.5), $this->makeRemadvMock(15.5)]);
-        $this->edifactFile = $this->remadvBuilder->get();
+        $this->edifactObject = $this->remadvBuilder->get();
 
-        $this->assertEquals($this->getElectricInvoiceTemplate(), (string)$this->edifactFile);
+        $this->assertEquals($this->getElectricInvoiceTemplate(), (string)$this->edifactObject);
     }
 
     private function makeRemadvMock($payedAmount = 10, $invoiceAmount = 10, $accountNumber = 1, $invoiceDate = '2015-01-01', $invoiceCode = 380)

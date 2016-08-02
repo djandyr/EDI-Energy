@@ -40,6 +40,19 @@ class MsconsM13002VLTest extends TestCase
     }
 
     /** @test */
+    public function it_sets_the_correct_GS1_qualifier()
+    {
+        $this->msconsBuilder = new MsconsM13002VLBuilder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+
+        $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
+        $this->msconsBuilder->addMessage($this->makeMsconsMock());
+        $this->edifactObject = $this->msconsBuilder->get();
+
+        $this->assertEquals('14', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
+        $this->assertEquals('9', $this->edifactObject->findNextSegment('NAD')->idCode());
+    }
+
+    /** @test */
     public function it_creates_a_valid_electric_message()
     {
         $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
