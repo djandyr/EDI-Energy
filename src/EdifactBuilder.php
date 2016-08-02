@@ -71,7 +71,7 @@ abstract class EdifactBuilder extends AbstractBuilder
     protected function getUnbQualifier($mpCode) 
     {
         if ($mpCode[0] == '4') {
-            return 4;
+            return 14;
         }
         if ($this->getEnergyType() == 'gas') {
             return 502;
