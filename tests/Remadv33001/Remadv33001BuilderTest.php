@@ -41,25 +41,6 @@ class Remadv33001BuilderTest extends TestCase
     }
 
     /** @test */
-    public function it_add_pre_build_charset_conversion_configuration()
-    {
-        $utf8String = 'ß';
-        $isoString = iconv('UTF-8', 'CP1252', $utf8String);
-
-        $this->remadvBuilder->addPrebuildConfig('convertCharset', function($string) {
-            if ($connvertedString = iconv('UTF-8', 'CP1252', $string)) {
-                return $connvertedString;
-            }
-            return $string;
-        });
-        $this->remadvBuilder->addPrebuildConfig('energyType', 'electric');
-        $this->remadvBuilder->addMessage([$this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $utf8String)]);
-        $this->edifactObject = $this->remadvBuilder->get();
-
-        $this->assertEquals($isoString, $this->edifactObject->findNextSegment('DOC')->code());
-    }
-
-    /** @test */
     public function it_add_post_build_charset_conversion_configuration()
     {
         $utf8String = 'ß';

@@ -14,7 +14,7 @@ abstract class EdifactBuilder extends AbstractBuilder
     const ORGANISATION = 'UN';
 
     protected $prebuildConfig = [
-        'unbReference' => null, 'delimiter' => null, 'energyType' => null, 'convertCharset' => null
+        'unbReference' => null, 'delimiter' => null, 'energyType' => null
     ];
 
     public function getEnergyType()
@@ -41,18 +41,6 @@ abstract class EdifactBuilder extends AbstractBuilder
     //    return substr(static::MESSAGE_TYPE, 0, 1) . strtoupper(parent::unbReference());
     //}
 
-    protected function writeSeg($segment, $attributes = [], $method = 'fromAttributes')
-    {
-        if (isset($this->prebuildConfig['convertCharset'])) {
-            array_walk($attributes, function(&$attribute) {
-                if (is_string($attribute)) {
-                    $attribute = $this->prebuildConfig['convertCharset']($attribute);
-                }
-            });
-        }
-        parent::writeSeg($segment, $attributes, $method);
-    }
-    
     protected function writeUnb() 
     {
         return $this->writeSeg('unb', [
