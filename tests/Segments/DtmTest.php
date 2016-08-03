@@ -33,7 +33,7 @@ class DtmTest extends TestCase
         $date = new DateTime;
 
         $seg = $this->getDtm($date, $code);
-        $this->assertEquals('20160802', $seg->rawDate());
+        $this->assertEquals($date->format('Ymd'), $seg->rawDate());
     }
 
 

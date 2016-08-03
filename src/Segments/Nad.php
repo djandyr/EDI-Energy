@@ -117,7 +117,14 @@ class Nad extends AbstractSegment
 
     public function street()
     {
-        return $this->elements['C059']['3042:1'] . $this->elements['C059']['3042:2'];
+        $street = null;
+        if (isset($this->elements['C059']['3042:1'])) {
+            $street .= $this->elements['C059']['3042:1'];
+        }
+        if (isset($this->elements['C059']['3042:2'])) {
+            $street .= $this->elements['C059']['3042:2'];
+        }
+        return $street;
     }
 
     public function number()
