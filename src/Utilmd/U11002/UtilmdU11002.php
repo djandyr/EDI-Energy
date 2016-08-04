@@ -19,6 +19,7 @@ class UtilmdU11002 extends Edifact
         'CCI' => \Proengeno\EdiEnergy\Segments\Cci::class,
         'CAV' => \Proengeno\EdiEnergy\Segments\Cav::class,
         'IDE' => \Proengeno\EdiEnergy\Segments\Ide::class,
+        'FTX' => \Proengeno\EdiEnergy\Segments\Ftx::class,
         'IMD' => \Proengeno\EdiEnergy\Segments\Imd::class,
         'STS' => \Proengeno\EdiEnergy\Segments\Sts::class,
         'AGR' => \Proengeno\EdiEnergy\Segments\Agr::class,
