@@ -37,7 +37,7 @@ class MsconsM13002VL extends Edifact
                 ['name' => 'UNH'],
                 ['name' => 'BGM', 'templates' => ['docCode' => [7, 9]]],
                 ['name' => 'DTM', 'templates' => ['qualifier' => [137], 'code' => [203]]],
-                ['name' => 'RFF', 'templates' => ['code' => ['AGI']]],
+                ['name' => 'RFF', 'necessity' => 'O', 'templates' => ['code' => ['AGI']]],
                 ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['13002']]],
                 ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']]],
                 ['name' => 'LOOP', 'maxLoops' => 999999, 'necessity' => 'O', 'segments' => [

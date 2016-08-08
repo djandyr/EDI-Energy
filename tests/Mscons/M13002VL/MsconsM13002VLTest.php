@@ -53,7 +53,7 @@ class MsconsM13002VLTest extends TestCase
     }
 
     /** @test */
-    public function it_creates_a_valid_electric_message()
+    public function it_creates_a_valid_electric_message_without_an_orders()
     {
         $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
@@ -62,6 +62,19 @@ class MsconsM13002VLTest extends TestCase
         $this->assertEquals('500', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
         $this->assertEquals('293', $this->edifactObject->findNextSegment('NAD')->idCode());
         $this->edifactObject->validate();
+    }
+
+
+    /** @test */
+    public function it_creates_a_valid_electric_message()
+    {
+        $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
+        $this->msconsBuilder->addMessage($this->makeMsconsMock(null));
+        $this->edifactFile = $this->msconsBuilder->get();
+
+        $this->assertEquals('500', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
+        $this->assertEquals('293', $this->edifactFile->findNextSegment('NAD')->idCode());
+        $this->edifactFile->validate();
     }
 
     /** @test */
@@ -77,10 +90,10 @@ class MsconsM13002VLTest extends TestCase
     }
 
     private function makeMsconsMock(
+        $ordesCode = 'OrdersCode',
         $obis = '7-20:3.0.0', 
         $from = '2015-01-01', 
         $until = '2016-01-01', 
-        $ordesCode = 'OrdersCode',
         $meterpoint = 'DE123456',
         $meterNumber = '1234567',
         $readinReason = 'PMR',
