@@ -53,7 +53,7 @@ class MsconsM13002VLTest extends TestCase
     }
 
     /** @test */
-    public function it_creates_a_valid_electric_message_without_an_orders()
+    public function it_creates_a_valid_electric_message()
     {
         $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
@@ -66,7 +66,7 @@ class MsconsM13002VLTest extends TestCase
 
 
     /** @test */
-    public function it_creates_a_valid_electric_message()
+    public function it_creates_a_valid_electric_message_without_an_orders_request()
     {
         $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
         $this->msconsBuilder->addMessage($this->makeMsconsMock(null));

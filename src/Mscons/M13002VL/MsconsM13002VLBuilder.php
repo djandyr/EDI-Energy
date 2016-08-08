@@ -28,7 +28,7 @@ class MsconsM13002VLBuilder extends MsconsBuilder
         $this->writeSeg('Bgm', [9, $this->unbReference(), 7]);
         $this->writeSeg('Dtm', [137, new DateTime, 203]);
         if ($ordesCode = $item->getOrdersCode()) {
-            $this->writeSeg('Rff', ['AGI', $item->getOrdersCode()]);
+            $this->writeSeg('Rff', ['AGI', $ordesCode]);
         }
         $this->writeSeg('Rff', ['Z13', static::CHECK_DIGIT]);
         $this->writeSeg('Nad', ['MS', $this->from, $this->getNadQualifier($this->from)], 'fromMpCode');
