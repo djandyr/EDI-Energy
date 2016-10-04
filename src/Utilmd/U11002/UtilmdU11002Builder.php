@@ -3,14 +3,11 @@
 namespace Proengeno\EdiEnergy\Utilmd\U11002;
 
 use DateTime;
-use Proengeno\EdiEnergy\EdifactBuilder;
+use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
 
-class UtilmdU11002Builder extends EdifactBuilder
+class UtilmdU11002Builder extends UtilmdBuilder
 {
     const CHECK_DIGIT = 11002;
-    const MESSAGE_SUBTYPE = '';
-    const MESSAGE_TYPE = 'UTILMD';
-    const ORGANISATION_CODE = '5.1e';
 
     protected function getMessageClass()
     {
@@ -20,10 +17,10 @@ class UtilmdU11002Builder extends EdifactBuilder
     protected function writeMessage($items)
     {
         $this->writeSeg('Unh', [
-            $this->unbReference(), 
+            $this->unbReference(),
             self::MESSAGE_TYPE,
             self::VERSION_NUMBER,
-            self::RELEASE_NUMBER, 
+            self::RELEASE_NUMBER,
             self::ORGANISATION,
             self::ORGANISATION_CODE
         ]);
@@ -34,7 +31,7 @@ class UtilmdU11002Builder extends EdifactBuilder
         $this->writeSeg('Com', ['04958 91570-10', 'TE']);
         $this->writeSeg('Com', ['j.geerdes@proengeno.de', 'EM']);
         $this->writeSeg('Nad', ['MR', $this->to, $this->getNadQualifier($this->to)], 'fromMpCode');
-        
+
         foreach ($items as $item) {
             $this->writeItem($item);
         }
@@ -98,7 +95,7 @@ class UtilmdU11002Builder extends EdifactBuilder
         $this->writeSeg('Rff', ['Z10', '1-1:1.8.0']);
         $this->writeSeg('Cci', [null, 'Z08']);
         $this->writeSeg('Cav', ['TA']);
-        
+
         $this->writeSeg('Seq', ['Z10']);
         $this->writeSeg('Rff', ['AVE', 'DE0002914465200000000000000006517']);
         $this->writeSeg('Rff', ['Z10', '1-1:1.8.0']);
@@ -110,7 +107,7 @@ class UtilmdU11002Builder extends EdifactBuilder
         $this->writeSeg('Nad', ['UD', 'Thörmer', 'Kay'], 'fromPerson');
         $this->writeSeg('Nad', ['DEB', '9904746000004', '293'], 'fromMpCode');
         $this->writeSeg('Rff', ['Z05', 'JA']);
-        
+
         $this->writeSeg('Rff', ['AVE', 'DE0002914465200000000000000006517']);
         $this->writeSeg('Nad', ['DDE', '9904778000006', '293'], 'fromMpCode');
         $this->writeSeg('Rff', ['Z05', 'JA']);
