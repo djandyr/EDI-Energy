@@ -1,10 +1,10 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Utilmd\U11002;
+namespace Proengeno\EdiEnergy\Utilmd\U11003;
 
 use Proengeno\EdiEnergy\Edifact;
 
-class UtilmdU11002 extends Edifact
+class UtilmdU11003 extends Edifact
 {
     protected static $segments = [
         'UNA' => \Proengeno\EdiEnergy\Segments\Una::class,
@@ -51,20 +51,17 @@ class UtilmdU11002 extends Edifact
                 ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']]],
                 ['name' => 'IDE', 'templates' => ['qualifier' => ['24']]],
                 ['name' => 'IMD', 'templates' => ['code' => ['Z14'], 'qualifier' => ['Z07', 'Z08']]],
-                ['name' => 'DTM', 'templates' => ['qualifier' => [92], 'code' => [102]]],
-                ['name' => 'DTM', 'templates' => ['qualifier' => [158], 'code' => [102]]],
-                ['name' => 'DTM', 'templates' => ['qualifier' => ['752'], 'code' => [106]]],
-                ['name' => 'DTM', 'templates' => ['qualifier' => ['Z09'], 'code' => [602]]],
-                ['name' => 'DTM', 'templates' => ['qualifier' => ['672'], 'code' => [802]]],
-                ['name' => 'STS', 'templates' => ['category' => [7], 'reason' => ['E01']]],
-                ['name' => 'STS', 'templates' => ['category' => ['E01'], 'reason' => ['Z43']]],
-                ['name' => 'AGR', 'templates' => ['qualifier' => [11], 'type' => ['E02']]],
-                ['name' => 'AGR', 'templates' => ['qualifier' => ['E03'], 'type' => ['E10']]],
-                ['name' => 'LOC', 'templates' => ['qualifier' => ['107']]],
-                ['name' => 'LOC', 'templates' => ['qualifier' => ['237']]],
+                ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['Z07'], 'code' => [102]]],
+                ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['Z08'], 'code' => [102]]],
+                ['name' => 'STS', 'templates' => ['category' => [7]]],
+                ['name' => 'STS', 'necessity' => 'O', 'templates' => ['category' => ['Z17']]],
+                ['name' => 'STS', 'templates' => ['category' => ['E01']]],
+                ['name' => 'FTX', 'necessity' => 'O'],
                 ['name' => 'LOC', 'templates' => ['qualifier' => ['172']]],
-                ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['11002']]],
-                ['name' => 'RFF', 'templates' => ['code' => ['TN'], 'referenz' => ['UE01-26823-166A4DDC4FA']]],
+                ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['11003']]],
+                ['name' => 'RFF', 'templates' => ['code' => ['TN']]],
+                ['name' => 'RFF', 'necessity' => 'O', 'templates' => ['code' => ['Z07']]],
+                ['name' => 'NAD', 'necessity' => 'O', 'templates' => ['qualifier' => ['VY']]],
                 ['name' => 'UNT'],
             ]],
             ['name' => 'UNZ']
