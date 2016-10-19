@@ -6,7 +6,7 @@ use Proengeno\Edifact\Templates\AbstractSegment;
 
 class Sts extends AbstractSegment
 {
-    protected static $jsonDescribtion = __DIR__ . '/meta/Sts.json';
+    // protected static $jsonDescribtion = __DIR__ . '/meta/Sts.json';
 
     protected static $validationBlueprint = [
         'STS' => ['STS' => 'M|a|3'],
