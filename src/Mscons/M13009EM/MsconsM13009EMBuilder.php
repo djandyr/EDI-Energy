@@ -7,21 +7,18 @@ use Proengeno\EdiEnergy\Orders\OrdersBuilder;
 
 class MsconsM13009EMBuilder extends MsconsBuilder
 {
+    protected $edifactClass = MsconsM13009EM::class;
+
     const CHECK_DIGIT = 13009;
     const MESSAGE_SUBTYPE = 'EM';
-
-    protected function getMessageClass()
-    {
-        return MsconsM13009EM::class;
-    }
 
     protected function writeMessage($item)
     {
         $this->writeSeg('Unh', [
-            $this->unbReference(), 
+            $this->unbReference(),
             self::MESSAGE_TYPE,
             self::VERSION_NUMBER,
-            self::RELEASE_NUMBER, 
+            self::RELEASE_NUMBER,
             self::ORGANISATION,
             self::ORGANISATION_CODE
         ]);

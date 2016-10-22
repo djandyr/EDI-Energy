@@ -7,20 +7,17 @@ use Proengeno\EdiEnergy\Orders\OrdersBuilder;
 
 class OrdersO17103Builder extends OrdersBuilder
 {
-    const CHECK_DIGIT = 17103;
+    protected $edifactClass = OrdersO17103::class;
 
-    protected function getMessageClass()
-    {
-        return OrdersO17103::class;
-    }
+    const CHECK_DIGIT = 17103;
 
     protected function writeMessage($item)
     {
         $this->writeSeg('Unh', [
-            $this->unbReference(), 
+            $this->unbReference(),
             self::MESSAGE_TYPE,
             self::VERSION_NUMBER,
-            self::RELEASE_NUMBER, 
+            self::RELEASE_NUMBER,
             self::ORGANISATION,
             self::ORGANISATION_CODE
         ]);

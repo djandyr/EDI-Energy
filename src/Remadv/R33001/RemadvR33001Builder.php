@@ -8,6 +8,8 @@ use Proengeno\EdiEnergy\Interfaces\RemadvInterface;
 
 class RemadvR33001Builder extends RemadvBuilder
 {
+    protected $edifactClass = RemadvR33001::class;
+
     const DOC_CODE = 481;
     const CHECK_DIGIT = 33001;
 
@@ -16,11 +18,6 @@ class RemadvR33001Builder extends RemadvBuilder
     public function getTotalPayedAmount()
     {
         return $this->sumPayedAmount;
-    }
-
-    protected function getMessageClass()
-    {
-        return RemadvR33001::class;
     }
 
     protected function writeUnhBody(RemadvInterface $item)

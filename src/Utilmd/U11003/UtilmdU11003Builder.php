@@ -7,12 +7,9 @@ use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
 
 class UtilmdU11003Builder extends UtilmdBuilder
 {
-    const CHECK_DIGIT = 11003;
+    protected $edifactClass = UtilmdU11003::class;
 
-    protected function getMessageClass()
-    {
-        return UtilmdU11003::class;
-    }
+    const CHECK_DIGIT = 11003;
 
     protected function writeMessage($items)
     {

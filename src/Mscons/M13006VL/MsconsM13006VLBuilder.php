@@ -7,21 +7,18 @@ use Proengeno\EdiEnergy\Mscons\MsconsBuilder;
 
 class MsconsM13006VLBuilder extends MsconsBuilder
 {
+    protected $edifactClass = MsconsM13006VL::class;
+
     const CHECK_DIGIT = 13006;
     const MESSAGE_SUBTYPE = 'VL';
-
-    protected function getMessageClass()
-    {
-        return MsconsM13006VL::class;
-    }
 
     protected function writeMessage($item)
     {
         $this->writeSeg('Unh', [
-            $this->unbReference(), 
+            $this->unbReference(),
             self::MESSAGE_TYPE,
             self::VERSION_NUMBER,
-            self::RELEASE_NUMBER, 
+            self::RELEASE_NUMBER,
             self::ORGANISATION,
             self::ORGANISATION_CODE
         ]);
