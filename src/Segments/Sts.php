@@ -2,12 +2,10 @@
 
 namespace Proengeno\EdiEnergy\Segments;
 
-use Proengeno\EdiEnergy\AbstractSegment;
+use Proengeno\Edifact\Templates\AbstractSegment;
 
 class Sts extends AbstractSegment
 {
-    protected static $jsonDescribtion = 'meta/Sts.json';
-
     protected static $validationBlueprint = [
         'STS' => ['STS' => 'M|a|3'],
         'C601' => ['9015' => 'M|an|3'],

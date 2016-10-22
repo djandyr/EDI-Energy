@@ -20,10 +20,4 @@ class StsTest extends TestCase
         $this->assertEquals($category, $seg->category());
         $this->assertEquals($reason, $seg->reason());
     }
-
-    /** @test */
-    public function it_can_parse_the_json_information()
-    {
-        $this->assertEquals('Information über existierende Zuordnung', Sts::meta()->description('reason', 'Z26'));
-    }
 }
