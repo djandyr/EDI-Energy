@@ -42,7 +42,6 @@ class Aperak extends Edifact
 
     const EVENT_REJECTED = 'Z31';
 
-    protected static $builderClass = RemadvR33001Builder::class;
     protected static $segments = [
         'UNA' => \Proengeno\EdiEnergy\Segments\Una::class,
         'UNB' => \Proengeno\EdiEnergy\Segments\Unb::class,
