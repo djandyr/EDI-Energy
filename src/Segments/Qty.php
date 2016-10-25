@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Qty extends AbstractSegment 
+class Qty extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'QTY' => ['QTY' => 'M|a|3'],
@@ -15,7 +15,7 @@ class Qty extends AbstractSegment
     {
         return new static([
             'QTY' => ['QTY' => 'QTY'],
-            'C186' => ['6063' => $qualifier, '6060' => $amount, '6411' => $unitCode],
+            'C186' => ['6063' => $qualifier, '6060' => (string)$amount, '6411' => $unitCode],
         ]);
     }
 
@@ -26,7 +26,7 @@ class Qty extends AbstractSegment
 
     public function amount()
     {
-        return @$this->elements['C186']['6060'] ?: null;
+        return isset($this->elements['C186']['6060']) ? $this->elements['C186']['6060'] : null;
     }
 
     public function unitCode()
