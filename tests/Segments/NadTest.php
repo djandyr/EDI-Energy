@@ -6,14 +6,14 @@ use Proengeno\EdiEnergy\Segments\Nad;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Delimiter;
 
-class NadTest extends TestCase 
+class NadTest extends TestCase
 {
     private $nadAttributes;
 
     public function setUp()
     {
         parent::setUp();
-        
+
         $this->nadAttributes = [
             'segName' => 'NAD',
             'qualifier' => 'ABC',
@@ -25,7 +25,7 @@ class NadTest extends TestCase
             'additionalName1' => 'von Hoäcker',
             'additionalName2' => 'zu Konradsen',
             'title' => 'Dr.',
-            'partnerType' => 'Z02',
+            'partnerType' => 'Z01',
             'street' => 'In der Strasse mit dem längsten namen der Welt',
             'number' => '3a',
             'district' => 'JemgumOrt',
@@ -33,35 +33,36 @@ class NadTest extends TestCase
             'zip' => '26844'
         ];
     }
-    
+
     /** @test */
     public function it_can_set_and_fetch_basic_informations()
     {
         extract($this->nadAttributes);
 
         $seg = Nad::fromAttributes(
-            $qualifier, 
-            $id, 
-            $idCode, 
+            $qualifier,
+            $id,
+            $idCode,
             $lastName,
             $firstName,
             $additionalName1,
             $additionalName2,
             $title,
-            $partnerType, 
-            $street, 
-            $number, 
+            $partnerType,
+            $street,
+            $number,
             $district,
             $city,
             $zip
         );
-        
+
         $this->assertEquals($segName, $seg->name());
         $this->assertEquals($qualifier, $seg->qualifier());
         $this->assertEquals($id, $seg->id());
         $this->assertEquals($idCode, $seg->idCode());
         $this->assertEquals($firstName, $seg->firstName());
         $this->assertEquals($lastName, $seg->lastName());
+        $this->assertEquals(null, $seg->company());
         $this->assertEquals($additionalName1, $seg->additionalName1());
         $this->assertEquals($additionalName2, $seg->additionalName2());
         $this->assertEquals($title, $seg->title());
@@ -77,10 +78,11 @@ class NadTest extends TestCase
         extract($this->nadAttributes);
 
         $seg = Nad::fromPersonAdress($qualifier, $lastName, $firstName, $street, $number, $city, $zip, $title, $district);
-        
+
         $this->assertEquals($segName, $seg->name());
         $this->assertEquals($firstName, $seg->firstName());
         $this->assertEquals($lastName, $seg->lastName());
+        $this->assertEquals(null, $seg->company());
         $this->assertEquals($street, $seg->street());
         $this->assertEquals($number, $seg->number());
         $this->assertEquals($zip, $seg->zip());
@@ -94,8 +96,10 @@ class NadTest extends TestCase
         extract($this->nadAttributes);
 
         $seg = Nad::fromCompanyAdress($qualifier, $company, $street, $number, $city, $zip, $district);
-        
+
         $this->assertEquals($segName, $seg->name());
+        $this->assertEquals(null, $seg->firstName());
+        $this->assertEquals(null, $seg->lastName());
         $this->assertEquals($company, $seg->company());
         $this->assertEquals($street, $seg->street());
         $this->assertEquals($number, $seg->number());
@@ -109,10 +113,11 @@ class NadTest extends TestCase
         extract($this->nadAttributes);
 
         $seg = Nad::fromPerson($qualifier, $lastName, $firstName, $title);
-        
+
         $this->assertEquals($segName, $seg->name());
         $this->assertEquals($firstName, $seg->firstName());
         $this->assertEquals($lastName, $seg->lastName());
+        $this->assertEquals(null, $seg->company());
         $this->assertEquals($title, $seg->title());
     }
 
@@ -122,9 +127,11 @@ class NadTest extends TestCase
         extract($this->nadAttributes);
 
         $seg = Nad::fromCompany($qualifier, $company);
-        
+
         $this->assertEquals($segName, $seg->name());
         $this->assertEquals($company, $seg->company());
+        $this->assertEquals(null, $seg->firstName());
+        $this->assertEquals(null, $seg->lastName());
     }
 
     /** @test */
