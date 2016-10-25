@@ -21,6 +21,6 @@ class Erc extends AbstractSegment
 
     public function errorCode()
     {
-        return @$this->elements['C901']['9321'] ?: null;
+        return $this->elements['C901']['9321'];
     }
 }

@@ -105,17 +105,17 @@ class Nad extends AbstractSegment
 
     public function qualifier()
     {
-        return @$this->elements['3035']['3035'] ?: null;
+        return $this->elements['3035']['3035'];
     }
 
     public function id()
     {
-        return @$this->elements['C082']['3039'] ?: null;
+        return $this->elements['C082']['3039'];
     }
 
     public function idCode()
     {
-        return @$this->elements['C082']['3055'] ?: null;
+        return $this->elements['C082']['3055'];
     }
 
     public function street()
@@ -132,12 +132,12 @@ class Nad extends AbstractSegment
 
     public function number()
     {
-        return @$this->elements['C059']['3042:3'] ?: null;
+        return @$this->elements['C059']['3042:3'];
     }
 
     public function district()
     {
-        return @$this->elements['C059']['3042:4'] ?: null;
+        return @$this->elements['C059']['3042:4'];
     }
 
     public function company()
@@ -146,10 +146,7 @@ class Nad extends AbstractSegment
             return null;
         }
 
-        $company = @$this->elements['C080']['3036:1'] ?: null;
-        $company .= @$this->elements['C080']['3036:2'] ?: null;
-
-        return $company;
+        return $this->elements['C080']['3036:1'] . $this->elements['C080']['3036:2'];
     }
 
     public function firstName()
@@ -157,7 +154,8 @@ class Nad extends AbstractSegment
         if ($this->partnerType() != self::PERSON_ADRESS) {
             return null;
         }
-        return @$this->elements['C080']['3036:2'] ?: null;
+
+        return $this->elements['C080']['3036:2'];
     }
 
     public function lastName()
@@ -165,7 +163,8 @@ class Nad extends AbstractSegment
         if ($this->partnerType() != self::PERSON_ADRESS) {
             return null;
         }
-        return @$this->elements['C080']['3036:1'] ?: null;
+
+        return $this->elements['C080']['3036:1'];
     }
 
     public function additionalName1()
@@ -185,16 +184,16 @@ class Nad extends AbstractSegment
 
     public function partnerType()
     {
-        return @$this->elements['C080']['3045'] ?: null;
+        return $this->elements['C080']['3045'];
     }
 
     public function zip()
     {
-        return @$this->elements['3251']['3251'] ?: null;
+        return $this->elements['3251']['3251'];
     }
 
     public function city()
     {
-        return @$this->elements['3164']['3164'] ?: null;
+        return $this->elements['3164']['3164'];
     }
 }

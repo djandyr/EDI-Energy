@@ -15,22 +15,22 @@ class Qty extends AbstractSegment
     {
         return new static([
             'QTY' => ['QTY' => 'QTY'],
-            'C186' => ['6063' => $qualifier, '6060' => (string)$amount, '6411' => $unitCode],
+            'C186' => ['6063' => $qualifier, '6060' => $amount, '6411' => $unitCode],
         ]);
     }
 
     public function qualifier()
     {
-        return @$this->elements['C186']['6063'] ?: null;
+        return $this->elements['C186']['6063'];
     }
 
     public function amount()
     {
-        return isset($this->elements['C186']['6060']) ? $this->elements['C186']['6060'] : null;
+        return $this->elements['C186']['6060'];
     }
 
     public function unitCode()
     {
-        return @$this->elements['C186']['6411'] ?: null;
+        return $this->elements['C186']['6411'];
     }
 }

@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Unz extends AbstractSegment 
+class Unz extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'UNZ' => ['UNZ' => 'M|an|3'],
@@ -25,11 +25,11 @@ class Unz extends AbstractSegment
 
     public function counter()
     {
-        return @$this->elements['0062']['0062'] ?: null;
+        return $this->elements['0062']['0062'];
     }
 
     public function referenz()
     {
-        return @$this->elements['S009']['0065'] ?: null;
+        return $this->elements['S009']['0065'];
     }
 }

@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Ftx extends AbstractSegment 
+class Ftx extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'FTX' => ['FTX' => 'M|a|3'],
@@ -22,10 +22,10 @@ class Ftx extends AbstractSegment
             '4453' => [null],
             'C107' => ['4441' => null],
             'C108' => [
-                '4440:1' => substr($message, 0, 512), 
-                '4440:2' => substr($message, 512, 512), 
-                '4440:3' => substr($message, 1024, 512), 
-                '4440:4' => substr($message, 1536, 512), 
+                '4440:1' => substr($message, 0, 512),
+                '4440:2' => substr($message, 512, 512),
+                '4440:3' => substr($message, 1024, 512),
+                '4440:4' => substr($message, 1536, 512),
                 '4440:5' => substr($message, 2048, 512),
             ]
         ]);
@@ -33,7 +33,7 @@ class Ftx extends AbstractSegment
 
     public function qualifier()
     {
-        return @$this->elements['4451']['4451'] ?: null;
+        return $this->elements['4451']['4451'];
     }
 
     public function message()

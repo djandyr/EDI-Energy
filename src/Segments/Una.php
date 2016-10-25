@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Message\Delimiter;
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Una extends AbstractSegment 
+class Una extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'UNA' => ['Una' => 'M|a|3', 'data' => 'M|an|1', 'dataGroup' => 'M|an|1', 'decimal' => 'M|an|1', 'terminator' => 'M|an|1', 'empty' => 'M|an|1'],
@@ -21,27 +21,27 @@ class Una extends AbstractSegment
 
     public function data()
     {
-        return @$this->elements['UNA']['data'] ?: null;
+        return $this->elements['UNA']['data'];
     }
 
     public function dataGroup()
     {
-        return @$this->elements['UNA']['dataGroup'] ?: null;
+        return $this->elements['UNA']['dataGroup'];
     }
 
     public function decimal()
     {
-        return @$this->elements['UNA']['decimal'] ?: null;
+        return $this->elements['UNA']['decimal'];
     }
 
     public function terminator()
     {
-        return @$this->elements['UNA']['terminator'] ?: null;
+        return $this->elements['UNA']['terminator'];
     }
 
     public function emptyChar()
     {
-        return @$this->elements['UNA']['empty'] ?: null;
+        return $this->elements['UNA']['empty'];
     }
 
     public function __toString()

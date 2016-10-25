@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Uns extends AbstractSegment 
+class Uns extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'UNS' => ['UNS' => 'M|a|3'],
@@ -21,6 +21,6 @@ class Uns extends AbstractSegment
 
     public function code()
     {
-        return @$this->elements['0081']['0081'] ?: null;
+        return $this->elements['0081']['0081'];
     }
 }

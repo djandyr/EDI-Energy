@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
@@ -6,7 +6,7 @@ use DateTime;
 use Proengeno\Edifact\Templates\AbstractSegment;
 use Proengeno\Edifact\Exceptions\SegValidationException;
 
-class Dtm extends AbstractSegment 
+class Dtm extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'DTM' => ['DTM' => 'M|a|3'],
@@ -30,13 +30,13 @@ class Dtm extends AbstractSegment
                return $date->format('md');
             case 203:
                return $date->format('YmdHi');
-            case 303: 
+            case 303:
                 return $date->format('YmdHi') . substr($date->format('O'), 0, 3);
-            case 602: 
+            case 602:
                 return $date->format('Y');
-            case 610: 
+            case 610:
                 return $date->format('YmdH');
-            case 802: 
+            case 802:
                 return $date->format('m');
         }
 
@@ -56,16 +56,16 @@ class Dtm extends AbstractSegment
                 return DateTime::createFromFormat('mdH', $string.$hour);
             case 203:
                 return DateTime::createFromFormat('YmdHi', $string);
-            case 303: 
+            case 303:
                 return DateTime::createFromFormat('YmdHi', substr($string, 0, -3));
-            case 602: 
+            case 602:
                 $month = '01';
                 $day = '01';
                 $hour = 0;
                 return DateTime::createFromFormat('YmdH', $string.$month.$day.$hour);
-            case 610: 
+            case 610:
                 return DateTime::createFromFormat('YmdH', $string);
-            case 802: 
+            case 802:
                 $day = '01';
                 $hour = 0;
                 return DateTime::createFromFormat('mdH', $string);
@@ -76,7 +76,7 @@ class Dtm extends AbstractSegment
 
     public function qualifier()
     {
-        return @$this->elements['C507']['2005'] ?: null;
+        return $this->elements['C507']['2005'];
     }
 
     public function date()
@@ -91,6 +91,6 @@ class Dtm extends AbstractSegment
 
     public function code()
     {
-        return @$this->elements['C507']['2379'] ?: null;
+        return $this->elements['C507']['2379'];
     }
 }

@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Pia extends AbstractSegment 
+class Pia extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'PIA' => ['PIA' => 'M|a|3'],
@@ -23,16 +23,16 @@ class Pia extends AbstractSegment
 
     public function number()
     {
-        return @$this->elements['4347']['4347'] ?: null;
+        return $this->elements['4347']['4347'];
     }
 
     public function articleNumber()
     {
-        return @$this->elements['C212']['7140'] ?: null;
+        return $this->elements['C212']['7140'];
     }
 
     public function articleCode()
     {
-        return @$this->elements['C212']['7143'] ?: null;
+        return $this->elements['C212']['7143'];
     }
 }

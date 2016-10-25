@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Cux extends AbstractSegment 
+class Cux extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'CUX' => ['CUX' => 'M|a|3'],
@@ -21,16 +21,16 @@ class Cux extends AbstractSegment
 
     public function type()
     {
-        return @$this->elements['C504']['6347'] ?: null;
+        return $this->elements['C504']['6347'];
     }
 
     public function currency()
     {
-        return @$this->elements['C504']['6345'] ?: null;
+        return $this->elements['C504']['6345'];
     }
 
     public function qualifier()
     {
-        return @$this->elements['C504']['6343'] ?: null;
+        return $this->elements['C504']['6343'];
     }
 }

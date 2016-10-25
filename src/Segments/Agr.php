@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
@@ -21,11 +21,11 @@ class Agr extends AbstractSegment
 
     public function qualifier()
     {
-        return @$this->elements['C543']['7431'] ?: null;
+        return $this->elements['C543']['7431'];
     }
 
     public function type()
     {
-        return @$this->elements['C543']['7433'] ?: null;
+        return $this->elements['C543']['7433'];
     }
 }

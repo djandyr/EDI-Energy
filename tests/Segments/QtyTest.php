@@ -33,7 +33,7 @@ class QtyTest extends TestCase
 
         $seg = Qty::fromAttributes($qualifier, $amount, $unitCode);
         $this->assertEquals($qualifier, $seg->qualifier());
-        $this->assertSame('0', $seg->amount());
+        $this->assertSame(0, $seg->amount());
         $this->assertEquals($unitCode, $seg->unitCode());
     }
 }

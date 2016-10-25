@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Unh extends AbstractSegment 
+class Unh extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'UNH' => ['UNH' => 'M|an|3'],
@@ -23,31 +23,31 @@ class Unh extends AbstractSegment
 
     public function referenz()
     {
-        return @$this->elements['0062']['0062'] ?: null;
+        return $this->elements['0062']['0062'];
     }
 
     public function type()
     {
-        return @$this->elements['S009']['0065'] ?: null;
+        return $this->elements['S009']['0065'];
     }
 
     public function versionNumber()
     {
-        return @$this->elements['S009']['0052'] ?: null;
+        return $this->elements['S009']['0052'];
     }
 
     public function releaseNumber()
     {
-        return @$this->elements['S009']['0054'] ?: null;
+        return $this->elements['S009']['0054'];
     }
 
     public function organisation()
     {
-        return @$this->elements['S009']['0051'] ?: null;
+        return $this->elements['S009']['0051'];
     }
 
     public function organisationCode()
     {
-        return @$this->elements['S009']['0057'] ?: null;
+        return $this->elements['S009']['0057'];
     }
 }

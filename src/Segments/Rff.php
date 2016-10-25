@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Rff extends AbstractSegment 
+class Rff extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'RFF' => ['RFF' => 'M|a|3'],
@@ -21,11 +21,11 @@ class Rff extends AbstractSegment
 
     public function code()
     {
-        return @$this->elements['C506']['1153'] ?: null;
+        return $this->elements['C506']['1153'];
     }
 
     public function referenz()
     {
-        return @$this->elements['C506']['1154'] ?: null;
+        return $this->elements['C506']['1154'];
     }
 }

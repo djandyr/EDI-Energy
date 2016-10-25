@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Cci extends AbstractSegment 
+class Cci extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'CCI' => ['CCI' => 'M|a|3'],
@@ -25,11 +25,11 @@ class Cci extends AbstractSegment
 
     public function type()
     {
-        return @$this->elements['7059']['7059'] ?: null;
+        return $this->elements['7059']['7059'];
     }
 
     public function code()
     {
-        return @$this->elements['C240']['7037'] ?: null;
+        return $this->elements['C240']['7037'];
     }
 }

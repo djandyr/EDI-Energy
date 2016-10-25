@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Cav extends AbstractSegment 
+class Cav extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'CAV' => ['CAV' => 'M|a|3'],
@@ -21,12 +21,12 @@ class Cav extends AbstractSegment
 
     public function code()
     {
-        return @$this->elements['C889']['7111'] ?: null;
+        return $this->elements['C889']['7111'];
     }
 
     public function responsCode()
     {
-        return @$this->elements['C889']['3055'] ?: null;
+        return $this->elements['C889']['3055'];
     }
 
     public function value()
@@ -36,11 +36,11 @@ class Cav extends AbstractSegment
 
     public function valueOne()
     {
-        return @$this->elements['C889']['7110:1'] ?: null;
+        return $this->elements['C889']['7110:1'];
     }
 
     public function valueTwo()
     {
-        return @$this->elements['C889']['7110:2'] ?: null;
+        return $this->elements['C889']['7110:2'];
     }
 }

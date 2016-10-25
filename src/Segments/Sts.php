@@ -25,11 +25,11 @@ class Sts extends AbstractSegment
 
     public function category()
     {
-        return @$this->elements['C601']['9015'] ?: null;
+        return $this->elements['C601']['9015'];
     }
 
     public function reason()
     {
-        return @$this->elements['C556']['9013'] ?: null;
+        return $this->elements['C556']['9013'];
     }
 }

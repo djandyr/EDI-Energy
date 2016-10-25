@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Moa extends AbstractSegment 
+class Moa extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'MOA' => ['MOA' => 'M|a|3'],
@@ -21,11 +21,11 @@ class Moa extends AbstractSegment
 
     public function qualifier()
     {
-        return @$this->elements['C516']['5025'] ?: null;
+        return $this->elements['C516']['5025'];
     }
 
     public function amount()
     {
-        return @$this->elements['C516']['5004'] ?: null;
+        return $this->elements['C516']['5004'];
     }
 }

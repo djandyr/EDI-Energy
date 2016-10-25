@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 namespace Proengeno\EdiEnergy\Segments;
 
 use DateTime;
 use Proengeno\Edifact\Templates\AbstractSegment;
 
-class Unb extends AbstractSegment 
+class Unb extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'UNB' => ['UNB' => 'M|an|3'],
@@ -43,32 +43,32 @@ class Unb extends AbstractSegment
 
     public function syntaxId()
     {
-        return @$this->elements['S001']['0001'] ?: null;
+        return $this->elements['S001']['0001'];
     }
 
     public function syntaxVersion()
     {
-        return @$this->elements['S001']['0002'] ?: null;
+        return $this->elements['S001']['0002'];
     }
 
     public function sender()
     {
-        return @$this->elements['S002']['0004'] ?: null;
+        return $this->elements['S002']['0004'];
     }
 
     public function senderQualifier()
     {
-        return @$this->elements['S002']['0007'] ?: null;
+        return $this->elements['S002']['0007'];
     }
 
     public function receiver()
     {
-        return @$this->elements['S003']['0010'] ?: null;
+        return $this->elements['S003']['0010'];
     }
 
     public function receiverQualifier()
     {
-        return @$this->elements['S003']['0007'] ?: null;
+        return $this->elements['S003']['0007'];
     }
 
     public function creationDateTime()
@@ -78,16 +78,16 @@ class Unb extends AbstractSegment
 
     public function referenzNumber()
     {
-        return @$this->elements['0020']['0020'] ?: null;
+        return $this->elements['0020']['0020'];
     }
 
     public function usageType()
     {
-        return @$this->elements['0026']['0026'] ?: null;
+        return $this->elements['0026']['0026'];
     }
 
     public function testMarker()
     {
-        return @$this->elements['0035']['0035'] ?: null;
+        return $this->elements['0035']['0035'];
     }
 }
