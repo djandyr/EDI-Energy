@@ -58,7 +58,9 @@ class UtilmdU11017 extends Edifact
             ['name' => 'SEQ', 'necessity' => 'O', 'templates' => ['code' => ['Z03']]],
             ['name' => 'CCI', 'necessity' => 'O', 'templates' => ['code' => ['E13']]],
             ['name' => 'CAV', 'necessity' => 'O', 'templates' => ['code' => ['Z30']]],
-            ['name' => 'NAD', 'templates' => ['qualifier' => ['DP']]],
+            ['name' => 'NAD', 'templates' => ['qualifier' => ['UD']]],
+            ['name' => 'RFF', 'necessity' => 'O', 'templates' => ['code' => ['Z01']]],
+            ['name' => 'NAD', 'necessity' => 'O', 'templates' => ['qualifier' => ['DP']]],
             ['name' => 'UNT'],
         ]],
         ['name' => 'UNZ']
