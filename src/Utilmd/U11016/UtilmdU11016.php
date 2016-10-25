@@ -1,10 +1,10 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Utilmd\U11018;
+namespace Proengeno\EdiEnergy\Utilmd\U11016;
 
 use Proengeno\EdiEnergy\Edifact;
 
-class UtilmdU11018 extends Edifact
+class UtilmdU11016 extends Edifact
 {
     protected static $segments = [
         'UNA' => \Proengeno\EdiEnergy\Segments\Una::class,
@@ -46,16 +46,20 @@ class UtilmdU11018 extends Edifact
             ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']]],
             ['name' => 'IDE', 'templates' => ['qualifier' => ['24']]],
             ['name' => 'IMD', 'templates' => ['code' => ['Z14'], 'qualifier' => ['Z07']]],
-            ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['Z05', 'Z06'], 'code' => ['102']]],
-            ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['157'], 'code' => [102]]],
-            ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['Z01'], 'code' => ['Z01']]],
-            ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['Z10'], 'code' => [102, 106]]],
+            ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['93'], 'code' => [102]]],
+            ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['471'], 'code' => [102]]],
             ['name' => 'STS', 'templates' => ['category' => [7], 'reason' => ['E03']]],
             ['name' => 'STS', 'templates' => ['category' => ['E01']]],
-            ['name' => 'FTX', 'necessity' => 'O'],
             ['name' => 'LOC', 'templates' => ['qualifier' => ['172']]],
-            ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['11018']]],
-            ['name' => 'RFF', 'templates' => ['code' => ['TN']]],
+            ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['11016']]],
+            ['name' => 'SEQ', 'templates' => ['code' => ['Z01']]],
+            ['name' => 'QTY', 'templates' => ['qualifier' => ['Z09']]],
+            ['name' => 'SEQ', 'necessity' => 'O', 'templates' => ['code' => ['Z03']]],
+            ['name' => 'CCI', 'necessity' => 'O', 'templates' => ['code' => ['E13']]],
+            ['name' => 'CAV', 'necessity' => 'O', 'templates' => ['code' => ['Z30']]],
+            ['name' => 'NAD', 'templates' => ['qualifier' => ['UD']]],
+            ['name' => 'RFF', 'necessity' => 'O', 'templates' => ['code' => ['Z01']]],
+            ['name' => 'NAD', 'necessity' => 'O', 'templates' => ['qualifier' => ['DP']]],
             ['name' => 'UNT'],
         ]],
         ['name' => 'UNZ']

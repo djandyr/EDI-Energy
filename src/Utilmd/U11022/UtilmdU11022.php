@@ -44,7 +44,6 @@ class UtilmdU11022 extends Edifact
             ['name' => 'IMD', 'templates' => ['code' => ['Z14'], 'qualifier' => ['Z06', 'Z07']]],
             ['name' => 'STS', 'templates' => ['category' => [7], 'code' => ['E05']]],
             ['name' => 'FTX', 'necessity' => 'O'],
-            ['name' => 'LOC', 'templates' => ['qualifier' => ['172']]],
             ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['11022']]],
             ['name' => 'RFF', 'templates' => ['code' => ['ACW']]],
             ['name' => 'UNT'],
