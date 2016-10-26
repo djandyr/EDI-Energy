@@ -43,7 +43,6 @@ class UtilmdU11003Test extends TestCase
     {
         $this->utilmdBuilder = new UtilmdU11003Builder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
 
-        $this->utilmdBuilder->addPrebuildConfig('energyType', 'electric');
         $this->utilmdBuilder->addMessage($this->makeUtilmdMock());
         $this->edifactObject = $this->utilmdBuilder->get();
 

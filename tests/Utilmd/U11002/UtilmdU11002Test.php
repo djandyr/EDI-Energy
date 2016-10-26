@@ -8,7 +8,7 @@ use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Utilmd\U11002\UtilmdU11002Builder;
 
-class UtilmdU11002Test extends TestCase 
+class UtilmdU11002Test extends TestCase
 {
     private $utilmdBuilder;
     private $edifactObject;
@@ -43,7 +43,6 @@ class UtilmdU11002Test extends TestCase
     {
         $this->utilmdBuilder = new UtilmdU11002Builder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
 
-        $this->utilmdBuilder->addPrebuildConfig('energyType', 'electric');
         $this->utilmdBuilder->addMessage($this->makeUtilmdMock());
         $this->edifactObject = $this->utilmdBuilder->get();
 
@@ -54,7 +53,6 @@ class UtilmdU11002Test extends TestCase
     /** @test */
     public function it_creates_a_valid_electric_message()
     {
-        $this->utilmdBuilder->addPrebuildConfig('energyType', 'electric');
         $this->utilmdBuilder->addMessage([$this->makeUtilmdMock(), $this->makeUtilmdMock()]);
         $this->edifactObject = $this->utilmdBuilder->get();
 

@@ -9,7 +9,7 @@ use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Orders\O17103\OrdersO17103Builder;
 use Proengeno\EdiEnergy\Orders\OrdersInterface;
 
-class OrdersBuilderTest extends TestCase 
+class OrdersBuilderTest extends TestCase
 {
     private $ordersBuilder;
     private $edifactFile;
@@ -50,7 +50,6 @@ class OrdersBuilderTest extends TestCase
     {
         $this->ordersBuilder = new OrdersO17103Builder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
 
-        $this->ordersBuilder->addPrebuildConfig('energyType', 'electric');
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
         $this->edifactObject = $this->ordersBuilder->get();
 
@@ -61,7 +60,6 @@ class OrdersBuilderTest extends TestCase
     /** @test */
     public function it_creates_a_valid_electric_message()
     {
-        $this->ordersBuilder->addPrebuildConfig('energyType', 'electric');
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
         $this->edifactFile = $this->ordersBuilder->get();
 
@@ -70,27 +68,15 @@ class OrdersBuilderTest extends TestCase
         $this->edifactFile->validate();
     }
 
-    /** @test */
-    public function it_creates_a_valid_gas_message()
-    {
-        $this->ordersBuilder->addPrebuildConfig('energyType', 'gas');
-        $this->ordersBuilder->addMessage($this->makeOrdersMock());
-        $this->edifactFile = $this->ordersBuilder->get();
-
-        $this->assertEquals('502', $this->edifactFile->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('332', $this->edifactFile->findNextSegment('NAD')->idCode());
-        $this->edifactFile->validate();
-    }
-
     private function makeOrdersMock(
         $type = 7,
         $code = 'Z10',
         $street = 'Elmstreet',
-        $streetNumber = 1428, 
-        $city = 'Springwood', 
-        $zip = 26789, 
-        $meterpoint = 'DE123456', 
-        $from = null, 
+        $streetNumber = 1428,
+        $city = 'Springwood',
+        $zip = 26789,
+        $meterpoint = 'DE123456',
+        $from = null,
         $until = null
     ) {
         return m::mock(OrdersInterface::class)

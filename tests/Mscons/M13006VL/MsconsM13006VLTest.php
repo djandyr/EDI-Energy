@@ -9,7 +9,7 @@ use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Interfaces\MsconsVlInterface;
 use Proengeno\EdiEnergy\Mscons\M13006VL\MsconsM13006VLBuilder;
 
-class MsconsM13006VLTest extends TestCase 
+class MsconsM13006VLTest extends TestCase
 {
     private $msconsBuilder;
     private $edifactObject;
@@ -50,7 +50,6 @@ class MsconsM13006VLTest extends TestCase
     {
         $this->msconsBuilder = new MsconsM13006VLBuilder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
 
-        $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
         $this->edifactObject = $this->msconsBuilder->get();
 
@@ -61,7 +60,6 @@ class MsconsM13006VLTest extends TestCase
     /** @test */
     public function it_creates_a_valid_electric_message()
     {
-        $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
         $this->edifactObject = $this->msconsBuilder->get();
 
@@ -70,22 +68,10 @@ class MsconsM13006VLTest extends TestCase
         $this->edifactObject->validate();
     }
 
-    /** @test */
-    public function it_creates_a_valid_gas_message()
-    {
-        $this->msconsBuilder->addPrebuildConfig('energyType', 'gas');
-        $this->msconsBuilder->addMessage($this->makeMsconsMock());
-        $this->edifactObject = $this->msconsBuilder->get();
-
-        $this->assertEquals('502', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('332', $this->edifactObject->findNextSegment('NAD')->idCode());
-        $this->edifactObject->validate();
-    }
-
     private function makeMsconsMock(
-        $obis = '7-20:3.0.0', 
-        $from = '2015-01-01', 
-        $until = '2016-01-01', 
+        $obis = '7-20:3.0.0',
+        $from = '2015-01-01',
+        $until = '2016-01-01',
         $originalMessageCode = 'OriginalMessageCode',
         $meterpoint = 'DE123456',
         $meterNumber = '1234567',
@@ -94,8 +80,8 @@ class MsconsM13006VLTest extends TestCase
         $readingKind = 220,
         $readingAmount = 3500,
         $street = 'Elmstreet',
-        $streetNumber = 1428, 
-        $city = 'Springwood', 
+        $streetNumber = 1428,
+        $city = 'Springwood',
         $zip = 26789
     )
     {
@@ -115,7 +101,5 @@ class MsconsM13006VLTest extends TestCase
             ->shouldReceive('getCity')->andReturn($city)
             ->shouldReceive('getZip')->andReturn($zip)
             ->getMock();
-
     }
-    
 }

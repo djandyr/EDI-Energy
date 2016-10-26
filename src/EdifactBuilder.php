@@ -3,6 +3,7 @@
 namespace Proengeno\EdiEnergy;
 
 use DateTime;
+use Proengeno\EdiEnergy\Configuration;
 use Proengeno\Edifact\Templates\AbstractBuilder;
 
 abstract class EdifactBuilder extends AbstractBuilder
@@ -13,17 +14,14 @@ abstract class EdifactBuilder extends AbstractBuilder
     const RELEASE_NUMBER = '05A';
     const ORGANISATION = 'UN';
 
-    protected $prebuildConfig = [
-        'unbReference' => null, 'delimiter' => null, 'energyType' => null
-    ];
+    public function __construct($from, $to, $filepath = null, Configuration $configuration = null)
+    {
+        parent::__construct($from, $to, $filepath, $configuration ?: new Configuration);
+    }
 
     public function getEnergyType()
     {
-        if (!isset($this->buildCache['energyType'])) {
-            return $this->buildCache['energyType'] = $this->getPrebuildConfig('energyType');
-        }
-
-        return $this->buildCache['energyType'];
+        return $this->configuration->getEnergyType();
     }
 
     public function generateFilename()
@@ -35,28 +33,28 @@ abstract class EdifactBuilder extends AbstractBuilder
             . date('Ymd') . '_'
             . $this->unbReference() . '.txt';
     }
-    
+
     //public function unbReference()
     //{
     //    return substr(static::MESSAGE_TYPE, 0, 1) . strtoupper(parent::unbReference());
     //}
 
-    protected function writeUnb() 
+    protected function writeUnb()
     {
         return $this->writeSeg('unb', [
-            self::SYNTAX_ID, 
-            self::SYNTAX_VERSION, 
-            $this->from, 
-            $this->getUnbQualifier($this->from), 
-            $this->to, 
-            $this->getUnbQualifier($this->to), 
-            new DateTime(), 
+            self::SYNTAX_ID,
+            self::SYNTAX_VERSION,
+            $this->from,
+            $this->getUnbQualifier($this->from),
+            $this->to,
+            $this->getUnbQualifier($this->to),
+            new DateTime(),
             $this->unbReference(),
             static::MESSAGE_SUBTYPE
         ]);
     }
 
-    protected function getUnbQualifier($mpCode) 
+    protected function getUnbQualifier($mpCode)
     {
         if ($mpCode[0] == '4') {
             return 14;
@@ -67,7 +65,7 @@ abstract class EdifactBuilder extends AbstractBuilder
         return 500;
     }
 
-    protected function getNadQualifier($mpCode) 
+    protected function getNadQualifier($mpCode)
     {
         if ($mpCode[0] == '4') {
             return 9;

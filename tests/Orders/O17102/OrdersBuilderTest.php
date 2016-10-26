@@ -10,7 +10,7 @@ use Proengeno\EdiEnergy\Orders\OrdersInterface;
 use Proengeno\EdiEnergy\Orders\O17102\OrdersO17102Builder;
 use Proengeno\Edifact\Exceptions\EdifactException;
 
-class OrdersBuilderTest extends TestCase 
+class OrdersBuilderTest extends TestCase
 {
     private $ordersBuilder;
     private $edifactObject;
@@ -38,7 +38,6 @@ class OrdersBuilderTest extends TestCase
     {
         $this->ordersBuilder = new OrdersO17102Builder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
 
-        $this->ordersBuilder->addPrebuildConfig('energyType', 'electric');
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
         $this->edifactObject = $this->ordersBuilder->get();
 
@@ -49,24 +48,11 @@ class OrdersBuilderTest extends TestCase
     /** @test */
     public function it_creates_a_valid_electric_message()
     {
-        $this->ordersBuilder->addPrebuildConfig('energyType', 'electric');
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
         $this->edifactObject = $this->ordersBuilder->get();
 
         $this->assertEquals('500', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
         $this->assertEquals('293', $this->edifactObject->findNextSegment('NAD')->idCode());
-        $this->edifactObject->validate();
-    }
-
-    /** @test */
-    public function it_creates_a_valid_gas_message()
-    {
-        $this->ordersBuilder->addPrebuildConfig('energyType', 'gas');
-        $this->ordersBuilder->addMessage($this->makeOrdersMock());
-        $this->edifactObject = $this->ordersBuilder->get();
-
-        $this->assertEquals('502', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('332', $this->edifactObject->findNextSegment('NAD')->idCode());
         $this->edifactObject->validate();
     }
 
@@ -83,22 +69,15 @@ class OrdersBuilderTest extends TestCase
         $this->assertEquals('OrdersO17102', $this->edifactObject->getAdapterName());
     }
 
-    /** @test */
-    public function it_throws_an_exepection_if_no_energy_type_was_set()
-    {
-        $this->expectException(EdifactException::class);
-        $this->ordersBuilder->addMessage($this->makeOrdersMock());
-    }
-
     private function makeOrdersMock(
         $type = 7,
         $code = 'Z12',
         $street = 'Elmstreet',
-        $streetNumber = 1428, 
-        $city = 'Springwood', 
-        $zip = 26789, 
-        $meterpoint = 'DE123456', 
-        $from = null, 
+        $streetNumber = 1428,
+        $city = 'Springwood',
+        $zip = 26789,
+        $meterpoint = 'DE123456',
+        $from = null,
         $until = null
     ) {
         return m::mock(OrdersInterface::class)

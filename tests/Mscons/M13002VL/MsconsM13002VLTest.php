@@ -8,8 +8,9 @@ use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Interfaces\MsconsVlInterface;
 use Proengeno\EdiEnergy\Mscons\M13002VL\MsconsM13002VLBuilder;
+use Proengeno\EdiEnergy\Configuration;
 
-class MsconsM13002VLTest extends TestCase 
+class MsconsM13002VLTest extends TestCase
 {
     private $msconsBuilder;
     private $edifactObject;
@@ -44,7 +45,6 @@ class MsconsM13002VLTest extends TestCase
     {
         $this->msconsBuilder = new MsconsM13002VLBuilder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
 
-        $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
         $this->edifactObject = $this->msconsBuilder->get();
 
@@ -55,7 +55,6 @@ class MsconsM13002VLTest extends TestCase
     /** @test */
     public function it_creates_a_valid_electric_message()
     {
-        $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
         $this->edifactObject = $this->msconsBuilder->get();
 
@@ -68,7 +67,6 @@ class MsconsM13002VLTest extends TestCase
     /** @test */
     public function it_creates_a_valid_electric_message_without_an_orders_request()
     {
-        $this->msconsBuilder->addPrebuildConfig('energyType', 'electric');
         $this->msconsBuilder->addMessage($this->makeMsconsMock(null));
         $this->edifactFile = $this->msconsBuilder->get();
 
@@ -80,9 +78,12 @@ class MsconsM13002VLTest extends TestCase
     /** @test */
     public function it_creates_a_valid_gas_message()
     {
-        $this->msconsBuilder->addPrebuildConfig('energyType', 'gas');
-        $this->msconsBuilder->addMessage($this->makeMsconsMock());
-        $this->edifactObject = $this->msconsBuilder->get();
+        $gasConfig = new Configuration;
+        $gasConfig->setEnergyType('gas');
+
+        $msconsBuilder = new MsconsM13002VLBuilder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $gasConfig);
+        $msconsBuilder->addMessage($this->makeMsconsMock());
+        $this->edifactObject = $msconsBuilder->get();
 
         $this->assertEquals('502', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
         $this->assertEquals('332', $this->edifactObject->findNextSegment('NAD')->idCode());
@@ -91,9 +92,9 @@ class MsconsM13002VLTest extends TestCase
 
     private function makeMsconsMock(
         $ordesCode = 'OrdersCode',
-        $obis = '7-20:3.0.0', 
-        $from = '2015-01-01', 
-        $until = '2016-01-01', 
+        $obis = '7-20:3.0.0',
+        $from = '2015-01-01',
+        $until = '2016-01-01',
         $meterpoint = 'DE123456',
         $meterNumber = '1234567',
         $readinReason = 'PMR',
@@ -101,8 +102,8 @@ class MsconsM13002VLTest extends TestCase
         $readingKind = 220,
         $readingAmount = 3500,
         $street = 'Elmstreet',
-        $streetNumber = 1428, 
-        $city = 'Springwood', 
+        $streetNumber = 1428,
+        $city = 'Springwood',
         $zip = 26789
     )
     {
@@ -124,5 +125,4 @@ class MsconsM13002VLTest extends TestCase
             ->getMock();
 
     }
-    
 }
