@@ -3,6 +3,7 @@
 namespace Proengeno\EdiEnergy;
 
 use Proengeno\Edifact\Configuration as BaseConfig;
+use Proengeno\Edifact\Exceptions\EdifactException;
 
 class Configuration extends BaseConfig
 {
@@ -14,9 +15,11 @@ class Configuration extends BaseConfig
 
     public function setEnergyType($energyType)
     {
-        if (in_array($energyType, [self::GAS, self::ELECTRIC])) {
-            $this->energyType = $energyType;
+        if (!in_array($energyType, [self::GAS, self::ELECTRIC])) {
+            throw new EdifactException("Energy-Type '$energyType' unkown!");
         }
+
+        $this->energyType = $energyType;
     }
 
     public function getEnergyType()
