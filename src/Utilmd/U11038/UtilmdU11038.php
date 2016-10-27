@@ -21,6 +21,9 @@ class UtilmdU11038 extends Edifact
         'FTX' => \Proengeno\EdiEnergy\Segments\Ftx::class,
         'LOC' => \Proengeno\EdiEnergy\Segments\Loc::class,
         'RFF' => \Proengeno\EdiEnergy\Segments\Rff::class,
+        'QTY' => \Proengeno\EdiEnergy\Segments\Qty::class,
+        'CCI' => \Proengeno\EdiEnergy\Segments\Cci::class,
+        'CAV' => \Proengeno\EdiEnergy\Segments\Cav::class,
         'UNT' => \Proengeno\EdiEnergy\Segments\Unt::class,
         'UNZ' => \Proengeno\EdiEnergy\Segments\Unz::class,
     ];
