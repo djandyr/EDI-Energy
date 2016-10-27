@@ -6,28 +6,6 @@ use Proengeno\EdiEnergy\Edifact;
 
 class UtilmdU11023 extends Edifact
 {
-    protected static $segments = [
-        'UNA' => \Proengeno\EdiEnergy\Segments\Una::class,
-        'UNB' => \Proengeno\EdiEnergy\Segments\Unb::class,
-        'UNH' => \Proengeno\EdiEnergy\Segments\Unh::class,
-        'BGM' => \Proengeno\EdiEnergy\Segments\Bgm::class,
-        'DTM' => \Proengeno\EdiEnergy\Segments\Dtm::class,
-        'NAD' => \Proengeno\EdiEnergy\Segments\Nad::class,
-        'CTA' => \Proengeno\EdiEnergy\Segments\Cta::class,
-        'COM' => \Proengeno\EdiEnergy\Segments\Com::class,
-        'IDE' => \Proengeno\EdiEnergy\Segments\Ide::class,
-        'IMD' => \Proengeno\EdiEnergy\Segments\Imd::class,
-        'STS' => \Proengeno\EdiEnergy\Segments\Sts::class,
-        'FTX' => \Proengeno\EdiEnergy\Segments\Ftx::class,
-        'LOC' => \Proengeno\EdiEnergy\Segments\Loc::class,
-        'RFF' => \Proengeno\EdiEnergy\Segments\Rff::class,
-        'QTY' => \Proengeno\EdiEnergy\Segments\Qty::class,
-        'CCI' => \Proengeno\EdiEnergy\Segments\Cci::class,
-        'CAV' => \Proengeno\EdiEnergy\Segments\Cav::class,
-        'UNT' => \Proengeno\EdiEnergy\Segments\Unt::class,
-        'UNZ' => \Proengeno\EdiEnergy\Segments\Unz::class,
-    ];
-
     protected static $blueprint = [
         ['name' => 'UNA'],
         ['name' => 'UNB'],

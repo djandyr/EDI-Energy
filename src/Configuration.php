@@ -10,6 +10,8 @@ class Configuration extends BaseConfig
     const GAS = 'gas';
     const ELECTRIC = 'electric';
 
+    private $defaultNamespace = '\Proengeno\EdiEnergy\Segments';
+
     private $energyType;
     private $outputCharsetConverter;
 
@@ -25,6 +27,14 @@ class Configuration extends BaseConfig
     public function getEnergyType()
     {
         return $this->energyType ?: self::ELECTRIC;
+    }
+
+    public function getSegmentNamespace()
+    {
+        if (null === parent::getSegmentNamespace()) {
+            $this->setSegmentNamespace($this->defaultNamespace);
+        }
+        return parent::getSegmentNamespace();
     }
 
     public function setOutputCharsetConverter(callable $outputCharsetConverter)

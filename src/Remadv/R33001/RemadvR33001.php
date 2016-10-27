@@ -7,24 +7,6 @@ use Proengeno\EdiEnergy\Edifact;
 
 class RemadvR33001 extends Edifact
 {
-    protected static $segments = [
-        'UNA' => \Proengeno\EdiEnergy\Segments\Una::class,
-        'UNB' => \Proengeno\EdiEnergy\Segments\Unb::class,
-        'UNH' => \Proengeno\EdiEnergy\Segments\Unh::class,
-        'BGM' => \Proengeno\EdiEnergy\Segments\Bgm::class,
-        'DTM' => \Proengeno\EdiEnergy\Segments\Dtm::class,
-        'RFF' => \Proengeno\EdiEnergy\Segments\Rff::class,
-        'NAD' => \Proengeno\EdiEnergy\Segments\Nad::class,
-        'CTA' => \Proengeno\EdiEnergy\Segments\Cta::class,
-        'COM' => \Proengeno\EdiEnergy\Segments\Com::class,
-        'CUX' => \Proengeno\EdiEnergy\Segments\Cux::class,
-        'DOC' => \Proengeno\EdiEnergy\Segments\Doc::class,
-        'MOA' => \Proengeno\EdiEnergy\Segments\Moa::class,
-        'UNS' => \Proengeno\EdiEnergy\Segments\Uns::class,
-        'UNT' => \Proengeno\EdiEnergy\Segments\Unt::class,
-        'UNZ' => \Proengeno\EdiEnergy\Segments\Unz::class,
-    ];
-
     protected static $blueprint = [
         ['name' => 'UNA'],
         ['name' => 'UNB'],
