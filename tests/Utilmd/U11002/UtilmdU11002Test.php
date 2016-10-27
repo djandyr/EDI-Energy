@@ -57,7 +57,8 @@ class UtilmdU11002Test extends TestCase
         $this->edifactObject = $this->utilmdBuilder->get();
 
         $this->edifactObject->validateSegments();
-        //echo (string)$this->edifactObject;
+
+        $this->assertEquals('electric', $this->edifactObject->getConfiguration('energyType'));
     }
 
     private function makeUtilmdMock(

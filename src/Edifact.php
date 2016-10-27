@@ -2,9 +2,9 @@
 
 namespace Proengeno\EdiEnergy;
 
+use Proengeno\EdiEnergy\Configuration;
 use Proengeno\Edifact\Message\EdifactFile;
 use Proengeno\Edifact\Templates\AbstractMessage;
-use Proengeno\EdiEnergy\Configuration;
 
 abstract class Edifact extends AbstractMessage
 {
