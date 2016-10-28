@@ -43,21 +43,6 @@ class MsconsM13002VLTest extends TestCase
     }
 
     /** @test */
-    public function it_sets_the_correct_GS1_qualifier()
-    {
-        $configuration = new Configuration;
-        $configuration->setExportSender('400');
-
-        $this->msconsBuilder = new MsconsM13002VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
-
-        $this->msconsBuilder->addMessage($this->makeMsconsMock());
-        $this->edifactObject = $this->msconsBuilder->get();
-
-        $this->assertEquals('14', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('9', $this->edifactObject->findNextSegment('NAD')->idCode());
-    }
-
-    /** @test */
     public function it_creates_a_valid_electric_message()
     {
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
@@ -67,7 +52,6 @@ class MsconsM13002VLTest extends TestCase
         $this->assertEquals('293', $this->edifactObject->findNextSegment('NAD')->idCode());
         $this->edifactObject->validate();
     }
-
 
     /** @test */
     public function it_creates_a_valid_electric_message_without_an_orders_request()

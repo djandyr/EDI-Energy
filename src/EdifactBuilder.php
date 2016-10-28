@@ -17,8 +17,6 @@ abstract class EdifactBuilder extends AbstractBuilder
     public function __construct($to, $filename = null, Configuration $configuration = null)
     {
         parent::__construct($to, $filename, $configuration ?: new Configuration);
-        var_dump($this->configuration->getExportSender());
-        var_dump($this->from);
     }
 
     public function getEnergyType()
