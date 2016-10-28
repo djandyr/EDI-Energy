@@ -8,6 +8,7 @@ use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Orders\O17103\OrdersO17103Builder;
 use Proengeno\EdiEnergy\Orders\OrdersInterface;
+use Proengeno\EdiEnergy\Configuration;
 
 class OrdersBuilderTest extends TestCase
 {
@@ -16,7 +17,9 @@ class OrdersBuilderTest extends TestCase
 
     public function setUp()
     {
-        $this->ordersBuilder = new OrdersO17103Builder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+        $configuration = new Configuration;
+        $configuration->setExportSender('from');
+        $this->ordersBuilder = new OrdersO17103Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
     }
 
     public function tearDown()
@@ -48,7 +51,10 @@ class OrdersBuilderTest extends TestCase
     /** @test */
     public function it_sets_the_correct_GS1_qualifier()
     {
-        $this->ordersBuilder = new OrdersO17103Builder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+        $configuration = new Configuration;
+        $configuration->setExportSender('400');
+
+        $this->ordersBuilder = new OrdersO17103Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
 
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
         $this->edifactObject = $this->ordersBuilder->get();

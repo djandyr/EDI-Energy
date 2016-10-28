@@ -7,6 +7,7 @@ use Mockery as m;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Utilmd\U11003\UtilmdU11003Builder;
+use Proengeno\EdiEnergy\Configuration;
 
 class UtilmdU11003Test extends TestCase
 {
@@ -15,7 +16,7 @@ class UtilmdU11003Test extends TestCase
 
     public function setUp()
     {
-        $this->utilmdBuilder = new UtilmdU11003Builder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+        $this->utilmdBuilder = new UtilmdU11003Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     public function tearDown()
@@ -36,18 +37,6 @@ class UtilmdU11003Test extends TestCase
     {
         $this->assertInstanceOf(Message::class, $this->edifactObject = $this->utilmdBuilder->get());
         $this->assertEquals('UtilmdU11003', $this->edifactObject->getAdapterName());
-    }
-
-    /** @test */
-    public function it_sets_the_correct_GS1_qualifier()
-    {
-        $this->utilmdBuilder = new UtilmdU11003Builder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
-
-        $this->utilmdBuilder->addMessage($this->makeUtilmdMock());
-        $this->edifactObject = $this->utilmdBuilder->get();
-
-        $this->assertEquals('14', $this->edifactObject->findNextSegment('UNB')->senderQualifier());
-        $this->assertEquals('9', $this->edifactObject->findNextSegment('NAD')->idCode());
     }
 
     private function makeUtilmdMock(

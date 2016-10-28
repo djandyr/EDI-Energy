@@ -15,7 +15,7 @@ class UtilmdU11024Test extends TestCase
 
     public function setUp()
     {
-        $this->utilmdBuilder = new UtilmdU11024Builder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+        $this->utilmdBuilder = new UtilmdU11024Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     public function tearDown()

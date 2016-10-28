@@ -4,6 +4,7 @@ namespace Proengeno\EdiEnergy\Test\Mscons\M13006VL;
 
 use DateTime;
 use Mockery as m;
+use Proengeno\EdiEnergy\Configuration;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Interfaces\MsconsVlInterface;
@@ -16,7 +17,9 @@ class MsconsM13006VLTest extends TestCase
 
     public function setUp()
     {
-        $this->msconsBuilder = new MsconsM13006VLBuilder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+        $configuration = new Configuration;
+        $configuration->setExportSender('from');
+        $this->msconsBuilder = new MsconsM13006VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
     }
 
     public function tearDown()
@@ -48,7 +51,9 @@ class MsconsM13006VLTest extends TestCase
     /** @test */
     public function it_sets_the_correct_GS1_qualifier()
     {
-        $this->msconsBuilder = new MsconsM13006VLBuilder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+        $configuration = new Configuration;
+        $configuration->setExportSender('400');
+        $this->msconsBuilder = new MsconsM13006VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
 
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
         $this->edifactObject = $this->msconsBuilder->get();

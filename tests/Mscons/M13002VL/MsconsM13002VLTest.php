@@ -17,7 +17,9 @@ class MsconsM13002VLTest extends TestCase
 
     public function setUp()
     {
-        $this->msconsBuilder = new MsconsM13002VLBuilder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+        $configuration = new Configuration;
+        $configuration->setExportSender('from');
+        $this->msconsBuilder = new MsconsM13002VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
     }
 
     public function tearDown()
@@ -43,7 +45,10 @@ class MsconsM13002VLTest extends TestCase
     /** @test */
     public function it_sets_the_correct_GS1_qualifier()
     {
-        $this->msconsBuilder = new MsconsM13002VLBuilder('400', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+        $configuration = new Configuration;
+        $configuration->setExportSender('400');
+
+        $this->msconsBuilder = new MsconsM13002VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
 
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
         $this->edifactObject = $this->msconsBuilder->get();
@@ -80,8 +85,9 @@ class MsconsM13002VLTest extends TestCase
     {
         $gasConfig = new Configuration;
         $gasConfig->setEnergyType('gas');
+        $gasConfig->setExportSender('from');
 
-        $msconsBuilder = new MsconsM13002VLBuilder('from', 'to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $gasConfig);
+        $msconsBuilder = new MsconsM13002VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $gasConfig);
         $msconsBuilder->addMessage($this->makeMsconsMock());
         $this->edifactObject = $msconsBuilder->get();
 

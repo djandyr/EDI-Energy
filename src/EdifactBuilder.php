@@ -14,9 +14,11 @@ abstract class EdifactBuilder extends AbstractBuilder
     const RELEASE_NUMBER = '05A';
     const ORGANISATION = 'UN';
 
-    public function __construct($from, $to, $filepath = null, Configuration $configuration = null)
+    public function __construct($to, $filename = null, Configuration $configuration = null)
     {
-        parent::__construct($from, $to, $filepath, $configuration ?: new Configuration);
+        parent::__construct($to, $filename, $configuration ?: new Configuration);
+        var_dump($this->configuration->getExportSender());
+        var_dump($this->from);
     }
 
     public function getEnergyType()
