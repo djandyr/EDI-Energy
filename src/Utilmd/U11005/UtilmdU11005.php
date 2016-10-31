@@ -7,7 +7,7 @@ use Proengeno\EdiEnergy\Edifact;
 class UtilmdU11005 extends Edifact
 {
     protected static $blueprint = [
-        ['name' => 'UNA'],
+        ['name' => 'UNA', 'necessity' => 'O'],
         ['name' => 'UNB'],
         ['name' => 'LOOP', 'maxLoops' => 999999, 'necessity' => 'R', 'segments' => [
             ['name' => 'UNH'],
