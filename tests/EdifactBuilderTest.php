@@ -38,7 +38,7 @@ class EdifactBuilderTest extends TestCase
 
         $builder = new BuilderFixture('to', null, $configuration);
 
-        $this->assertEquals('TEST_SUB_TYPE_from_to_20161028_REF.txt', $builder->generateFilename());
+        $this->assertEquals('TEST_SUB_TYPE_from_to_' . date('Ymd') . '_REF.txt', $builder->generateFilename());
     }
 
     /**
