@@ -30,6 +30,7 @@ class Configuration extends BaseConfig
         '\Proengeno\EdiEnergy\Remadv\R33001\RemadvR33001' => ['UNH' => '/UNH\+(.*?)\+REMADV\:/', 'RFF' => '/RFF\+Z13\:33001/'],
         '\Proengeno\EdiEnergy\Mscons\M13002VL\MsconsM13002VL' => ['UNH' => '/UNH\+(.*?)\+MSCONS\:/', 'RFF' => '/RFF\+Z13\:13002/'],
         '\Proengeno\EdiEnergy\Mscons\M13006VL\MsconsM13006VL' => ['UNB' => '/UNB\+(.*?)\+\+VL/', 'UNH' => '/UNH\+(.*?)\+MSCONS\:/', 'RFF' => '/RFF\+Z13\:13006/'],
+        '\Proengeno\EdiEnergy\Mscons\M13014EM\MsconsM13014EM' => ['UNB' => '/UNB\+(.*?)\+\+EM/', 'UNH' => '/UNH\+(.*?)\+MSCONS\:/', 'RFF' => '/RFF\+Z13\:13014/'],
     ];
 
     private $energyType;
