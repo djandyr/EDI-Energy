@@ -1,13 +1,13 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Orders\O17102;
+namespace Proengeno\EdiEnergy\Mscons\M13009EM;
 
 use Proengeno\EdiEnergy\Edifact;
 
 class MsconsM13009EM extends Edifact
 {
     protected static $blueprint = [
-        ['name' => 'UNA'],
+        ['name' => 'UNA', 'necessity' => 'O'],
         ['name' => 'UNB'],
         ['name' => 'UNH', 'maxLoops' => 999999, 'necessity' => 'R', 'segments' => [
             ['name' => 'BGM', 'templates' => ['docCode' => [7, 9]]],
