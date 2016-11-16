@@ -16,6 +16,7 @@ class Configuration extends BaseConfig
         '\Proengeno\EdiEnergy\Utilmd\U11003\UtilmdU11003' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11003/'],
         '\Proengeno\EdiEnergy\Utilmd\U11005\UtilmdU11005' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11005/'],
         '\Proengeno\EdiEnergy\Utilmd\U11006\UtilmdU11006' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11006/'],
+        '\Proengeno\EdiEnergy\Utilmd\U11007\UtilmdU11007' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11007/'],
         '\Proengeno\EdiEnergy\Utilmd\U11010\UtilmdU11010' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11010/'],
         '\Proengeno\EdiEnergy\Utilmd\U11016\UtilmdU11016' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11016/'],
         '\Proengeno\EdiEnergy\Utilmd\U11017\UtilmdU11017' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11017/'],
