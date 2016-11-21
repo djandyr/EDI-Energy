@@ -35,10 +35,10 @@ class UtilmdU11002Test extends TestCase
     }
 
     /** @test */
-    public function it_build_up_the_Message_instance_with_mscons_13002_mapping()
+    public function it_build_up_the_Message_instance_with_utilmd_11002_mapping()
     {
         $this->assertInstanceOf(Message::class, $this->edifactObject = $this->utilmdBuilder->get());
-        $this->assertEquals('UtilmdU11002', $this->edifactObject->getAdapterName());
+        $this->assertEquals('UtilmdU11002', $this->edifactObject->getDescription('name'));
     }
 
     /** @test */

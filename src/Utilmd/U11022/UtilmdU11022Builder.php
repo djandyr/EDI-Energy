@@ -9,7 +9,7 @@ class UtilmdU11022Builder extends UtilmdBuilder
 {
     const CHECK_DIGIT = 11022;
 
-    protected $edifactClass = UtilmdU11022::class;
+    protected $descriptionPath = __DIR__ . '/UtilmdU11022.php';
 
     protected function writeMessage($items)
     {

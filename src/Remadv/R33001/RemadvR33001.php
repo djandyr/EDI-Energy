@@ -1,13 +1,8 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Remadv\R33001;
-
-use Proengeno\EdiEnergy\Edifact;
-
-
-class RemadvR33001 extends Edifact
-{
-    protected static $blueprint = [
+return [
+    'name' => 'RemadvR33001',
+    'validation' => [
         ['name' => 'UNA'],
         ['name' => 'UNB'],
         ['name' => 'LOOP', 'maxLoops' => 999999, 'necessity' => 'R', 'segments' => [
@@ -35,5 +30,5 @@ class RemadvR33001 extends Edifact
             ['name' => 'UNT'],
         ]],
         ['name' => 'UNZ']
-    ];
-}
+    ]
+];

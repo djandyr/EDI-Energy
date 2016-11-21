@@ -7,7 +7,7 @@ use Proengeno\EdiEnergy\Mscons\MsconsBuilder;
 
 class MsconsM13002VLBuilder extends MsconsBuilder
 {
-    protected $edifactClass = MsconsM13002VL::class;
+    protected $descriptionPath = __DIR__ . '/MsconsM13002VL.php';
 
     const CHECK_DIGIT = 13002;
     const MESSAGE_SUBTYPE = 'VL';

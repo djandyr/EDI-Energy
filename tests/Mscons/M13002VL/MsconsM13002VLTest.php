@@ -39,7 +39,7 @@ class MsconsM13002VLTest extends TestCase
     public function it_build_up_the_Message_instance_with_mscons_13002_mapping()
     {
         $this->assertInstanceOf(Message::class, $this->edifactObject = $this->msconsBuilder->get());
-        $this->assertEquals('MsconsM13002VL', $this->edifactObject->getAdapterName());
+        $this->assertEquals('MsconsM13002VL', $this->edifactObject->getDescription('name'));
     }
 
     /** @test */

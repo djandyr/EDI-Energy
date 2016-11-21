@@ -8,7 +8,7 @@ use Proengeno\EdiEnergy\Interfaces\RemadvInterface;
 
 class RemadvR33001Builder extends RemadvBuilder
 {
-    protected $edifactClass = RemadvR33001::class;
+    protected $descriptionPath = __DIR__ . '/RemadvR33001.php';
 
     const DOC_CODE = 481;
     const CHECK_DIGIT = 33001;

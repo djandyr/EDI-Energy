@@ -1,12 +1,8 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Orders\O17103;
-
-use Proengeno\EdiEnergy\Edifact;
-
-class OrdersO17103 extends Edifact
-{
-    protected static $blueprint = [
+return [
+    'name' => 'OrdersO17103',
+    'validation' => [
         ['name' => 'UNA'],
         ['name' => 'UNB'],
         ['name' => 'LOOP', 'maxLoops' => 999999, 'necessity' => 'R', 'segments' => [
@@ -33,5 +29,5 @@ class OrdersO17103 extends Edifact
             ['name' => 'UNT'],
         ]],
         ['name' => 'UNZ']
-    ];
-}
+    ]
+];

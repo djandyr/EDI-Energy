@@ -2,7 +2,7 @@
 
 namespace Proengeno\EdiEnergy\Aperak;
 
-use Proengeno\EdiEnergy\Edifact;
+use Proengeno\Edifact\Edifact;
 
 class Aperak extends Edifact
 {

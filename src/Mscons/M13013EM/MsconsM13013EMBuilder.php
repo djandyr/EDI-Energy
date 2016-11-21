@@ -7,7 +7,7 @@ use Proengeno\EdiEnergy\Mscons\MsconsBuilder;
 
 class MsconsM13013EMBuilder extends MsconsBuilder
 {
-    protected $edifactClass = MsconsM13013EM::class;
+    protected $descriptionPath = __DIR__ . '/MsconsM13013EM.php';
 
     const CHECK_DIGIT = 13013;
     const MESSAGE_SUBTYPE = 'EM';

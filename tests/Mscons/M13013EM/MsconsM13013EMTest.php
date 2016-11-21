@@ -45,6 +45,6 @@ class MsconsM13013EMTest extends TestCase
     public function it_build_up_the_Message_instance_with_mscons_13013_VL_mapping()
     {
         $this->assertInstanceOf(Message::class, $this->edifactObject = $this->msconsBuilder->get());
-        $this->assertEquals('MsconsM13013EM', $this->edifactObject->getAdapterName());
+        $this->assertEquals('MsconsM13013EM', $this->edifactObject->getDescription('name'));
     }
 }

@@ -7,7 +7,7 @@ use Proengeno\EdiEnergy\Orders\OrdersBuilder;
 
 class OrdersO17102Builder extends OrdersBuilder
 {
-    protected $edifactClass = OrdersO17102::class;
+    protected $descriptionPath = __DIR__ . '/OrdersO17102.php';
 
     const CHECK_DIGIT = 17102;
 

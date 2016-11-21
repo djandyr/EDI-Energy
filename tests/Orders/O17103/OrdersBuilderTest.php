@@ -45,7 +45,7 @@ class OrdersBuilderTest extends TestCase
     public function it_build_up_the_Message_instance_with_orders_17103_mapping()
     {
         $this->assertInstanceOf(Message::class, $this->edifactObject = $this->ordersBuilder->get());
-        $this->assertEquals('OrdersO17103', $this->edifactObject->getAdapterName());
+        $this->assertEquals('OrdersO17103', $this->edifactObject->getDescription('name'));
     }
 
     /** @test */

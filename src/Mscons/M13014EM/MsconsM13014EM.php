@@ -1,12 +1,8 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Mscons\M13014EM;
-
-use Proengeno\EdiEnergy\Edifact;
-
-class MsconsM13014EM extends Edifact
-{
-    protected static $blueprint = [
+return [
+    'name' => 'MsconsM13014EM',
+    'validation' => [
         ['name' => 'UNA', 'necessity' => 'O'],
         ['name' => 'UNB'],
         ['name' => 'UNH', 'maxLoops' => 999999, 'necessity' => 'R', 'segments' => [
@@ -30,5 +26,5 @@ class MsconsM13014EM extends Edifact
             ['name' => 'UNT'],
         ]],
         ['name' => 'UNZ']
-    ];
-}
+    ]
+];

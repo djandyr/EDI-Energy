@@ -1,12 +1,8 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Utilmd\U11002;
-
-use Proengeno\EdiEnergy\Edifact;
-
-class UtilmdU11002 extends Edifact
-{
-    protected static $blueprint = [
+return [
+    'name' => 'UtilmdU11002',
+    'validation' => [
         ['name' => 'UNA', 'necessity' => 'O'],
         ['name' => 'UNB'],
         ['name' => 'LOOP', 'maxLoops' => 999999, 'necessity' => 'R', 'segments' => [
@@ -60,7 +56,7 @@ class UtilmdU11002 extends Edifact
             ['name' => 'LOOP', 'maxLoops' => 1, 'necessity' => 'O', 'segments' => [
                 ['name' => 'SEQ', 'templates' => ['code' => ['Z02']]],
                 ['name' => 'RFF', 'templates' => ['code' => ['AVE']]],
-                ['name' => 'RFF', 'necessity' => 'O', 'templates' => ['code' => ['MG', 'Z11']]],
+                ['name' => 'RFF', 'necessity' => 'O', 'templatUtilmdU11002es' => ['code' => ['MG', 'Z11']]],
                 ['name' => 'PIA'],
                 ['name' => 'LOOP', 'maxLoops' => 20, 'necessity' => 'O', 'segments' => [
                     ['name' => 'CCI', 'necessity' => 'O'],
@@ -165,5 +161,5 @@ class UtilmdU11002 extends Edifact
             ['name' => 'UNT'],
         ]],
         ['name' => 'UNZ']
-    ];
-}
+    ]
+];

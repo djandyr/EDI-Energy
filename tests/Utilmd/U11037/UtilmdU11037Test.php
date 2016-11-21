@@ -29,7 +29,7 @@ class UtilmdU11037Test extends TestCase
     public function it_build_up_the_Message_instance_with_utilmd_13002_mapping()
     {
         $this->assertInstanceOf(Message::class, $this->edifactObject = $this->utilmdBuilder->get());
-        $this->assertEquals('UtilmdU11037', $this->edifactObject->getAdapterName());
+        $this->assertEquals('UtilmdU11037', $this->edifactObject->getDescription('name'));
     }
 
     private function makeUtilmdMock(

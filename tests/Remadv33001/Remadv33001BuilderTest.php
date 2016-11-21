@@ -45,24 +45,17 @@ class Remadv33001BuilderTest extends TestCase
     }
 
     /** @test */
-    public function it_add_post_build_charset_conversion_configuration()
+    public function it_converts_the_input_to_iso_and_the_output_from_iso_to_utf8()
     {
+        $filename = tempnam(sys_get_temp_dir(), 'EdifactTest');
         $utf8String = 'ß';
         $isoString = iconv('UTF-8', 'CP1252', $utf8String);
 
-        $configuration = new Configuration;
-        $configuration->setOutputCharsetConverter(function($string) {
-            $encoding = mb_detect_encoding($string, 'UTF-8, CP1252, ISO-8859-1');
-            if ($encoding && $connvertedString = iconv($encoding, 'UTF-8', $string)) {
-                return $connvertedString;
-            }
-            return $string;
-        });
-
-        $remadvBuilder = new RemadvR33001Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
+        $remadvBuilder = new RemadvR33001Builder('to', $filename);
         $remadvBuilder->addMessage([$this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $isoString)]);
 
-        $this->assertEquals($utf8String, $remadvBuilder->get()->findNextSegment('DOC')->code());
+        $this->assertContains($isoString, file_get_contents($filename));
+        $this->assertContains($utf8String, (string)$remadvBuilder->get());
     }
 
     /** @test */

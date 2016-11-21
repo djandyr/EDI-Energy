@@ -7,7 +7,7 @@ use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
 
 class UtilmdU11003Builder extends UtilmdBuilder
 {
-    protected $edifactClass = UtilmdU11003::class;
+    protected $descriptionPath = __DIR__ . '/UtilmdU11003.php';
 
     const CHECK_DIGIT = 11003;
 
