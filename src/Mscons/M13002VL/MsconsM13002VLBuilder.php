@@ -7,10 +7,13 @@ use Proengeno\EdiEnergy\Mscons\MsconsBuilder;
 
 class MsconsM13002VLBuilder extends MsconsBuilder
 {
-    protected $descriptionPath = __DIR__ . '/MsconsM13002VL.php';
-
     const CHECK_DIGIT = 13002;
     const MESSAGE_SUBTYPE = 'VL';
+
+    public function getDescriptionPath()
+    {
+        return __DIR__ . '/MsconsM13002VL.php';
+    }
 
     protected function writeMessage($item)
     {

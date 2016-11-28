@@ -7,10 +7,13 @@ use Proengeno\EdiEnergy\Mscons\MsconsBuilder;
 
 class MsconsM13014EMBuilder extends MsconsBuilder
 {
-    protected $descriptionPath = __DIR__ . '/MsconsM13014EM.php';
-
     const CHECK_DIGIT = 13014;
     const MESSAGE_SUBTYPE = 'EM';
+
+    public function getDescriptionPath()
+    {
+        return __DIR__ . '/MsconsM13014EM.php';
+    }
 
     protected function writeMessage($item)
     {

@@ -7,9 +7,12 @@ use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
 
 class UtilmdU11003Builder extends UtilmdBuilder
 {
-    protected $descriptionPath = __DIR__ . '/UtilmdU11003.php';
-
     const CHECK_DIGIT = 11003;
+
+    public function getDescriptionPath()
+    {
+        return __DIR__ . '/UtilmdU11003.php';
+    }
 
     protected function writeMessage($items)
     {

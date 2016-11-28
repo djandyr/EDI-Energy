@@ -10,6 +10,11 @@ class BuilderFixture extends EdifactBuilder
     const ORGANISATION_CODE = 'VERSION';
     const MESSAGE_SUBTYPE = 'SUB_TYPE';
 
+    public function getDescriptionPath()
+    {
+        return __DIR__;
+    }
+
     public function testWriteUnb()
     {
         $this->writeUnb();

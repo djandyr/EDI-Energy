@@ -7,9 +7,12 @@ use Proengeno\EdiEnergy\Orders\OrdersBuilder;
 
 class OrdersO17102Builder extends OrdersBuilder
 {
-    protected $descriptionPath = __DIR__ . '/OrdersO17102.php';
-
     const CHECK_DIGIT = 17102;
+
+    public function getDescriptionPath()
+    {
+        return __DIR__ . '/OrdersO17102.php';
+    }
 
     protected function writeMessage($item)
     {

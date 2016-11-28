@@ -9,7 +9,10 @@ class UtilmdU11017Builder extends UtilmdBuilder
 {
     const CHECK_DIGIT = 11017;
 
-    protected $descriptionPath = __DIR__ . '/UtilmdU11017.php';
+    public function getDescriptionPath()
+    {
+        return __DIR__ . '/UtilmdU11017.php';
+    }
 
     protected function writeMessage($items)
     {
