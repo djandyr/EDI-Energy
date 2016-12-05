@@ -15,7 +15,7 @@ class Configuration extends BaseConfig
     protected $segmentNamespace = '\Proengeno\EdiEnergy\Segments';
 
     protected $streamFilter = [
-        STREAM_FILTER_READ => ['Proengeno\EdiEnergy\StreamFilter\IsoToUtf8'],
+        // STREAM_FILTER_READ => ['Proengeno\EdiEnergy\StreamFilter\IsoToUtf8'],
         STREAM_FILTER_WRITE => ['Proengeno\EdiEnergy\StreamFilter\Utf8ToIso']
     ];
 
