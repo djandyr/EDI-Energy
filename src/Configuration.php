@@ -26,6 +26,46 @@ class Configuration extends BaseConfig
         'MsconsM13002VL' => 'Proengeno\EdiEnergy\Mscons\M13002VL\MsconsM13002VLBuilder',
     ];
 
+    public function getWriteFilter()
+    {
+        $preDefinedFilter = [
+            function ($string) {
+                $toChar = 'ISO-8859-1';
+                $fromChar = 'UTF-8, CP1252, ISO-8859-1';
+
+                $fromCharset = mb_detect_encoding($string, $fromChar);
+
+                if ($fromCharset && $fromCharset != $toChar && $connvertedString = iconv($fromCharset, $toChar, $string)) {
+                    return $connvertedString;
+                }
+
+                return $string;
+            }
+        ];
+
+        return array_merge($this->writeFilter, $preDefinedFilter);
+    }
+
+    public function getReadFilter()
+    {
+        $preDefinedFilter = [
+            function ($string) {
+                $toChar = 'UTF-8';
+                $fromChar = 'UTF-8, CP1252, ISO-8859-1';
+
+                $fromCharset = mb_detect_encoding($string, $fromChar);
+
+                if ($fromCharset && $fromCharset != $toChar && $connvertedString = iconv($fromCharset, $toChar, $string)) {
+                    return $connvertedString;
+                }
+
+                return $string;
+            }
+        ];
+
+        return array_merge($this->readFilter, $preDefinedFilter);
+    }
+
     public function getMessageDescriptions()
     {
         $preDefinedDescriptions = [
