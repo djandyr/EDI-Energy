@@ -39,6 +39,17 @@ class ConfigurationTest extends TestCase
 
     /**
      * @test
+     * @expectedException Proengeno\Edifact\Exceptions\ValidationException
+     **/
+    public function it_throw_an_exception_if_segment_is_unknown()
+    {
+        $message = Message::fromString("UNH++ORDERS:'RFF+Z13:17102'UKW", new Configuration);
+
+        $message->findNextSegment('UKW');
+    }
+
+    /**
+     * @test
      * @dataProvider messageProvider
      **/
     public function it_sets_the_correct_description_configuration($ediString, $messageName)

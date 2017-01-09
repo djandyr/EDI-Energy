@@ -12,6 +12,9 @@ class Configuration extends BaseConfig
 
     private $energyType;
 
+    /** Dont allow generic Segments */
+    protected $genericSegment = null;
+
     protected $segmentNamespace = '\Proengeno\EdiEnergy\Segments';
 
     protected $streamFilter = [
