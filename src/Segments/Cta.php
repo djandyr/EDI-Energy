@@ -9,7 +9,7 @@ class Cta extends AbstractSegment
     protected static $validationBlueprint = [
         'CTA' => ['CTA' => 'M|a|3'],
         '3139' => ['3139' => 'M|an|3'],
-        'C056' => ['3413' => null, '3412' => 'M|a|35'],
+        'C056' => ['3413' => null, '3412' => 'M|an|35'],
     ];
 
     public static function fromAttributes($type, $employee)
