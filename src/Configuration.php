@@ -90,6 +90,9 @@ class Configuration extends BaseConfig
             __DIR__ . '/Utilmd/U11010/UtilmdU11010.php' => [
                 'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11010/'
             ],
+            __DIR__ . '/Utilmd/U11013/UtilmdU11013.php' => [
+                'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11013/'
+            ],
             __DIR__ . '/Utilmd/U11016/UtilmdU11016.php' => [
                 'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11016/'
             ],
