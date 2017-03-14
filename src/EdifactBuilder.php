@@ -11,7 +11,6 @@ abstract class EdifactBuilder extends AbstractBuilder
     const SYNTAX_ID = 'UNOC';
     const SYNTAX_VERSION = 3;
     const VERSION_NUMBER = 'D';
-    const RELEASE_NUMBER = '05A';
     const ORGANISATION = 'UN';
 
     public function __construct($to, $filename = null, Configuration $configuration = null)

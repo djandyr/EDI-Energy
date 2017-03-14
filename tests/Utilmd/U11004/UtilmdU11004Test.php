@@ -43,7 +43,6 @@ class UtilmdU11004Test extends TestCase
 
         $this->utilmdBuilder->addMessage([$this->makeUtilmdMock('E03', $cancellationDate)]);
         $this->edifactObject = $this->utilmdBuilder->get();
-
         $this->edifactObject->validate();
         $this->assertEquals(null, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
             return $s->qualifier() == '92';

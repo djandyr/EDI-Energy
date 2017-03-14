@@ -8,9 +8,10 @@ use Proengeno\EdiEnergy\EdifactBuilder;
 abstract class RemadvBuilder extends EdifactBuilder
 {
     const MESSAGE_SUBTYPE = '';
+    const RELEASE_NUMBER = '05A';
     const MESSAGE_TYPE = 'REMADV';
     const ORGANISATION_CODE = '2.7b';
-    
+
     protected function writeMessage($items)
     {
         $this->writeUnhHead();
@@ -23,10 +24,10 @@ abstract class RemadvBuilder extends EdifactBuilder
     private function writeUnhHead()
     {
         $this->writeSeg('Unh', [
-            $this->unbReference().$this->messageCount(), 
+            $this->unbReference().$this->messageCount(),
             self::MESSAGE_TYPE,
             self::VERSION_NUMBER,
-            self::RELEASE_NUMBER, 
+            self::RELEASE_NUMBER,
             self::ORGANISATION,
             self::ORGANISATION_CODE
         ]);
