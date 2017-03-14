@@ -27,6 +27,7 @@ class Configuration extends BaseConfig
         'OrdersO17102' => 'Proengeno\EdiEnergy\Orders\O17102\OrdersO17102Builder',
         'RemadvR33001' => 'Proengeno\EdiEnergy\Remadv\R33001\RemadvR33001Builder',
         'MsconsM13002VL' => 'Proengeno\EdiEnergy\Mscons\M13002VL\MsconsM13002VLBuilder',
+        'UtilmdU11004' => 'Proengeno\EdiEnergy\Utilmd\U11004\UtilmdU11004Builder',
     ];
 
     public function getWriteFilter()
