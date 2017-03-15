@@ -57,7 +57,7 @@ class UtilmdU11004Test extends TestCase
     public function it_creates_a_valid_revocation_message()
     {
         $contractStart = '2014-01-01';
-        $cancellationDate = '2016-01-01';
+        $cancellationDate = null;
 
         $this->utilmdBuilder->addMessage([$this->makeUtilmdMock('ZG9', $cancellationDate, $contractStart)]);
         $this->edifactObject = $this->utilmdBuilder->get();
@@ -65,9 +65,9 @@ class UtilmdU11004Test extends TestCase
         $this->assertEquals($contractStart, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
             return $s->qualifier() == '92';
         })->date()->format('Y-m-d'));
-        $this->assertEquals($cancellationDate, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
+        $this->assertEquals(null, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
             return $s->qualifier() == '93';
-        })->date()->format('Y-m-d'));
+        }));
     }
 
     private function makeUtilmdMock(

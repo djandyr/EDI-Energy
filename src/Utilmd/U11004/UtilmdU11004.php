@@ -20,7 +20,7 @@ return [
             ['name' => 'IDE', 'templates' => ['qualifier' => ['24']]],
             ['name' => 'IMD', 'templates' => ['code' => ['Z14'], 'qualifier' => ['Z07']]],
             ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['92'], 'code' => [102]]],
-            ['name' => 'DTM', 'templates' => ['qualifier' => ['93'], 'code' => [102]]],
+            ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['93'], 'code' => [102]]],
             ['name' => 'STS', 'templates' => ['category' => [7]]],
             ['name' => 'FTX', 'necessity' => 'O'],
             ['name' => 'FTX', 'necessity' => 'O'],

@@ -35,9 +35,9 @@ class UtilmdU11004Builder extends UtilmdBuilder
         $this->writeSeg('Bgm', ['E02', $this->unbReference()]);
         $this->writeSeg('Dtm', [137, new DateTime, 203]);
         $this->writeSeg('Nad', ['MS', $this->from, $this->getNadQualifier($this->from)], 'fromMpCode');
-        $this->writeSeg('Cta', ['IC', 'Herr Geerdes']);
-        $this->writeSeg('Com', ['04958 91570-10', 'TE']);
-        $this->writeSeg('Com', ['j.geerdes@proengeno.de', 'EM']);
+        $this->writeSeg('Cta', ['IC', 'Frau Hertema']);
+        $this->writeSeg('Com', ['04958 91570-02', 'TE']);
+        $this->writeSeg('Com', ['k.hertema@proengeno.de', 'EM']);
         $this->writeSeg('Nad', ['MR', $this->to, $this->getNadQualifier($this->to)], 'fromMpCode');
 
         foreach ($items as $item) {
@@ -54,8 +54,9 @@ class UtilmdU11004Builder extends UtilmdBuilder
 
         if ($this->isRevocation($item)) {
             $this->writeSeg('Dtm', ['92', $item->getContractStart(), 102]);
+        } else {
+            $this->writeSeg('Dtm', ['93', $item->getCancellationDate(), 102]);
         }
-        $this->writeSeg('Dtm', ['93', $item->getCancellationDate(), 102]);
         $this->writeSeg('Sts', ['7', $item->getReason()]);
         $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
         $this->writeSeg('Rff', ['Z13', '11004']);
