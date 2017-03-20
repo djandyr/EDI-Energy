@@ -30,7 +30,7 @@ class Unb extends AbstractSegment
             'S001' => ['0001' => $syntaxId, '0002' => $syntaxVersion],
             'S002' => ['0004' => $sender, '0007' => $senderQualifier],
             'S003' => ['0010' => $receiver, '0007' => $receiverQualifier],
-            'S004' => ['0017' => $creationDatetime->format('ymd'), '0019' => $creationDatetime->format('hi')],
+            'S004' => ['0017' => $creationDatetime->format('ymd'), '0019' => $creationDatetime->format('Hi')],
             '0020' => ['0020' => $referenzNumber],
             '0005' => [null],
             '0026' => ['0026' => $usageType],
