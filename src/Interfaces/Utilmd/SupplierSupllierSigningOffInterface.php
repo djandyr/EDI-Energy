@@ -10,7 +10,6 @@ interface SupplierSupllierSigningOffInterface extends FullAddressInterface
     public function getComments();
     public function getMeterpoint();
     public function getMeterNumber();
-    public function getContractStart();
     public function isFixedSignOff();
     public function getSignOffDate();
 }
