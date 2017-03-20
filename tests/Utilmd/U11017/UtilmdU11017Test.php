@@ -11,18 +11,11 @@ use Proengeno\EdiEnergy\Utilmd\U11017\UtilmdU11017Builder;
 class UtilmdU11017Test extends TestCase
 {
     private $utilmdBuilder;
-    private $edifactObject;
 
-    public function setUp()
+    protected function setUp()
     {
+        parent::setUp();
         $this->utilmdBuilder = new UtilmdU11017Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
-    }
-
-    public function tearDown()
-    {
-        if ($this->edifactObject) {
-            @unlink($this->edifactObject->getFilepath());
-        }
     }
 
     /** @test */

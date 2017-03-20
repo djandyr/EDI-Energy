@@ -2,7 +2,7 @@
 
 namespace Proengeno\EdiEnergy\Interfaces\Utilmd;
 
-interface SupplierCancellationInterface
+interface SupplierGridOperationCancellationInterface
 {
     public function getIdeRef();
     public function getReason();

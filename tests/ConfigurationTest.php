@@ -8,9 +8,7 @@ use Proengeno\Edifact\Message\Message;
 
 class ConfigurationTest extends TestCase
 {
-    private $configuration;
-
-    public function setUp()
+    protected function setUp()
     {
         $this->configuration = new Configuration;
     }

@@ -8,25 +8,15 @@ use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Interfaces\MsconsVlInterface;
 use Proengeno\EdiEnergy\Mscons\M13002VL\MsconsM13002VLBuilder;
-use Proengeno\EdiEnergy\Configuration;
 
 class MsconsM13002VLTest extends TestCase
 {
     private $msconsBuilder;
-    private $edifactObject;
 
     public function setUp()
     {
-        $configuration = new Configuration;
-        $configuration->setExportSender('from');
-        $this->msconsBuilder = new MsconsM13002VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
-    }
-
-    public function tearDown()
-    {
-        if ($this->edifactObject) {
-            @unlink($this->edifactObject->getFilepath());
-        }
+        parent::setUp();
+        $this->msconsBuilder = new MsconsM13002VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
     }
 
     /** @test */
@@ -67,11 +57,9 @@ class MsconsM13002VLTest extends TestCase
     /** @test */
     public function it_creates_a_valid_gas_message()
     {
-        $gasConfig = new Configuration;
-        $gasConfig->setEnergyType('gas');
-        $gasConfig->setExportSender('from');
+        $this->configuration->setEnergyType('gas');
 
-        $msconsBuilder = new MsconsM13002VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $gasConfig);
+        $msconsBuilder = new MsconsM13002VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
         $msconsBuilder->addMessage($this->makeMsconsMock());
         $this->edifactObject = $msconsBuilder->get();
 

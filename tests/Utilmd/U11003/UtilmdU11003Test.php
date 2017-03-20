@@ -7,23 +7,15 @@ use Mockery as m;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Utilmd\U11003\UtilmdU11003Builder;
-use Proengeno\EdiEnergy\Configuration;
 
 class UtilmdU11003Test extends TestCase
 {
     private $utilmdBuilder;
-    private $edifactObject;
 
-    public function setUp()
+    protected function setUp()
     {
+        parent::setUp();
         $this->utilmdBuilder = new UtilmdU11003Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
-    }
-
-    public function tearDown()
-    {
-        if ($this->edifactObject) {
-            @unlink($this->edifactObject->getFilepath());
-        }
     }
 
     /** @test */

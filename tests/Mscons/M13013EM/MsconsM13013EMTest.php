@@ -4,7 +4,6 @@ namespace Proengeno\EdiEnergy\Test\Mscons\M13013EM;
 
 use DateTime;
 use Mockery as m;
-use Proengeno\EdiEnergy\Configuration;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Interfaces\MsconsVlInterface;
@@ -13,20 +12,11 @@ use Proengeno\EdiEnergy\Mscons\M13013EM\MsconsM13013EMBuilder;
 class MsconsM13013EMTest extends TestCase
 {
     private $msconsBuilder;
-    private $edifactObject;
 
     public function setUp()
     {
-        $configuration = new Configuration;
-        $configuration->setExportSender('from');
-        $this->msconsBuilder = new MsconsM13013EMBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
-    }
-
-    public function tearDown()
-    {
-        if ($this->edifactObject) {
-            @unlink($this->edifactObject->getFilepath());
-        }
+        parent::setUp();
+        $this->msconsBuilder = new MsconsM13013EMBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
     }
 
     /** @test */

@@ -6,27 +6,17 @@ use DateTime;
 use Mockery as m;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
+use Proengeno\EdiEnergy\Interfaces\OrdersInterface;
 use Proengeno\EdiEnergy\Orders\O17103\OrdersO17103Builder;
-use Proengeno\EdiEnergy\Orders\OrdersInterface;
-use Proengeno\EdiEnergy\Configuration;
 
 class OrdersBuilderTest extends TestCase
 {
     private $ordersBuilder;
-    private $edifactFile;
 
-    public function setUp()
+    protected function setUp()
     {
-        $configuration = new Configuration;
-        $configuration->setExportSender('from');
-        $this->ordersBuilder = new OrdersO17103Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
-    }
-
-    public function tearDown()
-    {
-        if ($this->edifactFile) {
-            @unlink($this->edifactFile->getFilepath());
-        }
+        parent::setUp();
+        $this->ordersBuilder = new OrdersO17103Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
     }
 
     /** @test */
@@ -51,10 +41,9 @@ class OrdersBuilderTest extends TestCase
     /** @test */
     public function it_sets_the_correct_GS1_qualifier()
     {
-        $configuration = new Configuration;
-        $configuration->setExportSender('400');
+        $this->configuration->setExportSender('400');
 
-        $this->ordersBuilder = new OrdersO17103Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
+        $this->ordersBuilder = new OrdersO17103Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
 
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
         $this->edifactObject = $this->ordersBuilder->get();

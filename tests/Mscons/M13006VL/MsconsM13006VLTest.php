@@ -4,7 +4,6 @@ namespace Proengeno\EdiEnergy\Test\Mscons\M13006VL;
 
 use DateTime;
 use Mockery as m;
-use Proengeno\EdiEnergy\Configuration;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Interfaces\MsconsVlInterface;
@@ -13,20 +12,11 @@ use Proengeno\EdiEnergy\Mscons\M13006VL\MsconsM13006VLBuilder;
 class MsconsM13006VLTest extends TestCase
 {
     private $msconsBuilder;
-    private $edifactObject;
 
-    public function setUp()
+    protected function setUp()
     {
-        $configuration = new Configuration;
-        $configuration->setExportSender('from');
-        $this->msconsBuilder = new MsconsM13006VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
-    }
-
-    public function tearDown()
-    {
-        if ($this->edifactObject) {
-            @unlink($this->edifactObject->getFilepath());
-        }
+        parent::setUp();
+        $this->msconsBuilder = new MsconsM13006VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
     }
 
     /** @test */
@@ -51,9 +41,8 @@ class MsconsM13006VLTest extends TestCase
     /** @test */
     public function it_sets_the_correct_GS1_qualifier()
     {
-        $configuration = new Configuration;
-        $configuration->setExportSender('400');
-        $this->msconsBuilder = new MsconsM13006VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $configuration);
+        $this->configuration->setExportSender('400');
+        $this->msconsBuilder = new MsconsM13006VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
 
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
         $this->edifactObject = $this->msconsBuilder->get();
@@ -90,7 +79,7 @@ class MsconsM13006VLTest extends TestCase
         $zip = 26789
     )
     {
-        return m::mock(MsconsStornoInterface::class)
+        return m::mock(MsconsVlInterface::class)
             ->shouldReceive('getObis')->andReturn($obis)
             ->shouldReceive('getFrom')->andReturn(new DateTime($from))
             ->shouldReceive('getUntil')->andReturn(new DateTime($until))
