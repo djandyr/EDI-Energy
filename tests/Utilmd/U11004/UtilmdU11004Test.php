@@ -8,7 +8,7 @@ use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Configuration;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Utilmd\U11004\UtilmdU11004Builder;
-use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierGridOperationCancellationInterface;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierGridOperationSigningOffInterface;
 
 class UtilmdU11004Test extends TestCase
 {
@@ -70,13 +70,13 @@ class UtilmdU11004Test extends TestCase
         $comments = null
     )
     {
-        return m::mock(SupplierGridOperationCancellationInterface::class)
+        return m::mock(SupplierGridOperationSigningOffInterface::class)
             ->shouldReceive('getIdeRef')->andReturn($ideRef)
             ->shouldReceive('getReason')->andReturn($reason)
             ->shouldReceive('getComments')->andReturn($comments)
             ->shouldReceive('getMeterpoint')->andReturn($meterpoint)
             ->shouldReceive('getContractStart')->andReturn(new DateTime($contractStart))
-            ->shouldReceive('getCancellationDate')->andReturn(new DateTime($cancellationDate))
+            ->shouldReceive('getSignOffDate')->andReturn(new DateTime($cancellationDate))
             ->getMock();
     }
 }

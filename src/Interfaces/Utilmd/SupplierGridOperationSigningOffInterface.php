@@ -2,12 +2,12 @@
 
 namespace Proengeno\EdiEnergy\Interfaces\Utilmd;
 
-interface SupplierGridOperationCancellationInterface
+interface SupplierGridOperationSigningOffInterface
 {
     public function getIdeRef();
     public function getReason();
     public function getComments();
     public function getMeterpoint();
     public function getContractStart();
-    public function getCancellationDate();
+    public function getSignOffDate();
 }

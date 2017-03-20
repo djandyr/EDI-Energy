@@ -4,7 +4,7 @@ namespace Proengeno\EdiEnergy\Utilmd\U11004;
 
 use DateTime;
 use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
-use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierGridOperationCancellationInterface;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierGridOperationSigningOffInterface;
 
 class UtilmdU11004Builder extends UtilmdBuilder
 {
@@ -47,7 +47,7 @@ class UtilmdU11004Builder extends UtilmdBuilder
         $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
     }
 
-    private function writeItem(SupplierGridOperationCancellationInterface $item)
+    private function writeItem(SupplierGridOperationSigningOffInterface $item)
     {
         $this->writeSeg('Ide', ['24', $item->getIdeRef()]);
         $this->writeSeg('Imd', ['Z14', 'Z07']);
@@ -55,7 +55,7 @@ class UtilmdU11004Builder extends UtilmdBuilder
         if ($this->isRevocation($item)) {
             $this->writeSeg('Dtm', ['92', $item->getContractStart(), 102]);
         } else {
-            $this->writeSeg('Dtm', ['93', $item->getCancellationDate(), 102]);
+            $this->writeSeg('Dtm', ['93', $item->getSignOffDate(), 102]);
         }
         $this->writeSeg('Sts', ['7', $item->getReason()]);
         $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
