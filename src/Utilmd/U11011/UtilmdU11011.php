@@ -1,7 +1,9 @@
 <?php
 
+$acceptedReasons = ['E15', 'Z01'];
+
 return [
-    'name' => 'UtilmdU11010',
+    'name' => 'UtilmdU11011',
     'validation' => [
         ['name' => 'UNA', 'necessity' => 'O'],
         ['name' => 'UNB'],
@@ -19,13 +21,12 @@ return [
             ['name' => 'NAD', 'templates' => ['qualifier' => ['MS', 'MR']]],
             ['name' => 'IDE', 'templates' => ['qualifier' => ['24']]],
             ['name' => 'IMD', 'templates' => ['code' => ['Z14'], 'qualifier' => ['Z07']]],
-            ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['92'], 'code' => [102]]],
-            ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['93'], 'code' => [102]]],
+            ['name' => 'DTM', 'templates' => ['qualifier' => ['93'], 'code' => [102]]],
             ['name' => 'STS', 'templates' => ['category' => [7]]],
-            ['name' => 'FTX', 'necessity' => 'O'],
-            ['name' => 'FTX', 'necessity' => 'O'],
+            ['name' => 'STS', 'templates' => ['category' => ['E01'], 'reason' => $acceptedReasons]],
             ['name' => 'LOC', 'templates' => ['qualifier' => ['172']]],
-            ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['11004']]],
+            ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['11011']]],
+            ['name' => 'RFF', 'templates' => ['code' => ['TN']]],
             ['name' => 'UNT'],
         ]],
         ['name' => 'UNZ']

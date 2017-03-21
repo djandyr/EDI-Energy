@@ -2,7 +2,9 @@
 
 namespace Proengeno\EdiEnergy\Interfaces\Utilmd;
 
-interface SupplierGridOperationSigningOffInterface
+use Proengeno\EdiEnergy\Interfaces\ResponseInterface;
+
+interface SupplierGridOperationSigningOffInterface extends ResponseInterface
 {
     public function getIdeRef();
     public function getReason();

@@ -1,21 +1,14 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Utilmd\U11010;
+namespace Proengeno\EdiEnergy\Utilmd\U11012;
 
 use DateTime;
 use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
 use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierGridOperationSigningOffInterface;
 
-class UtilmdU11010Builder extends UtilmdBuilder
+class UtilmdU11012Builder extends UtilmdBuilder
 {
-    const CHECK_DIGIT = 11010;
-
-    /**
-     * Cancelation Reasons SupplierCancellationInterface::getReason, wich are revocations
-     */
-    private $revocations = [
-        'ZG9', 'ZH1', 'ZH2'
-    ];
+    const CHECK_DIGIT = 11012;
 
     public function getDescriptionPath()
     {
@@ -51,19 +44,10 @@ class UtilmdU11010Builder extends UtilmdBuilder
     {
         $this->writeSeg('Ide', ['24', $item->getIdeRef()]);
         $this->writeSeg('Imd', ['Z14', 'Z07']);
-
-        if ($this->isRevocation($item)) {
-            $this->writeSeg('Dtm', ['92', $item->getContractStart(), 102]);
-        } else {
-            $this->writeSeg('Dtm', ['93', $item->getSignOffDate(), 102]);
-        }
         $this->writeSeg('Sts', ['7', $item->getReason()]);
+        $this->writeSeg('Sts', ['E01', $item->getAnswer()]);
         $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
         $this->writeSeg('Rff', ['Z13', self::CHECK_DIGIT]);
-    }
-
-    private function isRevocation($item)
-    {
-        return in_array($item->getReason(), $this->revocations);
+        $this->writeSeg('Rff', ['TN', $item->getRequestRef()]);
     }
 }
