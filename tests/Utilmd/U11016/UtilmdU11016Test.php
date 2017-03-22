@@ -1,6 +1,6 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Test\Utilmd\U11003;
+namespace Proengeno\EdiEnergy\Test\Utilmd\U11016;
 
 use DateTime;
 use Mockery as m;
@@ -16,7 +16,7 @@ class UtilmdU11016Test extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->utilmdBuilder = new UtilmdU11016Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'));
+        $this->utilmdBuilder = new UtilmdU11016Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
     }
 
     /** @test */
@@ -26,22 +26,42 @@ class UtilmdU11016Test extends TestCase
         $this->assertEquals('UtilmdU11016', $this->edifactObject->getDescription('name'));
     }
 
-    // /** @test */
-    // public function it_creates_a_valid_default_message()
-    // {
-    //     $cancellationDate = '2016-01-01';
+    /** @test */
+    public function it_creates_a_valid_fixed_sign_off_message()
+    {
+        $cancellationDate = '2016-01-01';
+        $fixedSignOff = true;
+        $this->utilmdBuilder->addMessage([$this->makeUtilmdMock($cancellationDate, $fixedSignOff)]);
+        $this->edifactObject = $this->utilmdBuilder->get();
 
-    //     $this->utilmdBuilder->addMessage([$this->makeUtilmdMock($cancellationDate, true)]);
-    //     $this->edifactObject = $this->utilmdBuilder->get();
-    //     $this->edifactObject->validate();
-    //     $this->assertEquals(null, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
-    //         return $s->qualifier() == '92';
-    //     }));
-    //     $this->assertEquals($cancellationDate, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
-    //         return $s->qualifier() == '93';
-    //     })->date()->format('Y-m-d'));
+        $this->edifactObject->validate();
+        $this->assertEquals(null, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
+            return $s->qualifier() == '471';
+        }));
+        $this->assertEquals($cancellationDate, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
+            return $s->qualifier() == '93';
+        })->date()->format('Y-m-d'));
 
-    // }
+    }
+
+    /** @test */
+    public function it_creates_a_valid_open_sign_off_message()
+    {
+        $cancellationDate = '2016-01-01';
+        $fixedSignOff = false;
+        $this->utilmdBuilder->addMessage([$this->makeUtilmdMock($cancellationDate, $fixedSignOff)]);
+        $this->edifactObject = $this->utilmdBuilder->get();
+
+        $this->edifactObject->validate();
+
+        $this->assertEquals($cancellationDate, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
+            return $s->qualifier() == '471';
+        })->date()->format('Y-m-d'));
+        $this->assertEquals(null, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
+            return $s->qualifier() == '93';
+        }));
+
+    }
 
     // private function makeFixedSignOffUtilmd()
     // {
@@ -68,7 +88,7 @@ class UtilmdU11016Test extends TestCase
              ->shouldReceive('getMeterNumber')->andReturn($meterNumber)
              ->shouldReceive('getFirstName')->andReturn('FristName')
              ->shouldReceive('getLastName')->andReturn('LastName')
-             ->shouldReceive('getCompany')->andReturn('compny')
+             ->shouldReceive('getCompany')->andReturn(null)
              ->shouldReceive('getStreet')->andReturn('TestStreet')
              ->shouldReceive('getStreetNumber')->andReturn(26)
              ->shouldReceive('getCity')->andReturn('TestCity')

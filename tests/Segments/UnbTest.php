@@ -7,7 +7,7 @@ use Proengeno\EdiEnergy\Segments\Unb;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Delimiter;
 
-class UnbTest extends TestCase 
+class UnbTest extends TestCase
 {
     /** @test */
     public function it_can_set_and_fetch_basic_informations()
@@ -27,16 +27,15 @@ class UnbTest extends TestCase
         $seg = Unb::fromAttributes(
             $syntaxId,
             $syntaxVersion,
-            $sender, 
-            $senderQualifier, 
-            $receiver, 
-            $receiverQualifier, 
-            $creationDatetime, 
-            $referenzNumber, 
-            $usageType, 
+            $sender,
+            $senderQualifier,
+            $receiver,
+            $receiverQualifier,
+            $creationDatetime,
+            $referenzNumber,
+            $usageType,
             $testMarker
         );
-
 
         $this->assertEquals($segName, $seg->name());
         $this->assertEquals($syntaxId, $seg->syntaxId());
@@ -45,10 +44,9 @@ class UnbTest extends TestCase
         $this->assertEquals($senderQualifier, $seg->senderQualifier());
         $this->assertEquals($receiver, $seg->receiver());
         $this->assertEquals($receiverQualifier, $seg->receiverQualifier());
-        $this->assertEquals($creationDatetime->format('ymdhi'), $seg->creationDatetime()->format('ymdhi'));
+        $this->assertEquals($creationDatetime->format('ymdHi'), $seg->creationDatetime()->format('ymdHi'));
         $this->assertEquals($referenzNumber, $seg->referenzNumber());
         $this->assertEquals($usageType, $seg->usageType());
         $this->assertEquals($testMarker, $seg->testMarker());
-        //die(var_dump($seg));
     }
 }
