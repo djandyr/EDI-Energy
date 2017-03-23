@@ -33,7 +33,7 @@ class UtilmdU11016Test extends TestCase
         $fixedSignOff = true;
         $this->utilmdBuilder->addMessage([$this->makeUtilmdMock($cancellationDate, $fixedSignOff)]);
         $this->edifactObject = $this->utilmdBuilder->get();
-
+        die(var_dump((string)$this->edifactObject));
         $this->edifactObject->validate();
         $this->assertEquals(null, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
             return $s->qualifier() == '471';
@@ -76,8 +76,8 @@ class UtilmdU11016Test extends TestCase
         $cancellationDate,
         $fixedSignOff,
         $meterNumber = 'meter-no-123456',
-        $meterpoint = 'DE12343',
         $ideRef = 'IDE_REF',
+        $meterpoint = null,
         $comments = null
     )
     {

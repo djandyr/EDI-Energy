@@ -30,6 +30,7 @@ class Configuration extends BaseConfig
         'UtilmdU11004' => 'Proengeno\EdiEnergy\Utilmd\U11004\UtilmdU11004Builder',
         'UtilmdU11011' => 'Proengeno\EdiEnergy\Utilmd\U11011\UtilmdU11011Builder',
         'UtilmdU11012' => 'Proengeno\EdiEnergy\Utilmd\U11012\UtilmdU11012Builder',
+        'UtilmdU11016' => 'Proengeno\EdiEnergy\Utilmd\U11016\UtilmdU11016Builder',
     ];
 
     public function getWriteFilter()

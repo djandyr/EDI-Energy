@@ -51,10 +51,12 @@ class UtilmdU11016Builder extends UtilmdBuilder
             $this->writeSeg('Dtm', ['471', $item->getSignOffDate(), 102]);
         }
         $this->writeSeg('Sts', ['7', 'E03']);
-        if ($item->getComments() === null) {
+        if ($item->getComments() !== null) {
             $this->writeSeg('Ftx', ['ACB', $item->getComments()]);
         }
-        $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
+        if ($item->getMeterpoint() !== null) {
+            $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
+        }
         $this->writeSeg('Rff', ['Z13', '11016']);
 
         $this->writeSeg('Seq', ['Z03']);
