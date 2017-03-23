@@ -64,7 +64,7 @@ class UtilmdU11016Builder extends UtilmdBuilder
         $this->writeSeg('Cav', ['Z30', null, $item->getMeterNumber()]);
 
         if ($item->getCompany() === null) {
-            $this->writeSeg('Nad', ['UD', $item->getFirstName(), $item->getLastName()], 'fromPerson');
+            $this->writeSeg('Nad', ['UD', $item->getLastName(), $item->getFirstName()], 'fromPerson');
         } else {
             $this->writeSeg('Nad', ['UD', $item->getCompany()], 'fromCompany');
         }
