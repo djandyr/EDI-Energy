@@ -22,7 +22,7 @@ return [
             ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['93'], 'code' => [102]]],
             ['name' => 'DTM', 'necessity' => 'O', 'templates' => ['qualifier' => ['471'], 'code' => [102]]],
             ['name' => 'STS', 'templates' => ['category' => [7], 'reason' => ['E03']]],
-            ['name' => 'STS', 'templates' => ['category' => ['E01']]],
+            ['name' => 'STS', 'templates' => ['category' => ['E01'], 'reason' => ['E15', 'Z01', 'Z44']]],
             ['name' => 'LOC', 'templates' => ['qualifier' => ['172']]],
             ['name' => 'RFF', 'templates' => ['code' => ['Z13'], 'referenz' => ['11017']]],
             ['name' => 'RFF', 'templates' => ['code' => ['TN']]],
