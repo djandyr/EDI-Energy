@@ -9,6 +9,9 @@ class UtilmdU11018Builder extends UtilmdBuilder
 {
     const CHECK_DIGIT = 11018;
 
+    const ANSWER_CONTRACT_COMMITMENT = 12;
+    const ANSWER_MULTIPLE_SIGN_OFFS = 'Z34';
+
     public function getDescriptionPath()
     {
         return __DIR__ . '/UtilmdU11018.php';
@@ -24,7 +27,7 @@ class UtilmdU11018Builder extends UtilmdBuilder
             self::ORGANISATION,
             self::ORGANISATION_CODE
         ]);
-        $this->writeSeg('Bgm', ['E01', $this->unbReference()]);
+        $this->writeSeg('Bgm', ['E35', $this->unbReference()]);
         $this->writeSeg('Dtm', [137, new DateTime, 203]);
         $this->writeSeg('Nad', ['MS', $this->from, $this->getNadQualifier($this->from)], 'fromMpCode');
         $this->writeSeg('Cta', ['IC', 'Herr Geerdes']);
@@ -41,81 +44,36 @@ class UtilmdU11018Builder extends UtilmdBuilder
 
     private function writeItem($item)
     {
-        $this->writeSeg('Ide', ['24', 'IDE_REFERENCE']);
+        $this->writeSeg('Ide', ['24', $item->getIdeRef()]);
         $this->writeSeg('Imd', ['Z14', 'Z07']);
-        $this->writeSeg('Dtm', ['92', new DateTime('2016-06-15'), 102]);
-        $this->writeSeg('Dtm', ['158', new DateTime('2016-06-15'), 102]);
-        $this->writeSeg('Dtm', ['752', new DateTime('2016-03-10'), 106]);
-        $this->writeSeg('Dtm', ['Z09', new DateTime('2016-03-10'), 602]);
-        $this->writeSeg('Dtm', ['672', new DateTime('2016-03-10'), 802]);
-        $this->writeSeg('Sts', ['7', 'E01']);
-        $this->writeSeg('Sts', ['E01', 'Z43']);
-        $this->writeSeg('Agr', ['11', 'E02']);
-        $this->writeSeg('Agr', ['E03', 'E10']);
-        $this->writeSeg('Loc', ['107', '11YR00000003319J']);
-        $this->writeSeg('Loc', ['237', '11XSTROMMIXER--E']);
-        $this->writeSeg('Loc', ['172', 'DE0002914465200000000000000006517']);
-        $this->writeSeg('Rff', ['Z13', '11018']);
-        $this->writeSeg('Rff', ['TN', 'UE01-26823-166A4DDC4FA']);
-        $this->writeSeg('Cci', ['Z02', 'E01']);
-        $this->writeSeg('Cav', ['H1', '89']);
-        $this->writeSeg('Cci', [null, 'E02']);
-        $this->writeSeg('Cav', ['E02']);
-        $this->writeSeg('Cci', [null, 'E03']);
-        $this->writeSeg('Cav', ['E06']);
-        $this->writeSeg('Cci', [null, 'Z15']);
 
-        $this->writeSeg('Seq', ['Z01']);
-        $this->writeSeg('Rff', ['AVE', 'DE0002914465200000000000000006517']);
-        $this->writeSeg('Qty', ['31', '2293.5', 'KWH']);
-        $this->writeSeg('Cci', ['15', 'Z21']);
-        $this->writeSeg('Cav', ['SLS']);
-        $this->writeSeg('Cci', [null, 'E04']);
-        $this->writeSeg('Cav', ['E06']);
+        if ($this->contractHasMultipleSignOffs($item)) {
+            if ($item->getSupplierSignOffDate()) {
+                $this->writeSeg('Dtm', ['Z06', $item->getSupplierSignOffDate(), 102]);
+            } else {
+                $this->writeSeg('Dtm', ['Z05', $item->getCustomerSignOffDate(), 102]);
+            }
+        }
 
-        $this->writeSeg('Seq', ['Z02']);
-        $this->writeSeg('Rff', ['AVE', 'DE0002914465200000000000000006517']);
-        $this->writeSeg('Rff', ['MG', '987654321']);
-        $this->writeSeg('Pia', ['5', '1-1:1.8.0', 'SRW']);
-        $this->writeSeg('Cci', ['11', 'Z33']);
-        $this->writeSeg('Cav', [null, null, '6', '1']);
+        // Customer is in contract commitment
+        if ($this->contractIsInCommitment($item)) {
+            $this->writeSeg('Dtm', ['157', $item->getContractTermDate(), 102]);
+            $this->writeSeg('Dtm', ['Z01', $item->noticePeriod(), 102]);
+        }
+        $this->writeSeg('Sts', ['7', 'E03']);
+        $this->writeSeg('Sts', ['E01', $item->getAnswer()]);
+        $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
+        $this->writeSeg('Rff', ['Z13', self::CHECK_DIGIT]);
+        $this->writeSeg('Rff', ['TN', $item->getRequestRef()]);
+    }
 
-        $this->writeSeg('Seq', ['Z03']);
-        $this->writeSeg('Rff', ['AVE', 'DE0002914465200000000000000006517']);
-        $this->writeSeg('Cci', [null, 'E13']);
-        $this->writeSeg('Cav', ['AHZ']);
-        $this->writeSeg('Cav', ['Z30', null, '1000564062']);
-        $this->writeSeg('Cav', ['ETZ']);
-        $this->writeSeg('Cav', ['ERZ']);
-        $this->writeSeg('Cci', [null, 'E12']);
-        $this->writeSeg('Cav', ['MMR']);
+    private function contractHasMultipleSignOffs($item)
+    {
+        return $item->status === self::ANSWER_MULTIPLE_SIGN_OFFS;
+    }
 
-        $this->writeSeg('Seq', ['Z07']);
-        $this->writeSeg('Rff', ['AVE', 'DE0002914465200000000000000006517']);
-        $this->writeSeg('Rff', ['Z10', '1-1:1.8.0']);
-        $this->writeSeg('Cci', [null, 'Z08']);
-        $this->writeSeg('Cav', ['TA']);
-
-        $this->writeSeg('Seq', ['Z10']);
-        $this->writeSeg('Rff', ['AVE', 'DE0002914465200000000000000006517']);
-        $this->writeSeg('Rff', ['Z10', '1-1:1.8.0']);
-        $this->writeSeg('Cci', ['Z13', 'Z66']);
-
-        $this->writeSeg('Seq', ['Z12']);
-        $this->writeSeg('Qty', ['Z16', '0.0', 'P1']);
-
-        $this->writeSeg('Nad', ['UD', 'Thörmer', 'Kay'], 'fromPerson');
-        $this->writeSeg('Nad', ['DEB', '9904746000004', '293'], 'fromMpCode');
-        $this->writeSeg('Rff', ['Z05', 'JA']);
-
-        $this->writeSeg('Rff', ['AVE', 'DE0002914465200000000000000006517']);
-        $this->writeSeg('Nad', ['DDE', '9904778000006', '293'], 'fromMpCode');
-        $this->writeSeg('Rff', ['Z05', 'JA']);
-
-        $this->writeSeg('Rff', ['AVE', 'DE0002914465200000000000000006517']);
-        $this->writeSeg('Nad', ['DP', 'Kastanienallee', '21', 'Herne', '44652', 'Wanne-Süd'], 'fromAdress');
-        $this->writeSeg('Nad', ['Z04', 'Schmiedestr.', '7', 'Bochum', '44866', 'Günnigfeld'], 'fromAdress');
-        $this->writeSeg('Nad', ['Z05', 'Thörmer', 'Kay', 'Schmiedestr.', '7', 'Bochum', '44866', null, 'Günnigfeld'], 'fromPersonAdress');
-        $this->writeSeg('Rff', ['AVE', 'DE0002914465200000000000000006517']);
+    private function contractIsInCommitment($item)
+    {
+        return $item->status === self::ANSWER_CONTRACT_COMMITMENT;
     }
 }

@@ -53,7 +53,7 @@ class UtilmdU11017Builder extends UtilmdBuilder
         $this->writeSeg('Sts', ['7', 'E03']);
         $this->writeSeg('Sts', ['E01', $item->getAnswer()]);
         $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
-        $this->writeSeg('Rff', ['Z13', '11017']);
+        $this->writeSeg('Rff', ['Z13', self::CHECK_DIGIT]);
         $this->writeSeg('Rff', ['TN', $item->getRequestRef()]);
 
         $this->writeSeg('Seq', ['Z01']);
