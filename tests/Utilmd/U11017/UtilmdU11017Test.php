@@ -63,15 +63,6 @@ class UtilmdU11017Test extends TestCase
 
     }
 
-    // private function makeFixedSignOffUtilmd()
-    // {
-    //     $cancellationDate,
-    //     $meterNumber = 'meter-no-123456',
-    //     $meterpoint = 'DE12343',
-    //     $ideRef = 'IDE_REF',
-    //     $comments = null
-    // }
-
     private function makeUtilmdMock(
         $cancellationDate,
         $fixedSignOff,
