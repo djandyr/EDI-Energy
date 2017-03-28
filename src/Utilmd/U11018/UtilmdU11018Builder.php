@@ -9,7 +9,7 @@ class UtilmdU11018Builder extends UtilmdBuilder
 {
     const CHECK_DIGIT = 11018;
 
-    const ANSWER_CONTRACT_COMMITMENT = 12;
+    const ANSWER_CONTRACT_COMMITMENT = 'Z12';
     const ANSWER_MULTIPLE_SIGN_OFFS = 'Z34';
 
     public function getDescriptionPath()
@@ -58,10 +58,13 @@ class UtilmdU11018Builder extends UtilmdBuilder
         // Customer is in contract commitment
         if ($this->contractIsInCommitment($item)) {
             $this->writeSeg('Dtm', ['157', $item->getContractTermDate(), 102]);
-            $this->writeSeg('Dtm', ['Z01', $item->noticePeriod(), 102]);
+            $this->writeSeg('Dtm', ['Z01', $item->getNoticePeriod(), 102]);
         }
         $this->writeSeg('Sts', ['7', 'E03']);
         $this->writeSeg('Sts', ['E01', $item->getAnswer()]);
+        if ($item->getComments() !== null) {
+            $this->writeSeg('Ftx', ['ACB', $item->getComments()]);
+        }
         $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
         $this->writeSeg('Rff', ['Z13', self::CHECK_DIGIT]);
         $this->writeSeg('Rff', ['TN', $item->getRequestRef()]);
@@ -69,11 +72,11 @@ class UtilmdU11018Builder extends UtilmdBuilder
 
     private function contractHasMultipleSignOffs($item)
     {
-        return $item->status === self::ANSWER_MULTIPLE_SIGN_OFFS;
+        return $item->getAnswer() === self::ANSWER_MULTIPLE_SIGN_OFFS;
     }
 
     private function contractIsInCommitment($item)
     {
-        return $item->status === self::ANSWER_CONTRACT_COMMITMENT;
+        return $item->getAnswer() === self::ANSWER_CONTRACT_COMMITMENT;
     }
 }
