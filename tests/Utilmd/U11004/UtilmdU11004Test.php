@@ -7,7 +7,9 @@ use Mockery as m;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Configuration;
 use Proengeno\Edifact\Message\Message;
+use Proengeno\EdiEnergy\Utilmd\U11004\UtilmdU11004Item;
 use Proengeno\EdiEnergy\Utilmd\U11004\UtilmdU11004Builder;
+use Proengeno\EdiEnergy\Utilmd\U11004\UtilmdU11004ItemMapper;
 use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierGridOperationSigningOffInterface;
 
 class UtilmdU11004Test extends TestCase
@@ -59,6 +61,21 @@ class UtilmdU11004Test extends TestCase
         $this->assertEquals(null, $this->edifactObject->findSegmentFromBeginn('DTM', function($s) {
             return $s->qualifier() == '93';
         }));
+
+        return $this->edifactObject;
+    }
+
+    /**
+     * @test
+     * @depends it_creates_a_valid_revocation_message
+     **/
+    public function it_parses_a_revocation_message_to_items($edifactObject)
+    {
+        $items = UtilmdU11004ItemMapper::parse($edifactObject);
+
+        $currentItem = current($items);
+        $this->assertInstanceOf(UtilmdU11004Item::class, $currentItem);
+        $this->assertEquals('IDE_REF', $currentItem->getIdeRef());
     }
 
     private function makeUtilmdMock(
