@@ -15,7 +15,7 @@ class Configuration extends BaseConfig
     /** Dont allow generic Segments */
     protected $genericSegment = null;
 
-    protected $segmentNamespace = '\Proengeno\EdiEnergy\Segments';
+    protected $segmentNamespace = '\Proengeno\Ediseg\Segments';
 
     protected $builder = [
         'OrdersO17103' => 'Proengeno\EdiEnergy\Orders\O17103\OrdersO17103Builder',
