@@ -1,11 +1,5 @@
 {
     "name": "proengeno/edienergy",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Apfelfrisch/EdiSeg.git"
-        }
-    ],
     "require": { 
         "php": ">=5.5.0",
         "proengeno/edifact": "dev-master",
