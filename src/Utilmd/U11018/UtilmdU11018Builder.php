@@ -53,13 +53,11 @@ class UtilmdU11018Builder extends UtilmdBuilder
             } else {
                 $this->writeSeg('Dtm', ['Z05', $item->getCustomerSignOffDate(), 102]);
             }
-        }
-
-        // Customer is in contract commitment
-        if ($this->contractIsInCommitment($item)) {
+        } elseif ($this->contractIsInCommitment($item)) {
             $this->writeSeg('Dtm', ['157', $item->getContractTermDate(), 102]);
             $this->writeSeg('Dtm', ['Z01', $item->getNoticePeriod(), 102]);
         }
+
         $this->writeSeg('Sts', ['7', 'E03']);
         $this->writeSeg('Sts', ['E01', $item->getAnswer()]);
         if ($item->getComments() !== null) {

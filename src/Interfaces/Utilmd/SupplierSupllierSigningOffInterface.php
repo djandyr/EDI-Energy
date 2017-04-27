@@ -15,4 +15,16 @@ interface SupplierSupllierSigningOffInterface extends FullAddressInterface, Resp
     public function isFixedSignOff();
     public function getSignOffDate();
     public function getAnnualConsumption();
+
+//     /** DTM:Z01 */
+//     public function getNoticePeriod();
+//
+//     /** DTM:157 */
+//     public function getContractTermDate();
+//
+//     /** DTM:Z06 */
+//     public function getSupplierSignOffDate();
+//
+//     /** DTM:Z05 */
+//     public function getCustomerSignOffDate();
 }
