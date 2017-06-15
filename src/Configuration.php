@@ -26,6 +26,7 @@ class Configuration extends BaseConfig
         'UtilmdU11011' => 'Proengeno\EdiEnergy\Utilmd\U11011\UtilmdU11011Builder',
         'UtilmdU11012' => 'Proengeno\EdiEnergy\Utilmd\U11012\UtilmdU11012Builder',
         'UtilmdU11016' => 'Proengeno\EdiEnergy\Utilmd\U11016\UtilmdU11016Builder',
+        'UtilmdU11120' => 'Proengeno\EdiEnergy\Utilmd\U11120\UtilmdU11120Builder',
         // 'UtilmdU11017' => 'Proengeno\EdiEnergy\Utilmd\U11017\UtilmdU11017Builder',
     ];
 
