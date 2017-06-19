@@ -12,4 +12,5 @@ interface SupplierBalancingChangeInterface
     public function hasBalancingAreaChange();
     public function getBalancingArea();
     public function getMeterpoint();
+    public function getMeterpointType();
 }

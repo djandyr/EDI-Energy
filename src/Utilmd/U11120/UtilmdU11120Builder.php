@@ -56,6 +56,6 @@ class UtilmdU11120Builder extends UtilmdBuilder
         $this->writeSeg('Rff', ['Z13', self::CHECK_DIGIT]);
 
         $this->writeSeg('Seq', ['Z01']);
-        $this->writeSeg('Cci', ['Z15', 'Z71']);
+        $this->writeSeg('Cci', ['Z15', $item->getMeterpointType()]);
     }
 }

@@ -47,7 +47,8 @@ class UtilmdU11120Test extends TestCase
         $contractStart = 'Y-m-d',
         $getChangesStart = 'Y-m-01',
         $getBalancingArea = 'BALANCING_AREA',
-        $meterpoint = 'DE123'
+        $meterpoint = 'DE123',
+        $meterpointType = 'Z71'
     ) {
         return m::mock(SupplierBalancingChangeInterface::class)
             ->shouldReceive('getIdeRef')->andReturn($ideRef)
@@ -56,6 +57,7 @@ class UtilmdU11120Test extends TestCase
             ->shouldReceive('hasBalancingAreaChange')->andReturn(true)
             ->shouldReceive('getBalancingArea')->andReturn($getBalancingArea)
             ->shouldReceive('getMeterpoint')->andReturn($meterpoint)
+            ->shouldReceive('getMeterpointType')->andReturn($meterpointType)
             ->getMock();
     }
 }
