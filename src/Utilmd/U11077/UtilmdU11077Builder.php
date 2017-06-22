@@ -53,13 +53,12 @@ class UtilmdU11077Builder extends UtilmdBuilder
             $this->writeSeg('Agr', ['Z01', $item->getPaymentReceiver()]);
         }
 
-        $this->writeSeg('Loc', ['107', $item->getAccountingArea()]);
         $this->writeSeg('Loc', ['237', $item->getBalancingGroup()]);
         $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
         $this->writeSeg('Rff', ['Z13', self::CHECK_DIGIT]);
 
         $this->writeSeg('Seq', ['Z01']);
         $this->writeSeg('Rff', ['AVE', $item->getMeterpoint()]);
-        // $this->writeSeg('Qty', ['11', '2293.5', 'KWH']);
+        $this->writeSeg('Qty', ['11', $item->getDivisionPercent(), 'P1']);
     }
 }
