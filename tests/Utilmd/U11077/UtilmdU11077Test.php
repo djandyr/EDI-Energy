@@ -7,7 +7,7 @@ use Mockery as m;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Utilmd\U11077\UtilmdU11077Builder;
-use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierGridOperationSigningOnInterface;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\Producer\SupplierGridOperationSigningOnInterface;
 
 class UtilmdU11077Test extends TestCase
 {

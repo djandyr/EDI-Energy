@@ -4,11 +4,12 @@ namespace Proengeno\EdiEnergy\Utilmd\U11077;
 
 use DateTime;
 use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\Producer\SupplierGridOperationSigningOnInterface;
 
 class UtilmdU11077Builder extends UtilmdBuilder
 {
     const CHECK_DIGIT = 11077;
-    const DIRECT_MARKETING = 'Z19';
+    const PROMOTED_DIRECT_MARKETING = 'Z19';
 
     public function getDescriptionPath()
     {
@@ -40,16 +41,16 @@ class UtilmdU11077Builder extends UtilmdBuilder
         $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
     }
 
-    private function writeItem($item)
+    private function writeItem(SupplierGridOperationSigningOnInterface $item)
     {
         $this->writeSeg('Ide', ['24', $item->getIdeRef()]);
         $this->writeSeg('Imd', ['Z14', 'Z06']);
         $this->writeSeg('Dtm', ['92', $item->getSignOnDate(), 102]);
         $this->writeSeg('Sts', ['7', $item->getReason()]);
-        $this->writeSeg('Sts', ['5', $item->getSaleForm()]);
+        $this->writeSeg('Sts', ['5', null, $item->getSaleForm()]);
 
-        if ($item->getSaleForm() === self::DIRECT_MARKETING) {
-            $this->writeSeg('Sts', ['Z16', $item->getRemoteControlCapability()]);
+        if ($item->getSaleForm() === self::PROMOTED_DIRECT_MARKETING) {
+            $this->writeSeg('Sts', ['Z16', null, $item->getRemoteControlCapability()]);
             $this->writeSeg('Agr', ['Z01', $item->getPaymentReceiver()]);
         }
 
