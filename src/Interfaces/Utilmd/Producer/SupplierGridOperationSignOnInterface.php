@@ -4,12 +4,11 @@ namespace Proengeno\EdiEnergy\Interfaces\Utilmd\Producer;
 
 use Proengeno\EdiEnergy\Interfaces\ResponseInterface;
 
-interface SupplierGridOperationSigningOnInterface extends ResponseInterface
+interface SupplierGridOperationSignOnInterface
 {
     public function getIdeRef();
     public function getReason();
     public function getSaleForm();
-    public function getComments();
     public function getMeterpoint();
     public function getSignOnDate();
     public function getContractStart();

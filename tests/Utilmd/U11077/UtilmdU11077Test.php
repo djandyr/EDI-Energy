@@ -7,7 +7,7 @@ use Mockery as m;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Utilmd\U11077\UtilmdU11077Builder;
-use Proengeno\EdiEnergy\Interfaces\Utilmd\Producer\SupplierGridOperationSigningOnInterface;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\Producer\SupplierGridOperationSignOnInterface;
 
 class UtilmdU11077Test extends TestCase
 {
@@ -53,7 +53,7 @@ class UtilmdU11077Test extends TestCase
         $balancingGroup = 'BALANCING_GROUP',
         $remoteControlCapability = 'Z27'
     ) {
-        return m::mock(SupplierGridOperationSigningOnInterface::class)
+        return m::mock(SupplierGridOperationSignOnInterface::class)
             ->shouldReceive('getIdeRef')->andReturn($ideRef)
             ->shouldReceive('getReason')->andReturn($reason)
             ->shouldReceive('getSaleForm')->andReturn($saleForm)
