@@ -8,7 +8,7 @@ use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Configuration;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Utilmd\U11004\UtilmdU11004Builder;
-use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierGridOperationSigningOffInterface;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierGridOperationSignOffInterface;
 
 class UtilmdU11004Test extends TestCase
 {
@@ -70,7 +70,7 @@ class UtilmdU11004Test extends TestCase
         $comments = null
     )
     {
-        return m::mock(SupplierGridOperationSigningOffInterface::class)
+        return m::mock(SupplierGridOperationSignOffInterface::class)
             ->shouldReceive('getIdeRef')->andReturn($ideRef)
             ->shouldReceive('getReason')->andReturn($reason)
             ->shouldReceive('getComments')->andReturn($comments)

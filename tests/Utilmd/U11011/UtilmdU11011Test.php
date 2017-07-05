@@ -7,7 +7,7 @@ use Mockery as m;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Utilmd\U11011\UtilmdU11011Builder;
-use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierGridOperationSigningOffAnswerInterface;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierGridOperationSignOffAnswerInterface;
 
 class UtilmdU11011Test extends TestCase
 {
@@ -43,7 +43,7 @@ class UtilmdU11011Test extends TestCase
         $requestRef = 'TN_REF'
     )
     {
-        return m::mock(SupplierGridOperationSigningOffAnswerInterface::class)
+        return m::mock(SupplierGridOperationSignOffAnswerInterface::class)
             ->shouldReceive('getIdeRef')->andReturn($ideRef)
             ->shouldReceive('getReason')->andReturn($reason)
             ->shouldReceive('getMeterpoint')->andReturn($meterpoint)

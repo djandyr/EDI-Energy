@@ -4,7 +4,7 @@ namespace Proengeno\EdiEnergy\Utilmd\U11016;
 
 use DateTime;
 use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
-use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierSupllierSigningOffInterface;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierSupllierSignOffInterface;
 
 class UtilmdU11016Builder extends UtilmdBuilder
 {
@@ -40,7 +40,7 @@ class UtilmdU11016Builder extends UtilmdBuilder
         $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
     }
 
-    private function writeItem(SupplierSupllierSigningOffInterface $item)
+    private function writeItem(SupplierSupllierSignOffInterface $item)
     {
         $this->writeSeg('Ide', ['24', $item->getIdeRef()]);
         $this->writeSeg('Imd', ['Z14', 'Z07']);

@@ -5,7 +5,7 @@ namespace Proengeno\EdiEnergy\Interfaces\Utilmd;
 use Proengeno\EdiEnergy\Interfaces\FullAddressInterface;
 use Proengeno\EdiEnergy\Interfaces\ResponseInterface;
 
-interface SupplierSupllierSigningOffAnswerInterface extends FullAddressInterface, ResponseInterface
+interface SupplierSupllierSignOffInterface extends FullAddressInterface
 {
     public function getIdeRef();
     public function getReason();
