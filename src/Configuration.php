@@ -28,48 +28,7 @@ class Configuration extends BaseConfig
         'UtilmdU11016' => 'Proengeno\EdiEnergy\Utilmd\U11016\UtilmdU11016Builder',
         'UtilmdU11120' => 'Proengeno\EdiEnergy\Utilmd\U11120\UtilmdU11120Builder',
         'UtilmdU11077' => 'Proengeno\EdiEnergy\Utilmd\U11077\UtilmdU11077Builder',
-        // 'UtilmdU11017' => 'Proengeno\EdiEnergy\Utilmd\U11017\UtilmdU11017Builder',
     ];
-
-    public function getWriteFilter()
-    {
-        $preDefinedFilter = [
-            function ($string) {
-                $toChar = 'ISO-8859-1';
-                $fromChar = 'UTF-8, CP1252, ISO-8859-1';
-
-                $fromCharset = mb_detect_encoding($string, $fromChar);
-
-                if ($fromCharset && $fromCharset != $toChar && $connvertedString = iconv($fromCharset, $toChar, $string)) {
-                    return $connvertedString;
-                }
-
-                return $string;
-            }
-        ];
-
-        return array_merge($this->writeFilter, $preDefinedFilter);
-    }
-
-    public function getReadFilter()
-    {
-        $preDefinedFilter = [
-            function ($string) {
-                $toChar = 'UTF-8';
-                $fromChar = 'UTF-8, CP1252, ISO-8859-1';
-
-                $fromCharset = mb_detect_encoding($string, $fromChar);
-
-                if ($fromCharset && $fromCharset != $toChar && $connvertedString = iconv($fromCharset, $toChar, $string)) {
-                    return $connvertedString;
-                }
-
-                return $string;
-            }
-        ];
-
-        return array_merge($this->readFilter, $preDefinedFilter);
-    }
 
     public function getMessageDescriptions()
     {
@@ -128,6 +87,9 @@ class Configuration extends BaseConfig
             __DIR__ . '/Utilmd/U11063/UtilmdU11063.php' => [
                 'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11063/'
             ],
+            __DIR__ . '/Utilmd/U11080/UtilmdU11080Description.php' => [
+                'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11080/'
+            ],
             __DIR__ . '/Orders/O17102/OrdersO17102.php' => [
                 'UNH' => '/UNH\+(.*?)\+ORDERS\:/', 'RFF' => '/RFF\+Z13\:17102/'
             ],
@@ -159,6 +121,47 @@ class Configuration extends BaseConfig
 
         return array_merge($this->messageDescriptions, $preDefinedDescriptions);
     }
+
+    public function getWriteFilter()
+    {
+        $preDefinedFilter = [
+            function ($string) {
+                $toChar = 'ISO-8859-1';
+                $fromChar = 'UTF-8, CP1252, ISO-8859-1';
+
+                $fromCharset = mb_detect_encoding($string, $fromChar);
+
+                if ($fromCharset && $fromCharset != $toChar && $connvertedString = iconv($fromCharset, $toChar, $string)) {
+                    return $connvertedString;
+                }
+
+                return $string;
+            }
+        ];
+
+        return array_merge($this->writeFilter, $preDefinedFilter);
+    }
+
+    public function getReadFilter()
+    {
+        $preDefinedFilter = [
+            function ($string) {
+                $toChar = 'UTF-8';
+                $fromChar = 'UTF-8, CP1252, ISO-8859-1';
+
+                $fromCharset = mb_detect_encoding($string, $fromChar);
+
+                if ($fromCharset && $fromCharset != $toChar && $connvertedString = iconv($fromCharset, $toChar, $string)) {
+                    return $connvertedString;
+                }
+
+                return $string;
+            }
+        ];
+
+        return array_merge($this->readFilter, $preDefinedFilter);
+    }
+
 
     public function setEnergyType($energyType)
     {
