@@ -87,13 +87,13 @@ class Configuration extends BaseConfig
             __DIR__ . '/Utilmd/U11063/UtilmdU11063.php' => [
                 'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11063/'
             ],
-            __DIR__ . '/Utilmd/U11092/UtilmdU11092.php' => [
+            __DIR__ . '/Utilmd/U11092/UtilmdU11092Description.php' => [
                 'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11092/'
             ],
-            __DIR__ . '/Utilmd/U11093/UtilmdU11093.php' => [
+            __DIR__ . '/Utilmd/U11093/UtilmdU11093Description.php' => [
                 'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11093/'
             ],
-            __DIR__ . '/Utilmd/U11094/UtilmdU11094.php' => [
+            __DIR__ . '/Utilmd/U11094/UtilmdU11094Description.php' => [
                 'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11094/'
             ],
             __DIR__ . '/Utilmd/U11080/UtilmdU11080Description.php' => [
