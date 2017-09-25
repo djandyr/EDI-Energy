@@ -10,7 +10,7 @@ abstract class RemadvBuilder extends EdifactBuilder
     const MESSAGE_SUBTYPE = '';
     const RELEASE_NUMBER = '05A';
     const MESSAGE_TYPE = 'REMADV';
-    const ORGANISATION_CODE = '2.7b';
+    const ORGANISATION_CODE = '2.7c';
 
     protected function writeMessage($items)
     {
