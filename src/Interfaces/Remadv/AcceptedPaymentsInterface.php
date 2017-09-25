@@ -1,8 +1,8 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Interfaces;
+namespace Proengeno\EdiEnergy\Interfaces\Remadv;
 
-interface RemadvInterface
+interface AcceptedPaymentsInterface
 {
     public function getInvoiceAmount();
     public function getPayedAmount();

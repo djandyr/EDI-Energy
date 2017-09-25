@@ -7,9 +7,9 @@ use SplFileInfo;
 use Mockery as m;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
-use Proengeno\EdiEnergy\Interfaces\RemadvInterface;
 use Proengeno\EdiEnergy\Remadv\R33001\RemadvR33001;
 use Proengeno\EdiEnergy\Remadv\R33001\RemadvR33001Builder;
+use Proengeno\EdiEnergy\Interfaces\Remadv\AcceptedPaymentsInterface;
 
 class Remadv33001BuilderTest extends TestCase
 {
@@ -110,7 +110,7 @@ class Remadv33001BuilderTest extends TestCase
 
     private function makeRemadvMock($payedAmount = 10, $invoiceAmount = 10, $accountNumber = 1, $invoiceDate = '2015-01-01', $invoiceCode = 380)
     {
-        return m::mock(RemadvInterface::class)
+        return m::mock(AcceptedPaymentsInterface::class)
             ->shouldReceive('getPayedAmount')->andReturn($payedAmount)
             ->shouldReceive('getInvoiceAmount')->andReturn($invoiceAmount)
             ->shouldReceive('getAccountNumber')->andReturn($accountNumber)

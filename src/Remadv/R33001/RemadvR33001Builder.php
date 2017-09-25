@@ -4,7 +4,7 @@ namespace Proengeno\EdiEnergy\Remadv\R33001;
 
 use DateTime;
 use Proengeno\EdiEnergy\Remadv\RemadvBuilder;
-use Proengeno\EdiEnergy\Interfaces\RemadvInterface;
+use Proengeno\EdiEnergy\Interfaces\Remadv\AcceptedPaymentsInterface;
 
 class RemadvR33001Builder extends RemadvBuilder
 {
@@ -23,7 +23,7 @@ class RemadvR33001Builder extends RemadvBuilder
         return $this->sumPayedAmount;
     }
 
-    protected function writeUnhBody(RemadvInterface $item)
+    protected function writeUnhBody(AcceptedPaymentsInterface $item)
     {
         $this->writeSeg('Doc', [$item->getInvoiceCode(), $item->getAccountNumber()]);
         $this->writeSeg('Moa', [9, $item->getInvoiceAmount()]);
