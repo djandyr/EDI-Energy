@@ -4,7 +4,7 @@ namespace Proengeno\EdiEnergy\Contrl;
 
 use Proengeno\EdiEnergy\Interfaces\Contrl\ContrlInterface;
 
-class Contrl implements ContrlInterface
+abstract class Contrl implements ContrlInterface
 {
     const VALIDATION_OK = 'valid';
     const VALIDATION_FILE_ERROR = 'file_error';
@@ -13,8 +13,9 @@ class Contrl implements ContrlInterface
     private $statusCode;
     private $unbRef;
 
-    public function __construct($statusCode, $unbRef)
+    public function __construct($validationType, $statusCode, $unbRef)
     {
+        $this->setValidationType($validationType);
         $this->statusCode = $statusCode;
         $this->unbRef = $unbRef;
     }
@@ -27,5 +28,17 @@ class Contrl implements ContrlInterface
     public function getUnbReference()
     {
         return $this->unbRef;
+    }
+
+    private function setValidationType($validationType)
+    {
+        if ($validationType !== self::VALIDATION_OK
+            && $validationType !== self::VALIDATION_FILE_ERROR
+            && $validationType !== self::VALIDATION_MESSAGE_ERORR) {
+
+            throw new \Exception('Unknow Validation-Type');
+        }
+
+        $this->validationType = $validationType;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Test\Remadv33001;
+namespace Proengeno\EdiEnergy\Test\Remadv\R33001;
 
 use DateTime;
 use SplFileInfo;

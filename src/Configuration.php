@@ -18,6 +18,7 @@ class Configuration extends BaseConfig
     protected $segmentNamespace = '\Proengeno\Ediseg\Segments';
 
     protected $builder = [
+        'Contrl' => 'Proengeno\EdiEnergy\Contrl\ContrlBuilder',
         'OrdersO17103' => 'Proengeno\EdiEnergy\Orders\O17103\OrdersO17103Builder',
         'OrdersO17102' => 'Proengeno\EdiEnergy\Orders\O17102\OrdersO17102Builder',
         'RemadvR33001' => 'Proengeno\EdiEnergy\Remadv\R33001\RemadvR33001Builder',
