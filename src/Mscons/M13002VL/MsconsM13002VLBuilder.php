@@ -38,7 +38,7 @@ class MsconsM13002VLBuilder extends MsconsBuilder
         $this->writeSeg('Nad', ['MR', $this->to, $this->getNadQualifier($this->to)], 'fromMpCode');
         $this->writeSeg('Uns', ['D']);
         $this->writeSeg('Nad', ['DP', $item->getStreet(), $item->getStreetNumber(), $item->getCity(), $item->getZip()], 'fromAdress');
-        $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
+        $this->writeSeg('Loc', ['172', $item->getReportingPoint()]);
         $this->writeSeg('Dtm', [9, new DateTime, 102]);
         $this->writeSeg('Rff', ['MG', $item->getMeterNumber()]);
         $this->writeSeg('Cci', ['ACH', $item->getReadinReason()]);
@@ -46,8 +46,8 @@ class MsconsM13002VLBuilder extends MsconsBuilder
         $this->writeSeg('Lin', [1]);
         $this->writeSeg('Pia', [5, $item->getObis(), 'SRW']);
         $this->writeSeg('Qty', [$item->getReadingKind(), $item->getReadingAmount()]);
-        $this->writeSeg('Dtm', [163, $item->getFrom(), 102]);
-        $this->writeSeg('Dtm', [164, $item->getUntil(), 102]);
+        $this->writeSeg('Dtm', [163, $item->getStartReadinDate(), 102]);
+        $this->writeSeg('Dtm', [164, $item->getEndReadingDate(), 102]);
         $this->writeSeg('Dtm', [9, new DateTime, 102]);
         $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
     }

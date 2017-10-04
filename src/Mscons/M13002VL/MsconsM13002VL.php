@@ -1,5 +1,8 @@
 <?php
 
+$readingReasons = ['COM', 'IOM', 'ROM', 'COS', 'COB', 'CMP', 'PMR', 'COT'];
+$readingNotes = ['SMV', 'EMV', 'MRV'];
+
 return [
     'name' => 'MsconsM13002VL',
     'validation' => [
@@ -24,8 +27,8 @@ return [
             ['name' => 'LOC', 'templates' => ['qualifier' => [172]]],
             ['name' => 'DTM', 'templates' => ['qualifier' => [9], 'code' => [102]]],
             ['name' => 'RFF', 'templates' => ['code' => ['MG']]],
-            ['name' => 'CCI', 'templates' => ['type' => ['ACH'], 'code' => ['COM', 'IOM', 'ROM', 'COS', 'COB', 'CMP', 'PMR', 'COT']]],
-            ['name' => 'CCI', 'templates' => ['type' => [16], 'code' => ['SMV', 'EMV', 'MRV']]],
+            ['name' => 'CCI', 'templates' => ['type' => ['ACH'], 'code' => $readingReasons]],
+            ['name' => 'CCI', 'templates' => ['type' => [16], 'code' => $readingNotes]],
             ['name' => 'LIN'],
             ['name' => 'PIA', 'templates' => ['number' => [5], 'articleCode' => ['SRW']]],
             ['name' => 'QTY', 'templates' => ['qualifier' => [220, 67, 201, 20]]],

@@ -6,8 +6,8 @@ use DateTime;
 use Mockery as m;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
-use Proengeno\EdiEnergy\Interfaces\MsconsVlInterface;
 use Proengeno\EdiEnergy\Mscons\M13006VL\MsconsM13006VLBuilder;
+use Proengeno\EdiEnergy\Interfaces\Mscons\MetercountTransmissionInterface;
 
 class MsconsM13006VLTest extends TestCase
 {
@@ -79,12 +79,12 @@ class MsconsM13006VLTest extends TestCase
         $zip = 26789
     )
     {
-        return m::mock(MsconsVlInterface::class)
+        return m::mock(MetercountTransmissionInterface::class)
             ->shouldReceive('getObis')->andReturn($obis)
-            ->shouldReceive('getFrom')->andReturn(new DateTime($from))
-            ->shouldReceive('getUntil')->andReturn(new DateTime($until))
+            ->shouldReceive('getStartReadinDate')->andReturn(new DateTime($from))
+            ->shouldReceive('getEndReadingDate')->andReturn(new DateTime($until))
             ->shouldReceive('getOriginalMessageCode')->andReturn($originalMessageCode)
-            ->shouldReceive('getMeterpoint')->andReturn($meterpoint)
+            ->shouldReceive('getReportingPoint')->andReturn($meterpoint)
             ->shouldReceive('getMeterNumber')->andReturn($meterNumber)
             ->shouldReceive('getReadinReason')->andReturn($readinReason)
             ->shouldReceive('getReadinType')->andReturn($readinType)

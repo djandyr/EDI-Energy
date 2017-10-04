@@ -2,11 +2,7 @@
 
 namespace Proengeno\EdiEnergy\Interfaces\Remadv;
 
-interface AcceptedPaymentsInterface
+interface AcceptedPaymentsInterface extends PaymentsInterface
 {
-    public function getInvoiceAmount();
     public function getPayedAmount();
-    public function getInvoiceDate();
-    public function getInvoiceCode();
-    public function getAccountNumber();
 }

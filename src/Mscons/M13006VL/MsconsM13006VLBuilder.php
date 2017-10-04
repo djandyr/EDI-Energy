@@ -36,7 +36,7 @@ class MsconsM13006VLBuilder extends MsconsBuilder
         $this->writeSeg('Nad', ['MR', $this->to, $this->getNadQualifier($this->to)], 'fromMpCode');
         $this->writeSeg('Uns', ['D']);
         $this->writeSeg('Nad', ['DP', $item->getStreet(), $item->getStreetNumber(), $item->getCity(), $item->getZip()], 'fromAdress');
-        $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
+        $this->writeSeg('Loc', ['172', $item->getReportingPoint()]);
         $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
     }
 }
