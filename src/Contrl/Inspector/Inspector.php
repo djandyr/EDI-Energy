@@ -2,6 +2,7 @@
 
 namespace Proengeno\EdiEnergy\Contrl\Inspector;
 
+use Proengeno\EdiEnergy\Configuration;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Contrl\ContrlPositiv;
 use Proengeno\EdiEnergy\Contrl\ContrlFileError;
@@ -13,6 +14,16 @@ class Inspector
     public function __construct(Message $message)
     {
         $this->message = $message;
+    }
+
+    public static function fromString($string, Configuration $configuration)
+    {
+        return new static(Message::fromString($string, $configuration));
+    }
+
+    public static function fromFilepath($path, Configuration $configuration)
+    {
+        return new static(Message::fromFilepath($string, $configuration));
     }
 
     public function getContrlItem()
