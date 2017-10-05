@@ -8,6 +8,7 @@ use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Contrl\ContrlBuilder;
 use Proengeno\EdiEnergy\Contrl\ContrlPositiv;
+use Proengeno\EdiEnergy\Contrl\ContrlFileError;
 
 class ContrlTest extends TestCase
 {
@@ -33,9 +34,20 @@ class ContrlTest extends TestCase
     }
 
     /** @test */
-    public function it_creates_a_valid_electric_message()
+    public function it_creates_a_postiv_contrl()
     {
-        $this->contrlBuilder->addMessage(new ContrlPositiv('UNB_REF'));
+        $this->contrlBuilder->addMessage(new ContrlPositiv('to', 'UNB_REF'));
+        $this->edifactObject = $this->contrlBuilder->get();
+
+        $this->edifactObject->validateSegments();
+
+        $this->assertEquals('electric', $this->edifactObject->getConfiguration('energyType'));
+    }
+
+    /** @test */
+    public function it_creates_a_file_error_contrl()
+    {
+        $this->contrlBuilder->addMessage(new ContrlFileError('to', 'UNB_REF', ContrlFileError::INVALID_SENDER));
         $this->edifactObject = $this->contrlBuilder->get();
 
         $this->edifactObject->validateSegments();

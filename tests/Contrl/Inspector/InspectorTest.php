@@ -1,6 +1,6 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Test\Contrl;
+namespace Proengeno\EdiEnergy\Test\Contrl\Inspector;
 
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\Edifact\Message\Message;
@@ -22,6 +22,7 @@ class InspectorTest extends TestCase
         $this->assertInstanceOf(ContrlPositiv::class, $inspector->getContrlItem());
     }
 
+
     /** @test */
     public function it_checks_an_edifact_message_with_negative_contrl_cause_wrong_receiver()
     {
@@ -31,7 +32,9 @@ class InspectorTest extends TestCase
             $this->configuration
         );
 
-        $inspector = new Inspector($edifactMessage);
-        $this->assertInstanceOf(ContrlFileError::class, $inspector->getContrlItem());
+        $contrl = (new Inspector($edifactMessage))->getContrlItem();
+        $this->assertInstanceOf(ContrlFileError::class, $contrl);
+        $this->assertEquals($contrl::INVALID_SENDER, $contrl->getUciCode());
+        $this->assertEquals('UNB', $contrl->getServiceSegement());
     }
 }

@@ -17,18 +17,23 @@ class Inspector
 
     public function getContrlItem()
     {
-        if (! $this->checkReceiver() ) {
-            return new ContrlFileError('UNB_REF');
+        while ($seg = $this->message->getNextSegment()) {
+            if ($seg->name() == 'UNB') {
+                $unbRef = $seg->referenzNumber();
+                $sender = $seg->sender();
+
+                if (! $this->checkReceiver($seg) ) {
+                    return new ContrlFileError($sender, $unbRef, ContrlFileError::INVALID_SENDER);
+                }
+            }
         }
 
-        return new ContrlPositiv('UNB_REF');
+        return new ContrlPositiv($sender, $unbRef);
     }
 
-    private function checkReceiver()
+    private function checkReceiver($seg)
     {
-        $unb = $this->message->findSegmentFromBeginn('UNB');
-
-        if ($this->message->getConfiguration('exportSender') == $unb->receiver()) {
+        if ($this->message->getConfiguration('exportSender') == $seg->receiver()) {
             return true;
         }
 

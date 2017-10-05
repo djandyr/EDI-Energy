@@ -33,14 +33,40 @@ class ContrlBuilder extends EdifactBuilder
             self::ORGANISATION,
             self::ORGANISATION_CODE
         ]);
-        $this->writeSeg('Uci', [
+
+        if ($item->getValidationType() == Contrl::VALIDATION_OK) {
+            $this->writeSeg('Uci', $this->getUciForValidationOk($item));
+        }
+        if ($item->getValidationType() == Contrl::VALIDATION_FILE_ERROR) {
+            $this->writeSeg('Uci', $this->getUciForFileError($item));
+        }
+
+        $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
+    }
+
+    private function getUciForValidationOk($item)
+    {
+        return [
             $item->getUnbReference(),
             $this->from,
             $this->getNadQualifier($this->from),
             $this->to,
             $this->getNadQualifier($this->to),
             $item->getStatusCode(),
-        ]);
-        $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
+        ];
+    }
+
+    private function getUciForFileError($item)
+    {
+        return [
+            $item->getUnbReference(),
+            $this->from,
+            $this->getNadQualifier($this->from),
+            $this->to,
+            $this->getNadQualifier($this->to),
+            $item->getStatusCode(),
+            $item->getUciCode(),
+            $item->getServiceSegement(),
+        ];
     }
 }

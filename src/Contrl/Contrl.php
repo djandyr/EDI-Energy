@@ -13,8 +13,9 @@ abstract class Contrl implements ContrlInterface
     private $statusCode;
     private $unbRef;
 
-    public function __construct($validationType, $statusCode, $unbRef)
+    public function __construct($receiver, $validationType, $statusCode, $unbRef)
     {
+        $this->receiver = $receiver;
         $this->setValidationType($validationType);
         $this->statusCode = $statusCode;
         $this->unbRef = $unbRef;
@@ -28,6 +29,11 @@ abstract class Contrl implements ContrlInterface
     public function getUnbReference()
     {
         return $this->unbRef;
+    }
+
+    public function getValidationType()
+    {
+        return $this->validationType;
     }
 
     private function setValidationType($validationType)

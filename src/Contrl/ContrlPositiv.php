@@ -8,8 +8,8 @@ class ContrlPositiv extends Contrl
 {
     const STATUS_CODE = 7;
 
-    public function __construct($unbRef)
+    public function __construct($receiver, $unbRef)
     {
-        parent::__construct(parent::VALIDATION_OK, self::STATUS_CODE, $unbRef);
+        parent::__construct($receiver, parent::VALIDATION_OK, self::STATUS_CODE, $unbRef);
     }
 }
