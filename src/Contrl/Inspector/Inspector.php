@@ -33,9 +33,11 @@ class Inspector
                 $unbRef = $seg->referenzNumber();
                 $sender = $seg->sender();
 
-                if (! $this->checkReceiver($seg) ) {
-                    return new ContrlFileError($sender, $unbRef, ContrlFileError::INVALID_SENDER);
-                }
+                // Noch nicht auf Empfänger Testen, wegen BIKO meldungen and Bilanzkreisverantwortlichen
+
+                // if (! $this->checkReceiver($seg) ) {
+                //     return new ContrlFileError($sender, $unbRef, ContrlFileError::INVALID_SENDER);
+                // }
             }
         }
 
