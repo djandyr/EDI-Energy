@@ -21,6 +21,11 @@ abstract class Contrl implements ContrlInterface
         $this->unbRef = $unbRef;
     }
 
+    public function getReceiver()
+    {
+        return $this->receiver;
+    }
+
     public function getStatusCode()
     {
         return $this->statusCode;
