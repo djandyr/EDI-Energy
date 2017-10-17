@@ -158,7 +158,7 @@ class Configuration extends BaseConfig
         $preDefinedFilter = [
             function ($string) {
                 $toChar = 'UTF-8';
-                $fromChar = 'UTF-8, CP1252, ISO-8859-1';
+                $fromChar = 'CP1252, ISO-8859-1, UTF-8';
 
                 $fromCharset = mb_detect_encoding($string, $fromChar);
 
@@ -172,7 +172,6 @@ class Configuration extends BaseConfig
 
         return array_merge($this->readFilter, $preDefinedFilter);
     }
-
 
     public function setEnergyType($energyType)
     {
