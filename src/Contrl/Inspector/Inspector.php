@@ -14,6 +14,7 @@ class Inspector
     public function __construct(Message $message)
     {
         $this->message = $message;
+        $this->message->rewind();
     }
 
     public static function fromString($string, Configuration $configuration)
