@@ -49,9 +49,9 @@ class ContrlBuilder extends EdifactBuilder
         return [
             $item->getUnbReference(),
             $this->from,
-            $this->getNadQualifier($this->from),
+            $this->getUnbQualifier($this->from),
             $this->to,
-            $this->getNadQualifier($this->to),
+            $this->getUnbQualifier($this->to),
             $item->getStatusCode(),
         ];
     }
@@ -61,9 +61,9 @@ class ContrlBuilder extends EdifactBuilder
         return [
             $item->getUnbReference(),
             $this->from,
-            $this->getNadQualifier($this->from),
+            $this->getUnbQualifier($this->from),
             $this->to,
-            $this->getNadQualifier($this->to),
+            $this->getUnbQualifier($this->to),
             $item->getStatusCode(),
             $item->getUciCode(),
             $item->getServiceSegement(),
