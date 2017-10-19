@@ -40,6 +40,11 @@ class ContrlBuilder extends EdifactBuilder
         if ($item->getValidationType() == Contrl::VALIDATION_FILE_ERROR) {
             $this->writeSeg('Uci', $this->getUciForFileError($item));
         }
+        if ($item->getValidationType() == Contrl::VALIDATION_MESSAGE_ERORR) {
+            // foreach ($item->getMessageValidationErrors() as $validationError) {
+            //     $this->writeSeg('Ucm', $this->getUciForFileError($item));
+            // }
+        }
 
         $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
     }
