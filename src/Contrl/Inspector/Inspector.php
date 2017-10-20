@@ -6,15 +6,17 @@ use Proengeno\EdiEnergy\Configuration;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Contrl\ContrlPositiv;
 use Proengeno\EdiEnergy\Contrl\ContrlFileError;
+use Proengeno\EdiEnergy\Contrl\Inspector\FileErrorInspector;
 
 class Inspector
 {
     private $message;
+    private $unbRef;
+    private $sender;
 
     public function __construct(Message $message)
     {
         $this->message = $message;
-        $this->message->rewind();
     }
 
     public static function fromString($string, Configuration $configuration)
@@ -29,18 +31,33 @@ class Inspector
 
     public function getContrlItem()
     {
-        while ($seg = $this->message->getNextSegment()) {
-            if ($seg->name() == 'UNB') {
-                $unbRef = $seg->referenzNumber();
-                $sender = $seg->sender();
+        $this->setSender();
+        $this->setUnbRef();
 
-                if (! $this->checkReceiver($seg) ) {
-                    return new ContrlFileError($sender, $unbRef, ContrlFileError::INVALID_RECEIVER);
-                }
+        $fileErrorInspector = new FileErrorInspector($this->sender, $this->message->getConfiguration('exportSender'), $this->unbRef);
+
+        $this->message->rewind();
+        while ($seg = $this->message->getNextSegment()) {
+            if ($contrlFileError = $fileErrorInspector->checkSegment($seg)) {
+                return $contrlFileError;
             }
         }
 
-        return new ContrlPositiv($sender, $unbRef);
+        return new ContrlPositiv($this->sender, $this->unbRef);
+    }
+
+    private function setSender()
+    {
+        if ($unb = $this->message->findSegmentFromBeginn('UNB')) {
+            $this->sender = $unb->sender();
+        }
+    }
+
+    private function setUnbRef()
+    {
+        if ($unb = $this->message->findSegmentFromBeginn('UNB')) {
+            $this->unbRef = $unb->referenzNumber();
+        }
     }
 
     private function checkReceiver($seg)
