@@ -36,22 +36,34 @@ class ContrlTest extends TestCase
     /** @test */
     public function it_creates_a_postiv_contrl()
     {
-        $this->contrlBuilder->addMessage(new ContrlPositiv('to', 'UNB_REF'));
+        $receiver = 'to';
+        $unbRef = 'UNB_REF';
+
+        $this->contrlBuilder->addMessage(new ContrlPositiv($receiver, 'UNB_REF'));
         $this->edifactObject = $this->contrlBuilder->get();
 
         $this->edifactObject->validateSegments();
 
         $this->assertEquals('electric', $this->edifactObject->getConfiguration('energyType'));
+        $this->assertEquals($receiver, $this->edifactObject->findSegmentFromBeginn('UCI')->sender());
+        $this->assertEquals($unbRef, $this->edifactObject->getCurrentSegment()->unbRef());
+        $this->assertEquals($this->configuration->getExportSender(), $this->edifactObject->getCurrentSegment()->receiver());
     }
 
     /** @test */
     public function it_creates_a_file_error_contrl()
     {
-        $this->contrlBuilder->addMessage(new ContrlFileError('to', 'UNB_REF', ContrlFileError::INVALID_RECEIVER));
+        $receiver = 'to';
+        $unbRef = 'UNB_REF';
+
+        $this->contrlBuilder->addMessage(new ContrlFileError($receiver, 'UNB_REF', ContrlFileError::INVALID_RECEIVER));
         $this->edifactObject = $this->contrlBuilder->get();
 
         $this->edifactObject->validateSegments();
 
         $this->assertEquals('electric', $this->edifactObject->getConfiguration('energyType'));
+        $this->assertEquals($receiver, $this->edifactObject->findSegmentFromBeginn('UCI')->sender());
+        $this->assertEquals($unbRef, $this->edifactObject->getCurrentSegment()->unbRef());
+        $this->assertEquals($this->configuration->getExportSender(), $this->edifactObject->getCurrentSegment()->receiver());
     }
 }
