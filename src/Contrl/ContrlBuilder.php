@@ -53,10 +53,10 @@ class ContrlBuilder extends EdifactBuilder
     {
         return [
             $item->getUnbReference(),
-            $this->from,
-            $this->getUnbQualifier($this->from),
             $this->to,
             $this->getUnbQualifier($this->to),
+            $this->from,
+            $this->getUnbQualifier($this->from),
             $item->getStatusCode(),
         ];
     }
@@ -65,10 +65,10 @@ class ContrlBuilder extends EdifactBuilder
     {
         return [
             $item->getUnbReference(),
-            $this->from,
-            $this->getUnbQualifier($this->from),
             $this->to,
             $this->getUnbQualifier($this->to),
+            $this->from,
+            $this->getUnbQualifier($this->from),
             $item->getStatusCode(),
             $item->getUciCode(),
             $item->getServiceSegement(),
