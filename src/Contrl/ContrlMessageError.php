@@ -7,7 +7,7 @@ use Proengeno\EdiEnergy\Interfaces\Contrl\ContrlInterface;
 class ContrlMessageError extends Contrl
 {
     const STATUS_CODE = 4;
-    const INVALID_SENDER = 7;
+    const INVALID_RECEIVER = 7;
 
     private $messageErrorDescription;
 

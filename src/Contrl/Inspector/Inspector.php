@@ -35,7 +35,7 @@ class Inspector
                 $sender = $seg->sender();
 
                 if (! $this->checkReceiver($seg) ) {
-                    return new ContrlFileError($sender, $unbRef, ContrlFileError::INVALID_SENDER);
+                    return new ContrlFileError($sender, $unbRef, ContrlFileError::INVALID_RECEIVER);
                 }
             }
         }

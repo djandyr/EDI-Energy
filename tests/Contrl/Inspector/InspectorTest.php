@@ -40,7 +40,7 @@ class InspectorTest extends TestCase
 
         $contrl = (new Inspector($edifactMessage))->getContrlItem();
         $this->assertInstanceOf(ContrlFileError::class, $contrl);
-        $this->assertEquals($contrl::INVALID_SENDER, $contrl->getUciCode());
+        $this->assertEquals($contrl::INVALID_RECEIVER, $contrl->getUciCode());
         $this->assertEquals('UNB', $contrl->getServiceSegement());
     }
 }

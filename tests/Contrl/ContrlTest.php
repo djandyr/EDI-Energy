@@ -47,7 +47,7 @@ class ContrlTest extends TestCase
     /** @test */
     public function it_creates_a_file_error_contrl()
     {
-        $this->contrlBuilder->addMessage(new ContrlFileError('to', 'UNB_REF', ContrlFileError::INVALID_SENDER));
+        $this->contrlBuilder->addMessage(new ContrlFileError('to', 'UNB_REF', ContrlFileError::INVALID_RECEIVER));
         $this->edifactObject = $this->contrlBuilder->get();
 
         $this->edifactObject->validateSegments();
