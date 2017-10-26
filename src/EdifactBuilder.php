@@ -13,7 +13,7 @@ abstract class EdifactBuilder extends AbstractBuilder
     const VERSION_NUMBER = 'D';
     const ORGANISATION = 'UN';
 
-    public function __construct($to, $filename = null, Configuration $configuration = null)
+    public function __construct($to, $filename = 'php://temp', Configuration $configuration = null)
     {
         parent::__construct($to, $filename, $configuration ?: new Configuration);
     }

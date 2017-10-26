@@ -40,7 +40,7 @@ class Remadv33001BuilderTest extends TestCase
         $utf8String = 'ß';
         $isoString = iconv('UTF-8', 'CP1252', $utf8String);
 
-        $remadvBuilder = new RemadvR33001Builder('to', $filename);
+        $remadvBuilder = new RemadvR33001Builder('to', $filename, $this->configuration);
         $remadvBuilder->addMessage([$this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $isoString)]);
 
         $this->assertContains($isoString, file_get_contents($filename));
