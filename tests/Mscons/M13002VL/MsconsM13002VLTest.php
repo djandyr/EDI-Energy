@@ -16,7 +16,7 @@ class MsconsM13002VLTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->msconsBuilder = new MsconsM13002VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->msconsBuilder = new MsconsM13002VLBuilder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     /** @test */
@@ -59,7 +59,7 @@ class MsconsM13002VLTest extends TestCase
     {
         $this->configuration->setEnergyType('gas');
 
-        $msconsBuilder = new MsconsM13002VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $msconsBuilder = new MsconsM13002VLBuilder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
         $msconsBuilder->addMessage($this->makeMsconsMock());
         $this->edifactObject = $msconsBuilder->get();
 

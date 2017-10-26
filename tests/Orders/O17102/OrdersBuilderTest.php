@@ -17,7 +17,7 @@ class OrdersBuilderTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->ordersBuilder = new OrdersO17102Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->ordersBuilder = new OrdersO17102Builder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     /** @test */
@@ -31,7 +31,7 @@ class OrdersBuilderTest extends TestCase
     {
         $this->configuration->setExportSender('400');
 
-        $this->ordersBuilder = new OrdersO17102Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->ordersBuilder = new OrdersO17102Builder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
 
         $this->ordersBuilder->addMessage($this->makeOrdersMock());
         $this->edifactObject = $this->ordersBuilder->get();

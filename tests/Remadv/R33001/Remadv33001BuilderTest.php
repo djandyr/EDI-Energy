@@ -18,7 +18,7 @@ class Remadv33001BuilderTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->remadvBuilder = new RemadvR33001Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->remadvBuilder = new RemadvR33001Builder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     /** @test */
@@ -40,7 +40,7 @@ class Remadv33001BuilderTest extends TestCase
         $utf8String = 'ß';
         $isoString = iconv('UTF-8', 'CP1252', $utf8String);
 
-        $remadvBuilder = new RemadvR33001Builder('to', $filename, $this->configuration);
+        $remadvBuilder = new RemadvR33001Builder('to', $this->configuration, $filename);
         $remadvBuilder->addMessage([$this->makeRemadvMock(1, 1, 1, date('Y-m-d'), $isoString)]);
 
         $this->assertContains($isoString, file_get_contents($filename));
@@ -60,7 +60,7 @@ class Remadv33001BuilderTest extends TestCase
     {
         $this->configuration->setExportSender('400');
 
-        $this->remadvBuilder = new RemadvR33001Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->remadvBuilder = new RemadvR33001Builder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
 
         $this->remadvBuilder->addMessage([$this->makeRemadvMock()]);
         $this->edifactObject = $this->remadvBuilder->get();
@@ -86,7 +86,7 @@ class Remadv33001BuilderTest extends TestCase
         $this->configuration->setEnergyType('gas');
         $this->configuration->setUnbRefGenerator(function() { return 'UNB-REF'; });
 
-        $remadvBuilder = new RemadvR33001Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $remadvBuilder = new RemadvR33001Builder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
 
         $remadvBuilder->addMessage([$this->makeRemadvMock(), $this->makeRemadvMock(15.5)]);
         $remadvBuilder->addMessage([$this->makeRemadvMock(15.5), $this->makeRemadvMock(15.5)]);
@@ -100,7 +100,7 @@ class Remadv33001BuilderTest extends TestCase
         $this->configuration->setEnergyType('electric');
         $this->configuration->setUnbRefGenerator(function() { return 'UNB-REF'; });
 
-        $remadvBuilder = new RemadvR33001Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $remadvBuilder = new RemadvR33001Builder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
         $remadvBuilder->addMessage([$this->makeRemadvMock(), $this->makeRemadvMock(15.5)]);
         $remadvBuilder->addMessage([$this->makeRemadvMock(15.5), $this->makeRemadvMock(15.5)]);
         $this->edifactObject = $remadvBuilder->get();

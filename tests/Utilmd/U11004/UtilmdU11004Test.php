@@ -17,7 +17,7 @@ class UtilmdU11004Test extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->utilmdBuilder = new UtilmdU11004Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->utilmdBuilder = new UtilmdU11004Builder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
     }
 
     /** @test */

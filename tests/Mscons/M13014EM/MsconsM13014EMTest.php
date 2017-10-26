@@ -16,7 +16,7 @@ class MsconsM13014EMTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->msconsBuilder = new MsconsM13014EMBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->msconsBuilder = new MsconsM13014EMBuilder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     /** @test */

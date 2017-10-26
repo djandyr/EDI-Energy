@@ -18,7 +18,7 @@ class Remadv33002BuilderTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->remadvBuilder = new RemadvR33002Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->remadvBuilder = new RemadvR33002Builder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     /** @test */
@@ -40,7 +40,7 @@ class Remadv33002BuilderTest extends TestCase
         $utf8String = 'ß';
         $isoString = iconv('UTF-8', 'CP1252', $utf8String);
 
-        $remadvBuilder = new RemadvR33002Builder('to', $filename, $this->configuration);
+        $remadvBuilder = new RemadvR33002Builder('to', $this->configuration, $filename);
         $remadvBuilder->addMessage([$this->makeRemadvMock('Z08', 1, 1, date('Y-m-d'), $isoString)]);
 
         $this->assertContains($isoString, file_get_contents($filename));
@@ -60,7 +60,7 @@ class Remadv33002BuilderTest extends TestCase
     {
         $this->configuration->setExportSender('400');
 
-        $this->remadvBuilder = new RemadvR33002Builder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->remadvBuilder = new RemadvR33002Builder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
 
         $this->remadvBuilder->addMessage([$this->makeRemadvMock()]);
         $this->edifactObject = $this->remadvBuilder->get();

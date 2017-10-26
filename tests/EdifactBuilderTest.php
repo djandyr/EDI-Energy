@@ -12,7 +12,7 @@ class EdifactBuilderTest extends TestCase
     /** @test*/
     public function it_provides_an_electric_energy_type_if_none_is_configured()
     {
-        $builder = new BuilderFixture('to');
+        $builder = new BuilderFixture('to', $this->configuration);
 
         $this->assertEquals('electric', $builder->getEnergyType());
     }
@@ -23,7 +23,7 @@ class EdifactBuilderTest extends TestCase
         $configuration = new Configuration;
         $configuration->setEnergyType('gas');
 
-        $builder = new BuilderFixture('to', 'php://temp', $configuration);
+        $builder = new BuilderFixture('to', $configuration);
 
         $this->assertEquals('gas', $builder->getEnergyType());
     }
@@ -36,7 +36,7 @@ class EdifactBuilderTest extends TestCase
         $configuration->setExportSender('from');
         $configuration->setUnbRefGenerator(function() { return 'REF';});
 
-        $builder = new BuilderFixture('to', 'php://temp', $configuration);
+        $builder = new BuilderFixture('to', $configuration);
 
         $this->assertEquals('TEST_SUB_TYPE_from_to_' . date('Ymd') . '_REF.txt', $builder->generateFilename());
     }
@@ -52,7 +52,7 @@ class EdifactBuilderTest extends TestCase
         $configuration->setExportSender($sender);
         $configuration->setUnbRefGenerator(function() use ($unbRef) { return $unbRef; });
 
-        $builder = new BuilderFixture($receiver, 'php://temp', $configuration);
+        $builder = new BuilderFixture($receiver, $configuration);
         $builder->testWriteUnb();
 
         $this->assertRegExp($regex, $builder->getFileContent());

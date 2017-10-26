@@ -17,7 +17,7 @@ class ContrlTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->contrlBuilder = new ContrlBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->contrlBuilder = new ContrlBuilder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     /** @test */

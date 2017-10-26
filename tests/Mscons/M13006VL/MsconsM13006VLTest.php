@@ -16,7 +16,7 @@ class MsconsM13006VLTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->msconsBuilder = new MsconsM13006VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->msconsBuilder = new MsconsM13006VLBuilder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
     }
 
     /** @test */
@@ -42,7 +42,7 @@ class MsconsM13006VLTest extends TestCase
     public function it_sets_the_correct_GS1_qualifier()
     {
         $this->configuration->setExportSender('400');
-        $this->msconsBuilder = new MsconsM13006VLBuilder('to', tempnam(sys_get_temp_dir(), 'EdifactTest'), $this->configuration);
+        $this->msconsBuilder = new MsconsM13006VLBuilder('to', $this->configuration, tempnam(sys_get_temp_dir(), 'EdifactTest'));
 
         $this->msconsBuilder->addMessage($this->makeMsconsMock());
         $this->edifactObject = $this->msconsBuilder->get();
