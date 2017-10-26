@@ -55,6 +55,12 @@ abstract class EdifactBuilder extends AbstractBuilder
 
     protected function getUnbQualifier($mpCode)
     {
+        $mpCode = (string)$mpCode;
+
+        if ($mpCode == '') {
+            return null;
+        }
+
         if ($mpCode[0] == '4') {
             return 14;
         }
