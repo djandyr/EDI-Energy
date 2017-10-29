@@ -12,7 +12,7 @@ class BuilderFixture extends EdifactBuilder
 
     public function getDescriptionPath()
     {
-        return __DIR__;
+        return __DIR__ . '/BuilderFixtureDescription.php';
     }
 
     public function testWriteUnb()
