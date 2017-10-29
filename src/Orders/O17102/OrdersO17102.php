@@ -2,6 +2,16 @@
 
 return [
     'name' => 'OrdersO17102',
+    'versions' => [
+        'syntax_id' => 'UNOC',
+        'syntax_version' => 3,
+        'version_number' => 'D',
+        'organisation' => 'UN',
+        'message_subtype' => '',
+        'release_number' => '09B',
+        'message_type' => 'ORDERS',
+        'organisation_code' => '1.1g',
+    ],
     'validation' => [
         ['name' => 'UNA'],
         ['name' => 'UNB'],

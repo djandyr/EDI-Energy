@@ -2,6 +2,16 @@
 
 return [
     'name' => 'MsconsM13014EM',
+    'versions' => [
+        'syntax_id' => 'UNOC',
+        'syntax_version' => 3,
+        'version_number' => 'D',
+        'organisation' => 'UN',
+        'message_subtype' => '',
+        'release_number' => '04B',
+        'message_type' => 'MSCONS',
+        'organisation_code' => '2.2h',
+    ],
     'validation' => [
         ['name' => 'UNA', 'necessity' => 'O'],
         ['name' => 'UNB'],

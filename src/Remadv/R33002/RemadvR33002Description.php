@@ -5,6 +5,16 @@ $answers = ['5', '9', '28', '14' , '53', 'Z01', 'Z02', 'Z03', 'Z04', 'Z06', 'Z07
 
 return [
     'name' => 'RemadvR33002',
+    'versions' => [
+        'syntax_id' => 'UNOC',
+        'syntax_version' => 3,
+        'version_number' => 'D',
+        'organisation' => 'UN',
+        'message_subtype' => '',
+        'release_number' => '05A',
+        'message_type' => 'REMADV',
+        'organisation_code' => '2.7c',
+    ],
     'validation' => [
         ['name' => 'UNA'],
         ['name' => 'UNB'],

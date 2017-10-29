@@ -4,6 +4,16 @@ $acceptedReasons = ['E15', 'Z01'];
 
 return [
     'name' => 'UtilmdU11011',
+    'versions' => [
+        'syntax_id' => 'UNOC',
+        'syntax_version' => 3,
+        'version_number' => 'D',
+        'organisation' => 'UN',
+        'message_subtype' => '',
+        'release_number' => '11A',
+        'message_type' => 'UTILMD',
+        'organisation_code' => '5.1g',
+    ],
     'validation' => [
         ['name' => 'UNA', 'necessity' => 'O'],
         ['name' => 'UNB'],

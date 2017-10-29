@@ -2,6 +2,16 @@
 
 return [
     'name' => 'RemadvR33001',
+    'versions' => [
+        'syntax_id' => 'UNOC',
+        'syntax_version' => 3,
+        'version_number' => 'D',
+        'organisation' => 'UN',
+        'message_subtype' => '',
+        'release_number' => '05A',
+        'message_type' => 'REMADV',
+        'organisation_code' => '2.7c',
+    ],
     'validation' => [
         ['name' => 'UNA'],
         ['name' => 'UNB'],

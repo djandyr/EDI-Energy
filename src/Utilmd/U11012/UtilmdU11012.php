@@ -4,6 +4,16 @@ $denyReasons = ['E17', 'Z08', 'Z09', 'Z12', 'Z14'];
 
 return [
     'name' => 'UtilmdU11012',
+    'versions' => [
+        'syntax_id' => 'UNOC',
+        'syntax_version' => 3,
+        'version_number' => 'D',
+        'organisation' => 'UN',
+        'message_subtype' => '',
+        'release_number' => '11A',
+        'message_type' => 'UTILMD',
+        'organisation_code' => '5.1g',
+    ],
     'validation' => [
         ['name' => 'UNA', 'necessity' => 'O'],
         ['name' => 'UNB'],
