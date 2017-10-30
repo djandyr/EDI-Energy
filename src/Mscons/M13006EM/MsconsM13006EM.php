@@ -2,12 +2,13 @@
 
 return [
     'name' => 'MsconsM13006EM',
+    'check_digit' => 13006,
     'versions' => [
         'syntax_id' => 'UNOC',
         'syntax_version' => 3,
         'version_number' => 'D',
         'organisation' => 'UN',
-        'message_subtype' => '',
+        'message_subtype' => 'VL',
         'release_number' => '04B',
         'message_type' => 'MSCONS',
         'organisation_code' => '2.2h',

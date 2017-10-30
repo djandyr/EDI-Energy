@@ -18,11 +18,11 @@ class UtilmdU11007Builder extends UtilmdBuilder
     {
         $this->writeSeg('Unh', [
             $this->unbReference(),
-            self::MESSAGE_TYPE,
-            self::VERSION_NUMBER,
-            self::RELEASE_NUMBER,
-            self::ORGANISATION,
-            self::ORGANISATION_CODE
+            $this->description->get('versions.message_type'),
+            $this->description->get('versions.version_number'),
+            $this->description->get('versions.release_number'),
+            $this->description->get('versions.organisation'),
+            $this->description->get('versions.organisation_code'),
         ]);
         $this->writeSeg('Bgm', ['E01', $this->unbReference()]);
         $this->writeSeg('Dtm', [137, new DateTime, 203]);

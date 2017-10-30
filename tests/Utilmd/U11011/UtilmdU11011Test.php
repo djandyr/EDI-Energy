@@ -31,7 +31,8 @@ class UtilmdU11011Test extends TestCase
     {
         $this->utilmdBuilder->addMessage([$this->makeUtilmdMock('E03', '2017-01-01')]);
 
-        $this->utilmdBuilder->getOrFail();
+        $edifactObject = $this->utilmdBuilder->getOrFail();
+        $edifactObject->validate();
     }
 
     private function makeUtilmdMock(

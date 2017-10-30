@@ -25,11 +25,11 @@ abstract class RemadvBuilder extends EdifactBuilder
     {
         $this->writeSeg('Unh', [
             $this->unbReference().$this->messageCount(),
-            self::MESSAGE_TYPE,
-            self::VERSION_NUMBER,
-            self::RELEASE_NUMBER,
-            self::ORGANISATION,
-            self::ORGANISATION_CODE
+            $this->description->get('versions.message_type'),
+            $this->description->get('versions.version_number'),
+            $this->description->get('versions.release_number'),
+            $this->description->get('versions.organisation'),
+            $this->description->get('versions.organisation_code'),
         ]);
         $this->writeSeg('Bgm', [static::DOC_CODE, $this->unbReference().$this->messageCount()]);
         $this->writeSeg('Dtm', [137, new DateTime, 102]);

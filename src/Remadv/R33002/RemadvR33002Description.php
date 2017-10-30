@@ -5,6 +5,7 @@ $answers = ['5', '9', '28', '14' , '53', 'Z01', 'Z02', 'Z03', 'Z04', 'Z06', 'Z07
 
 return [
     'name' => 'RemadvR33002',
+    'check_digit' => 33002,
     'versions' => [
         'syntax_id' => 'UNOC',
         'syntax_version' => 3,

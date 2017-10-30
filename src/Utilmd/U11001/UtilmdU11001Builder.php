@@ -18,7 +18,7 @@ class UtilmdU11002Builder extends UtilmdBuilder
     {
         $this->writeSeg('Unh', [
             $this->unbReference(),
-            $this->description->get('versions.message_type'),
+            $this->description->get('versions.message_type-bl'),
             $this->description->get('versions.version_number'),
             $this->description->get('versions.release_number'),
             $this->description->get('versions.organisation'),

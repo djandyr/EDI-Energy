@@ -2,6 +2,7 @@
 
 return [
     'name' => 'RemadvR33001',
+    'check_digit' => 33001,
     'versions' => [
         'syntax_id' => 'UNOC',
         'syntax_version' => 3,

@@ -2,6 +2,7 @@
 
 return [
     'name' => 'OrdersO17102',
+    'check_digit' => 17102,
     'versions' => [
         'syntax_id' => 'UNOC',
         'syntax_version' => 3,
