@@ -72,6 +72,8 @@ abstract class EdifactBuilder extends AbstractBuilder
 
     protected function getNadQualifier($mpCode)
     {
+        $mpCode = (string)$mpCode;
+
         if ($mpCode[0] == '4') {
             return 9;
         }
