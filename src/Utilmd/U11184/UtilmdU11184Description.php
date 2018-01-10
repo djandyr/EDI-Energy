@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'type' => 'UTILMD',
     'name' => 'Utilmd11184',
     'check_digit' => 11184,
     'versions' => [

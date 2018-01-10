@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'type' => 'UTILMD',
     'name' => 'UtilmdU11109',
     'versions' => [
         'syntax_id' => 'UNOC',
