@@ -7,7 +7,7 @@ use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
 
 class UtilmdU11183Builder extends UtilmdBuilder
 {
-    const CHECK_DIGIT = 11001;
+    const CHECK_DIGIT = 11183;
 
     public function getDescriptionPath()
     {
@@ -45,6 +45,7 @@ class UtilmdU11183Builder extends UtilmdBuilder
         $this->writeSeg('Imd', ['Z14', 'Z07']);
         $this->writeSeg('Sts', ['7', 'ZJ7']);
         $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
+        $this->writeSeg('RFF', ['Z13', self::CHECK_DIGIT]);
 
         $this->writeSeg('Seq', ['Z01']);
         $this->writeSeg('Rff', ['AVE', $item->getMeterpoint()]);

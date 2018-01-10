@@ -7,7 +7,7 @@ use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
 
 class UtilmdU11184Builder extends UtilmdBuilder
 {
-    const CHECK_DIGIT = 11001;
+    const CHECK_DIGIT = 11184;
 
     public function getDescriptionPath()
     {
