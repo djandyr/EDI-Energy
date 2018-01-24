@@ -102,6 +102,12 @@ class Configuration extends BaseConfig
             __DIR__ . '/Utilmd/U11080/UtilmdU11080Description.php' => [
                 'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11080/'
             ],
+            __DIR__ . '/Utilmd/U11183/UtilmdU11183Description.php' => [
+                'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11183/'
+            ],
+            __DIR__ . '/Utilmd/U11184/UtilmdU11184Description.php' => [
+                'UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11184/'
+            ],
             __DIR__ . '/Orders/O17102/OrdersO17102.php' => [
                 'UNH' => '/UNH\+(.*?)\+ORDERS\:/', 'RFF' => '/RFF\+Z13\:17102/'
             ],

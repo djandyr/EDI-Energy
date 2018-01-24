@@ -2,7 +2,7 @@
 
 return [
     'type' => 'UTILMD',
-    'name' => 'Utilmd11184',
+    'name' => 'UtilmdU11184',
     'check_digit' => 11184,
     'versions' => [
         'syntax_id' => 'UNOC',
