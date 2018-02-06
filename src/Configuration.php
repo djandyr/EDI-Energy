@@ -67,6 +67,8 @@ class Configuration extends BaseConfig
             __DIR__ . '/Invoic/I31002/InvoicI31002Description.php' => ['UNH' => '/UNH\+(.*?)\+INVOIC\:/', 'RFF' => '/RFF\+Z13\:31002/'],
             __DIR__ . '/Invoic/I31003/InvoicI31003Description.php' => ['UNH' => '/UNH\+(.*?)\+INVOIC\:/', 'RFF' => '/RFF\+Z13\:31003/'],
             __DIR__ . '/Invoic/I31004/InvoicI31004Description.php' => ['UNH' => '/UNH\+(.*?)\+INVOIC\:/', 'RFF' => '/RFF\+Z13\:31004/'],
+            __DIR__ . '/Invoic/I31005/InvoicI31005Description.php' => ['UNH' => '/UNH\+(.*?)\+INVOIC\:/', 'RFF' => '/RFF\+Z13\:31005/'],
+            __DIR__ . '/Invoic/I31006/InvoicI31006Description.php' => ['UNH' => '/UNH\+(.*?)\+INVOIC\:/', 'RFF' => '/RFF\+Z13\:31006/'],
             __DIR__ . '/Invoic/I31009/InvoicI31009Description.php' => ['UNH' => '/UNH\+(.*?)\+INVOIC\:/', 'RFF' => '/RFF\+Z13\:31009/'],
             __DIR__ . '/Mscons/M13002VL/MsconsM13002VL.php' => ['UNH' => '/UNH\+(.*?)\+MSCONS\:/', 'RFF' => '/RFF\+Z13\:13002/' ],
             __DIR__ . '/Mscons/M13006VL/MsconsM13006VL.php' => ['UNB' => '/UNB\+(.*?)\+\+VL/', 'UNH' => '/UNH\+(.*?)\+MSCONS\:/', 'RFF' => '/RFF\+Z13\:13006/'],
