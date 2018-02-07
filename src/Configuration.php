@@ -36,6 +36,9 @@ class Configuration extends BaseConfig
     public function getMessageDescriptions()
     {
         $preDefinedDescriptions = [
+            __DIR__ . '/Orders/O17102/OrdersO17102.php' => ['UNH' => '/UNH\+(.*?)\+ORDERS\:/', 'RFF' => '/RFF\+Z13\:17102/'],
+            __DIR__ . '/Orders/O17103/OrdersO17103.php' => ['UNH' => '/UNH\+(.*?)\+ORDERS\:/', 'RFF' => '/RFF\+Z13\:17103/'],
+            __DIR__ . '/Remadv/R33001/RemadvR33001.php' => ['UNH' => '/UNH\+(.*?)\+REMADV\:/', 'RFF' => '/RFF\+Z13\:33001/'],
             __DIR__ . '/Utilmd/U11002/UtilmdU11002.php' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11002/'],
             __DIR__ . '/Utilmd/U11003/UtilmdU11003.php' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11003/'],
             __DIR__ . '/Utilmd/U11005/UtilmdU11005.php' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11005/'],
@@ -58,11 +61,9 @@ class Configuration extends BaseConfig
             __DIR__ . '/Utilmd/U11093/UtilmdU11093Description.php' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11093/'],
             __DIR__ . '/Utilmd/U11094/UtilmdU11094Description.php' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11094/'],
             __DIR__ . '/Utilmd/U11080/UtilmdU11080Description.php' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11080/'],
+            __DIR__ . '/Utilmd/U11123/UtilmdU11123Description.php' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11123/'],
             __DIR__ . '/Utilmd/U11183/UtilmdU11183Description.php' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11183/'],
             __DIR__ . '/Utilmd/U11184/UtilmdU11184Description.php' => ['UNH' => '/UNH\+(.*?)\+UTILMD\:/', 'RFF' => '/RFF\+Z13\:11184/'],
-            __DIR__ . '/Orders/O17102/OrdersO17102.php' => ['UNH' => '/UNH\+(.*?)\+ORDERS\:/', 'RFF' => '/RFF\+Z13\:17102/'],
-            __DIR__ . '/Orders/O17103/OrdersO17103.php' => ['UNH' => '/UNH\+(.*?)\+ORDERS\:/', 'RFF' => '/RFF\+Z13\:17103/'],
-            __DIR__ . '/Remadv/R33001/RemadvR33001.php' => ['UNH' => '/UNH\+(.*?)\+REMADV\:/', 'RFF' => '/RFF\+Z13\:33001/'],
             __DIR__ . '/Invoic/I31001/InvoicI31001Description.php' => ['UNH' => '/UNH\+(.*?)\+INVOIC\:/', 'RFF' => '/RFF\+Z13\:31001/'],
             __DIR__ . '/Invoic/I31002/InvoicI31002Description.php' => ['UNH' => '/UNH\+(.*?)\+INVOIC\:/', 'RFF' => '/RFF\+Z13\:31002/'],
             __DIR__ . '/Invoic/I31003/InvoicI31003Description.php' => ['UNH' => '/UNH\+(.*?)\+INVOIC\:/', 'RFF' => '/RFF\+Z13\:31003/'],
