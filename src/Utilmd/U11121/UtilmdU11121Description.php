@@ -2,7 +2,7 @@
 
 return [
     'type' => 'UTILMD',
-    'name' => 'UtilmdUU11123',
+    'name' => 'UtilmdU11121',
     'versions' => [
         'syntax_id' => 'UNOC',
         'syntax_version' => 3,

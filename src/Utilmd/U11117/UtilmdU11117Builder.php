@@ -1,17 +1,17 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Utilmd\U11123;
+namespace Proengeno\EdiEnergy\Utilmd\U11117;
 
 use DateTime;
 use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
 
 class UtilmdU11038Builder extends UtilmdBuilder
 {
-    const CHECK_DIGIT = 11123;
+    const CHECK_DIGIT = 11117;
 
     public function getDescriptionPath()
     {
-        return __DIR__ . '/UtilmdU11123Description.php';
+        return __DIR__ . '/UtilmdU11117Description.php';
     }
 
     protected function writeMessage($items)
