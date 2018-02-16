@@ -4,13 +4,15 @@ namespace Proengeno\EdiEnergy\Utilmd\U11018;
 
 use DateTime;
 use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\Consumer\Supplier\SupllierSignOffResponseInterface;
 
 class UtilmdU11018Builder extends UtilmdBuilder
 {
     const CHECK_DIGIT = 11018;
 
-    const ANSWER_CONTRACT_COMMITMENT = 'Z12';
+    const ANSWER_OTHER_REASON = 'E14';
     const ANSWER_MULTIPLE_SIGN_OFFS = 'Z34';
+    const ANSWER_CONTRACT_COMMITMENT = 'Z12';
 
     public function getDescriptionPath()
     {
@@ -42,7 +44,7 @@ class UtilmdU11018Builder extends UtilmdBuilder
         $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
     }
 
-    private function writeItem($item)
+    private function writeItem(SupllierSignOffResponseInterface $item)
     {
         $this->writeSeg('Ide', ['24', $item->getIdeRef()]);
         $this->writeSeg('Imd', ['Z14', 'Z07']);
@@ -55,12 +57,12 @@ class UtilmdU11018Builder extends UtilmdBuilder
             }
         } elseif ($this->contractIsInCommitment($item)) {
             $this->writeSeg('Dtm', ['157', $item->getContractTermDate(), 102]);
-            $this->writeSeg('Dtm', ['Z01', $item->getNoticePeriod(), 102]);
+            $this->writeSeg('Dtm', ['Z01', $item->getNoticePeriod(), 'Z01']);
         }
 
         $this->writeSeg('Sts', ['7', 'E03']);
         $this->writeSeg('Sts', ['E01', $item->getAnswer()]);
-        if ($item->getComments() !== null) {
+        if (static::ANSWER_OTHER_REASON == $item->getAnswer()) {
             $this->writeSeg('Ftx', ['ACB', $item->getComments()]);
         }
         $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
