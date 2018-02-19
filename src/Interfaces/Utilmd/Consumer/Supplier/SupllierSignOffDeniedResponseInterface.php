@@ -4,7 +4,7 @@ namespace Proengeno\EdiEnergy\Interfaces\Utilmd\Consumer\Supplier;
 
 use Proengeno\EdiEnergy\Interfaces\ResponseInterface;
 
-interface SupllierSignOffResponseInterface extends ResponseInterface
+interface SupllierSignOffDeniedResponseInterface extends ResponseInterface
 {
     public function getIdeRef();
     public function getSupplierSignOffDate();
