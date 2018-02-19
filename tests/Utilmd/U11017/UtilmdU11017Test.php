@@ -7,7 +7,7 @@ use Mockery as m;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Utilmd\U11017\UtilmdU11017Builder;
-use Proengeno\EdiEnergy\Interfaces\Utilmd\SupplierSupllierSignOffAnswerInterface;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\Supplier\SupllierSignOffAcceptedResponseInterface;
 
 class UtilmdU11017Test extends TestCase
 {
@@ -72,9 +72,8 @@ class UtilmdU11017Test extends TestCase
         $comments = null
     )
     {
-        return m::mock(SupplierSupllierSignOffAnswerInterface::class)
+        return m::mock(SupllierSignOffAcceptedResponseInterface::class)
              ->shouldReceive('getIdeRef')->andReturn($ideRef)
-             ->shouldReceive('getComments')->andReturn($comments)
              ->shouldReceive('getMeterpoint')->andReturn($meterpoint)
              ->shouldReceive('getMeterNumber')->andReturn($meterNumber)
              ->shouldReceive('getFirstName')->andReturn('FristName')
