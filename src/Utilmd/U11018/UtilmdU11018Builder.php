@@ -4,7 +4,7 @@ namespace Proengeno\EdiEnergy\Utilmd\U11018;
 
 use DateTime;
 use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
-use Proengeno\EdiEnergy\Interfaces\Utilmd\Consumer\Supplier\SupllierSignOffDeniedResponseInterface;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\Supplier\SupllierSignOffDeniedResponseInterface;
 
 class UtilmdU11018Builder extends UtilmdBuilder
 {

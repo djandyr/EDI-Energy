@@ -1,6 +1,6 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Interfaces\Utilmd\Consumer\Supplier;
+namespace Proengeno\EdiEnergy\Interfaces\Utilmd\Supplier;
 
 use Proengeno\EdiEnergy\Interfaces\ResponseInterface;
 

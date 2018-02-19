@@ -7,7 +7,7 @@ use Mockery as m;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Utilmd\U11018\UtilmdU11018Builder;
-use Proengeno\EdiEnergy\Interfaces\Utilmd\Consumer\Supplier\SupllierSignOffDeniedResponseInterface;
+use Proengeno\EdiEnergy\Interfaces\Utilmd\Supplier\SupllierSignOffDeniedResponseInterface;
 
 class UtilmdU11018Test extends TestCase
 {
