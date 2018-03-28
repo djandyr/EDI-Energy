@@ -7,10 +7,13 @@ use Mockery as m;
 use Proengeno\Edifact\Message\Message;
 use Proengeno\EdiEnergy\Test\TestCase;
 use Proengeno\EdiEnergy\Utilmd\U11017\UtilmdU11017Builder;
+use Proengeno\EdiEnergy\Test\Utilmd\DescriptionAssertionTrait;
 use Proengeno\EdiEnergy\Interfaces\Utilmd\Supplier\SupllierSignOffAcceptedResponseInterface;
 
 class UtilmdU11017Test extends TestCase
 {
+    use DescriptionAssertionTrait;
+
     private $utilmdBuilder;
 
     protected function setUp()
@@ -20,10 +23,20 @@ class UtilmdU11017Test extends TestCase
     }
 
     /** @test */
-    public function it_build_up_the_Message_instance_with_utilmd_13002_mapping()
+    public function it_build_up_the_Message_instance_with_utilmd_11017_mapping()
     {
         $this->assertInstanceOf(Message::class, $this->edifactObject = $this->utilmdBuilder->get());
         $this->assertEquals('UtilmdU11017', $this->edifactObject->getDescription('name'));
+    }
+
+    /** @test */
+    public function it_build_up_the_Message_with_the_decription_values()
+    {
+        $cancellationDate = '2016-01-01';
+        $fixedSignOff = true;
+        $this->utilmdBuilder->addMessage([$this->makeUtilmdMock($cancellationDate, $fixedSignOff)]);
+
+        $this->assertDescriptions($this->utilmdBuilder->get());
     }
 
     /** @test */

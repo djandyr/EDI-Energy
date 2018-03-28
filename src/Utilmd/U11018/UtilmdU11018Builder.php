@@ -14,37 +14,9 @@ class UtilmdU11018Builder extends UtilmdBuilder
     const ANSWER_MULTIPLE_SIGN_OFFS = 'Z34';
     const ANSWER_CONTRACT_COMMITMENT = 'Z12';
 
-    public function getDescriptionPath()
-    {
-        return __DIR__ . '/UtilmdU11018.php';
-    }
+    protected $bgmType = 'E35';
 
-    protected function writeMessage($items)
-    {
-        $this->writeSeg('Unh', [
-            $this->unbReference(),
-            $this->description->get('versions.message_type'),
-            $this->description->get('versions.version_number'),
-            $this->description->get('versions.release_number'),
-            $this->description->get('versions.organisation'),
-            $this->description->get('versions.organisation_code'),
-        ]);
-        $this->writeSeg('Bgm', ['E35', $this->unbReference()]);
-        $this->writeSeg('Dtm', [137, new DateTime, 203]);
-        $this->writeSeg('Nad', ['MS', $this->from, $this->getNadQualifier($this->from)], 'fromMpCode');
-        $this->writeSeg('Cta', ['IC', 'Herr Geerdes']);
-        $this->writeSeg('Com', ['04958 91570-10', 'TE']);
-        $this->writeSeg('Com', ['j.geerdes@proengeno.de', 'EM']);
-        $this->writeSeg('Nad', ['MR', $this->to, $this->getNadQualifier($this->to)], 'fromMpCode');
-
-        foreach ($items as $item) {
-            $this->writeItem($item);
-        }
-
-        $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
-    }
-
-    private function writeItem(SupllierSignOffDeniedResponseInterface $item)
+    protected function writeItem(SupllierSignOffDeniedResponseInterface $item)
     {
         $this->writeSeg('Ide', ['24', $item->getIdeRef()]);
         $this->writeSeg('Imd', ['Z14', 'Z07']);

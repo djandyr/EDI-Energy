@@ -11,37 +11,9 @@ class UtilmdU11077Builder extends UtilmdBuilder
     const CHECK_DIGIT = 11077;
     const PROMOTED_DIRECT_MARKETING = 'Z19';
 
-    public function getDescriptionPath()
-    {
-        return __DIR__ . '/UtilmdU11077.php';
-    }
+    protected $bgmType = 'E01';
 
-    protected function writeMessage($items)
-    {
-        $this->writeSeg('Unh', [
-            $this->unbReference(),
-            $this->description->get('versions.message_type'),
-            $this->description->get('versions.version_number'),
-            $this->description->get('versions.release_number'),
-            $this->description->get('versions.organisation'),
-            $this->description->get('versions.organisation_code'),
-        ]);
-        $this->writeSeg('Bgm', ['E01', $this->unbReference()]);
-        $this->writeSeg('Dtm', [137, new DateTime, 203]);
-        $this->writeSeg('Nad', ['MS', $this->from, $this->getNadQualifier($this->from)], 'fromMpCode');
-        $this->writeSeg('Cta', ['IC', 'Herr Geerdes']);
-        $this->writeSeg('Com', ['04958 91570-10', 'TE']);
-        $this->writeSeg('Com', ['j.geerdes@proengeno.de', 'EM']);
-        $this->writeSeg('Nad', ['MR', $this->to, $this->getNadQualifier($this->to)], 'fromMpCode');
-
-        foreach ($items as $item) {
-            $this->writeItem($item);
-        }
-
-        $this->writeSeg('Unt', [$this->unhCount() + 1, $this->unbReference()]);
-    }
-
-    private function writeItem(SupplierGridOperationSignOnInterface $item)
+    protected function writeItem(SupplierGridOperationSignOnInterface $item)
     {
         $this->writeSeg('Ide', ['24', $item->getIdeRef()]);
         $this->writeSeg('Imd', ['Z14', 'Z06']);
