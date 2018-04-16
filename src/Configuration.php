@@ -25,6 +25,8 @@ class Configuration extends BaseConfig
         'RemadvR33002' => 'Proengeno\EdiEnergy\Remadv\R33002\RemadvR33002Builder',
         'MsconsM13002VL' => 'Proengeno\EdiEnergy\Mscons\M13002VL\MsconsM13002VLBuilder',
         'UtilmdU11004' => 'Proengeno\EdiEnergy\Utilmd\U11004\UtilmdU11004Builder',
+        'UtilmdU11008' => 'Proengeno\EdiEnergy\Utilmd\U11008\UtilmdU11008Builder',
+        'UtilmdU11009' => 'Proengeno\EdiEnergy\Utilmd\U11009\UtilmdU11009Builder',
         'UtilmdU11011' => 'Proengeno\EdiEnergy\Utilmd\U11011\UtilmdU11011Builder',
         'UtilmdU11012' => 'Proengeno\EdiEnergy\Utilmd\U11012\UtilmdU11012Builder',
         'UtilmdU11016' => 'Proengeno\EdiEnergy\Utilmd\U11016\UtilmdU11016Builder',

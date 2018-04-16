@@ -1,14 +1,15 @@
 <?php
 
-namespace Proengeno\EdiEnergy\Utilmd\U11008;
+namespace Proengeno\EdiEnergy\Utilmd\U11009;
 
 use DateTime;
 use Proengeno\EdiEnergy\Utilmd\UtilmdBuilder;
 use Proengeno\EdiEnergy\Interfaces\Utilmd\Supplier\GridOperaterClosureResponseInterface;
 
-class UtilmdU11008Builder extends UtilmdBuilder
+class UtilmdU11009Builder extends UtilmdBuilder
 {
-    const CHECK_DIGIT = 11008;
+    const CHECK_DIGIT = 11009;
+    const ANSWER_OTHER_REASON = 'E14';
 
     protected $bgmType = 'E02';
 
@@ -16,14 +17,13 @@ class UtilmdU11008Builder extends UtilmdBuilder
     {
         $this->writeSeg('Ide', ['24', $item->getIdeRef()]);
         $this->writeSeg('Imd', ['Z14', 'Z07']);
-        $this->writeSeg('Dtm', ['93', $item->getSignOffDate(), 102]);
-        if ($item->getBalancingEnd()) {
-            $this->writeSeg('Dtm', ['159', $item->getBalancingEnd(), 102]);
-        }
         $this->writeSeg('Sts', ['7', 'Z33']);
         $this->writeSeg('Sts', ['E01', $item->getAnswer()]);
+        if (static::ANSWER_OTHER_REASON == $item->getAnswer()) {
+            $this->writeSeg('Ftx', ['ACB', $item->getComments()]);
+        }
         $this->writeSeg('Loc', ['172', $item->getMeterpoint()]);
-        $this->writeSeg('Rff', ['Z13', '11008']);
+        $this->writeSeg('Rff', ['Z13', '11009']);
         $this->writeSeg('Rff', ['TN', $item->getRequestRef()]);
     }
 }
